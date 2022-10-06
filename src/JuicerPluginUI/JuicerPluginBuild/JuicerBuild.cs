@@ -14,9 +14,12 @@ namespace JuicerPluginBuild
 {
     public class JuicerBuild
     {
+        /// <summary>
+        /// Объект Компас API
+        /// </summary>
         private KompasObject _kompas = null;
 
-        //Запуск компаса
+        //--------------------------------------------------------------------------------------------------------Запуск компаса
         public void StartKompas()
         {
             try
@@ -47,28 +50,33 @@ namespace JuicerPluginBuild
                 _kompas = null;
                 StartKompas();
             }
-
-            //Создание файла
-            KompasObject kompas = _kompas;
-            _kompas = kompas;
-            var document = (ksDocument3D)kompas.Document3D();
-            document.Create();
-
-            var doc = (ksDocument3D)_kompas.ActiveDocument3D();
-            var part = (ksPart)document.GetPart((short)Part_Type.pTop_Part);
-            OperationRotated(doc);
-            Eskiz2(doc);
-            //Eskiz3(doc);
-            Eskiz4(doc);
-            Eskiz5(doc);
         }
 
         /// <summary>
-        /// Вращение
+        /// Построение модели соковыжималки
         /// </summary>
-        /// <param name="doc"></param>
-        void OperationRotated(ksDocument3D doc)
+        public void BuildJuicer()
         {
+            //Создание файла
+            KompasObject kompas = _kompas;
+            _kompas = kompas;
+            ksDocument3D document = (ksDocument3D)kompas.Document3D();
+            document.Create();
+
+            ksDocument3D doc = (ksDocument3D)_kompas.ActiveDocument3D();
+            ksPart part = (ksPart)document.GetPart((short)Part_Type.pTop_Part);
+            PlateSketch(doc);
+            StakeBuilding(doc);
+            StakeProngs(doc);
+            HolesInThePlate(doc);
+        }
+
+        /// <summary>
+        /// Построение эскиза тарелки соковыжималки
+        /// </summary>
+        void PlateSketch(ksDocument3D doc)
+        {
+            bool thinWallElement = true; // тонкостенный элемент
             // Эскиз
             ksPart part = (ksPart)doc.GetPart((short)Part_Type.pTop_Part);  // новый компонент
             if (part != null)
@@ -105,40 +113,48 @@ namespace JuicerPluginBuild
                                 sketchEdit.ksArcByPoint(70, -10, 10, 80, -10, 70, 0, 1, 1);
                                 sketchDef.EndEdit();    // завершение редактирования эскиза
                             }
-
-                            //Вращение
-                            ksEntity entityRotate = (ksEntity)part.NewEntity((short)Obj3dType.o3d_bossRotated);
-                            if (entityRotate != null)
-                            {
-                                ksBossRotatedDefinition rotateDef = (ksBossRotatedDefinition)entityRotate.GetDefinition(); // интерфейс базовой операции вращения
-                                if (rotateDef != null)
-                                {
-                                    ksRotatedParam rotproperty = (ksRotatedParam)rotateDef.RotatedParam();
-                                    if (rotproperty != null)
-                                    {
-                                        rotproperty.direction = (short)Direction_Type.dtBoth;
-                                        rotproperty.toroidShape = true; //Тороид
-                                    }
-
-                                    rotateDef.SetThinParam(true, (short)Direction_Type.dtBoth, 2, 0);   // тонкая стенка в два направления
-                                    rotateDef.SetSketch(entitySketch);
-                                    rotateDef.SetSideParam(true, 360);
-                                    rotateDef.SetSketch(entitySketch);  // эскиз операции вращения
-                                    entityRotate.Create();              // создать операцию
-                                }
-                            }
+                            RotationOperation(doc, part, entitySketch, thinWallElement);
                         }
                     }
                 }
             }
         }
 
+        /// <summary>
+        /// Операция вращения
+        /// </summary>
+        public void RotationOperation(ksDocument3D doc, ksPart part, ksEntity entitySketch, bool thinWallElement)
+        {
+            //Вращение
+            ksEntity entityRotate = (ksEntity)part.NewEntity((short)Obj3dType.o3d_bossRotated);
+            if (entityRotate != null)
+            {
+                ksBossRotatedDefinition rotateDef = (ksBossRotatedDefinition)entityRotate.GetDefinition(); // интерфейс базовой операции вращения
+                if (rotateDef != null)
+                {
+                    ksRotatedParam rotproperty = (ksRotatedParam)rotateDef.RotatedParam();
+                    if (rotproperty != null)
+                    {
+                        rotproperty.direction = (short)Direction_Type.dtBoth;
+                        rotproperty.toroidShape = true; //Тороид
+                    }
+
+                    rotateDef.SetThinParam(thinWallElement, (short)Direction_Type.dtBoth, 2, 0);   // тонкая стенка в два направления
+                    rotateDef.SetSketch(entitySketch);
+                    rotateDef.SetSideParam(true, 360);
+                    rotateDef.SetSketch(entitySketch);  // эскиз операции вращения
+                    entityRotate.Create();              // создать операцию
+                }
+            }
+        }
+
 
         /// <summary>
-        /// Кол
+        /// Построение кола
         /// </summary>
-        public void Eskiz2(ksDocument3D doc)
+        public void StakeBuilding(ksDocument3D doc)
         {
+            bool thinWallElement = false; // не тонкостенный 
             // Эскиз
             ksPart part = (ksPart)doc.GetPart((short)Part_Type.pTop_Part);  // новый компонент
             if (part != null)
@@ -171,27 +187,7 @@ namespace JuicerPluginBuild
                                 sketchEdit.ksArcByPoint(-70, 0, 100, 26, -28, -30, 0, 1, 1);
                                 sketchDef.EndEdit();    // завершение редактирования эскиза
                             }
-
-                            //Вращение
-                            ksEntity entityRotate = (ksEntity)part.NewEntity((short)Obj3dType.o3d_bossRotated);
-                            if (entityRotate != null)
-                            {
-                                ksBossRotatedDefinition rotateDef = (ksBossRotatedDefinition)entityRotate.GetDefinition(); // интерфейс базовой операции вращения
-                                if (rotateDef != null)
-                                {
-                                    ksRotatedParam rotproperty = (ksRotatedParam)rotateDef.RotatedParam();
-                                    if (rotproperty != null)
-                                    {
-                                        rotproperty.direction = (short)Direction_Type.dtBoth;
-                                        //rotproperty.angleNormal = 360; //Тороид
-                                    }
-
-                                    rotateDef.SetSketch(entitySketch);
-                                    rotateDef.SetSideParam(true, 360);
-                                    rotateDef.SetSketch(entitySketch);  // эскиз операции вращения
-                                    entityRotate.Create();              // создать операцию
-                                }
-                            }
+                            RotationOperation(doc, part, entitySketch, thinWallElement);
                         }
                     }
                 }
@@ -199,147 +195,51 @@ namespace JuicerPluginBuild
         }
 
         /// <summary>
-        /// Кол
+        /// Построение зубцов кола
         /// </summary>
-        public void Eskiz3(ksDocument3D doc)
+        public void StakeProngs(ksDocument3D doc)
         {
             ksPart part = (ksPart)doc.GetPart((short)Part_Type.pTop_Part);  // новый компонент
             if (part != null)
             {
-                // создадим эскиз
+                ksEntity entitySketchDisplaced = (ksEntity)part.NewEntity((short)Obj3dType.o3d_sketch);
+            // создадим смещенную плоскость, а в ней эскиз
+            ksEntity entityOffsetPlane2 = (ksEntity)part.NewEntity((short)Obj3dType.o3d_planeOffset);
+                if (entityOffsetPlane2 != null && entitySketchDisplaced != null)
+                {
+                    // интерфейс свойств смещенной плоскости
+                    ksPlaneOffsetDefinition offsetDef = (ksPlaneOffsetDefinition)entityOffsetPlane2.GetDefinition();
+                    if (offsetDef != null)
+                    {
+                        offsetDef.offset = 12;  // расстояние от базовой плоскости
+                        ksEntity basePlane = (ksEntity)part.GetDefaultEntity((short)Obj3dType.o3d_planeXOY);
+
+                        offsetDef.SetPlane(basePlane);                      // базовая плоскость
+                        entityOffsetPlane2.hidden = true;
+                        entityOffsetPlane2.Create();                        // создать смещенную плоскость 
+
+                        ksSketchDefinition sketchDef = (ksSketchDefinition)entitySketchDisplaced.GetDefinition();
+                        if (sketchDef != null)
+                        {
+                            sketchDef.SetPlane(entityOffsetPlane2);         // установим плоскость XOY базовой для эскиза
+                            entitySketchDisplaced.Create();                         // создадим эскиз
+
+                            // интерфейс редактора эскиза
+                            ksDocument2D sketchEdit = (ksDocument2D)sketchDef.BeginEdit();
+                            sketchEdit.ksLineSeg(30, 9.54, 22.060387, 0.000961, 1);
+                            sketchEdit.ksLineSeg(22.060387, 0.000961, 30, -9.54, 1);
+                            sketchEdit.ksLineSeg(30, -9.54, 30, 9.54, 1);
+                            sketchDef.EndEdit();                            // завершение редактирования эскиза                
+                        }
+                    }
+                }
+
+                // Эскиз линии, которая в дальнейшем будет траекторией выреза по траектории
                 ksEntity entitySketch = (ksEntity)part.NewEntity((short)Obj3dType.o3d_sketch);
                 if (entitySketch != null)
                 {
-                    ksSketchDefinition sketchDef = (ksSketchDefinition)entitySketch.GetDefinition();
-                    if (sketchDef != null)
-                    {
-                        ksEntity basePlane = (ksEntity)part.GetDefaultEntity((short)Obj3dType.o3d_planeXOY);    // получим интерфейс базовой плоскости XOY
-                        sketchDef.SetPlane(basePlane);  // установим плоскость XOY базовой для эскиза
-                        entitySketch.Create();          // создадим эскиз
-                        entitySketch.hidden = false;
-
-                        // интерфейс редактора эскиза
-                        ksDocument2D sketchEdit = (ksDocument2D)sketchDef.BeginEdit();
-                        //if (sketchEdit != null)
-                        //    sketchEdit.ksCircle(0, 0, , 1);
-                        sketchDef.EndEdit();    // завершение редактирования эскиза
-                    }
-                }
-
-
-                // создадим смещенную плоскость, а в ней эскиз
-                ksEntity entityOffsetPlane2 = (ksEntity)part.NewEntity((short)Obj3dType.o3d_planeOffset);
-                ksEntity entitySketch3 = (ksEntity)part.NewEntity((short)Obj3dType.o3d_sketch);
-                if (entityOffsetPlane2 != null && entitySketch3 != null)
-                {
-                    // интерфейс свойств смещенной плоскости
-                    ksPlaneOffsetDefinition offsetDef = (ksPlaneOffsetDefinition)entityOffsetPlane2.GetDefinition();
-                    if (offsetDef != null)
-                    {
-                        offsetDef.offset = 12;  // расстояние от базовой плоскости
-                        ksEntity basePlane = (ksEntity)part.GetDefaultEntity((short)Obj3dType.o3d_planeXOY);
-                        basePlane.name = "Смещенная плоскость"; // название для плоскости
-
-                        offsetDef.SetPlane(basePlane);                      // базовая плоскость
-                        entityOffsetPlane2.name = "Смещенная плоскость2";   // имя для смещенной плоскости
-                        entityOffsetPlane2.hidden = true;
-                        entityOffsetPlane2.Create();                        // создать смещенную плоскость 
-
-                        ksSketchDefinition sketchDef = (ksSketchDefinition)entitySketch3.GetDefinition();
-                        if (sketchDef != null)
-                        {
-                            sketchDef.SetPlane(entityOffsetPlane2);         // установим плоскость XOY базовой для эскиза
-                            entitySketch3.Create();                         // создадим эскиз
-
-                            // интерфейс редактора эскиза
-                            ksDocument2D sketchEdit = (ksDocument2D)sketchDef.BeginEdit();
-                            sketchEdit.ksLineSeg(30, 9.54, 22.060387, 0.000961, 1);
-                            sketchEdit.ksLineSeg(22.060387, 0.000961, 30, -9.54, 1);
-                            sketchEdit.ksLineSeg(30, -9.54, 30, 9.54, 1);
-                            sketchDef.EndEdit();                            // завершение редактирования эскиза                
-                        }
-                    }
-                }
-            }
-
-        }
-
-        /// <summary>
-        /// Зубцы
-        /// </summary>
-        public void Eskiz4(ksDocument3D doc)
-        {
-            ksPart part = (ksPart)doc.GetPart((short)Part_Type.pTop_Part);  // новый компонент
-            ksEntity entitySketch = (ksEntity)part.NewEntity((short)Obj3dType.o3d_sketch);
-            ksEntity entitySketch3 = (ksEntity)part.NewEntity((short)Obj3dType.o3d_sketch);
-            if (part != null)
-            {
-                // создадим эскиз
-                //ksEntity entitySketch = (ksEntity)part.NewEntity((short)Obj3dType.o3d_sketch);
-                if (entitySketch != null)
-                {
-                    ksSketchDefinition sketchDef = (ksSketchDefinition)entitySketch.GetDefinition();
-                    if (sketchDef != null)
-                    {
-                        ksEntity basePlane = (ksEntity)part.GetDefaultEntity((short)Obj3dType.o3d_planeXOY);    // получим интерфейс базовой плоскости XOY
-                        sketchDef.SetPlane(basePlane);  // установим плоскость XOY базовой для эскиза
-                        entitySketch.Create();          // создадим эскиз
-                        entitySketch.hidden = false;
-
-                        // интерфейс редактора эскиза
-                        ksDocument2D sketchEdit = (ksDocument2D)sketchDef.BeginEdit();
-                        //if (sketchEdit != null)
-                        //    sketchEdit.ksCircle(0, 0, , 1);
-                        sketchDef.EndEdit();    // завершение редактирования эскиза
-                    }
-                }
-
-
-                // создадим смещенную плоскость, а в ней эскиз
-                ksEntity entityOffsetPlane2 = (ksEntity)part.NewEntity((short)Obj3dType.o3d_planeOffset);
-                //ksEntity entitySketch3 = (ksEntity)part.NewEntity((short)Obj3dType.o3d_sketch);
-                entitySketch3 = (ksEntity)part.NewEntity((short)Obj3dType.o3d_sketch);
-                if (entityOffsetPlane2 != null && entitySketch3 != null)
-                {
-                    // интерфейс свойств смещенной плоскости
-                    ksPlaneOffsetDefinition offsetDef = (ksPlaneOffsetDefinition)entityOffsetPlane2.GetDefinition();
-                    if (offsetDef != null)
-                    {
-                        offsetDef.offset = 12;  // расстояние от базовой плоскости
-                        ksEntity basePlane = (ksEntity)part.GetDefaultEntity((short)Obj3dType.o3d_planeXOY);
-                        basePlane.name = "Смещенная плоскость"; // название для плоскости
-
-                        offsetDef.SetPlane(basePlane);                      // базовая плоскость
-                        entityOffsetPlane2.name = "Смещенная плоскость2";   // имя для смещенной плоскости
-                        entityOffsetPlane2.hidden = true;
-                        entityOffsetPlane2.Create();                        // создать смещенную плоскость 
-
-                        ksSketchDefinition sketchDef = (ksSketchDefinition)entitySketch3.GetDefinition();
-                        if (sketchDef != null)
-                        {
-                            sketchDef.SetPlane(entityOffsetPlane2);         // установим плоскость XOY базовой для эскиза
-                            entitySketch3.Create();                         // создадим эскиз
-
-                            // интерфейс редактора эскиза
-                            ksDocument2D sketchEdit = (ksDocument2D)sketchDef.BeginEdit();
-                            sketchEdit.ksLineSeg(30, 9.54, 22.060387, 0.000961, 1);
-                            sketchEdit.ksLineSeg(22.060387, 0.000961, 30, -9.54, 1);
-                            sketchEdit.ksLineSeg(30, -9.54, 30, 9.54, 1);
-                            sketchDef.EndEdit();                            // завершение редактирования эскиза                
-                        }
-                    }
-                }
-            }
-
-            // Эскиз
-            ksPart part1 = (ksPart)doc.GetPart((short)Part_Type.pTop_Part);  // новый компонент
-            if (part != null)
-            {
-                ksEntity entitySketch1 = (ksEntity)part.NewEntity((short)Obj3dType.o3d_sketch);
-                if (entitySketch1 != null)
-                {
                     // интерфейс свойств эскиза
-                    ksSketchDefinition sketchDef = (ksSketchDefinition)entitySketch1.GetDefinition();
+                    ksSketchDefinition sketchDef = (ksSketchDefinition)entitySketch.GetDefinition();
                     if (sketchDef != null)
                     {
 
@@ -348,7 +248,7 @@ namespace JuicerPluginBuild
                         if (basePlane != null)
                         {
                             sketchDef.SetPlane(basePlane);  // установим плоскость XOZ базовой для эскиза
-                            entitySketch1.Create();          // создадим эскиз
+                            entitySketch.Create();          // создадим эскиз
 
                             // интерфейс редактора эскиза
                             ksDocument2D sketchEdit = (ksDocument2D)sketchDef.BeginEdit();
@@ -356,17 +256,19 @@ namespace JuicerPluginBuild
                             {
                                 sketchEdit.ksArcByPoint(-47.930751, -10.887111, 70, 2.5, -59.433371, 22.060387, -12.000961, 1, 1);
                                 sketchDef.EndEdit();	// завершение редактирования эскиза
+
+                                // Вырез по траектории
                                 ksEntity entityCutEvolution = (ksEntity)part.NewEntity((short)Obj3dType.o3d_cutEvolution);
                                 if (entityCutEvolution != null)
                                 {
                                     ksCutEvolutionDefinition cutEvolutionDef = (ksCutEvolutionDefinition)entityCutEvolution.GetDefinition();
-                                    
+
                                     if (cutEvolutionDef != null)
                                     {
                                         cutEvolutionDef.SetThinParam(false, (short)Direction_Type.dtBoth, 0, 0);    // тонкая стенка в два направления
-                                        cutEvolutionDef.SetSketch(entitySketch3);
+                                        cutEvolutionDef.SetSketch(entitySketchDisplaced);
                                         ksEntityCollection iPathPartArray = (ksEntityCollection)cutEvolutionDef.PathPartArray();
-                                        iPathPartArray.Add(entitySketch1);
+                                        iPathPartArray.Add(entitySketch);
                                     }
 
                                     entityCutEvolution.Create();    // создадим операцию вырезания по траектории
@@ -395,7 +297,7 @@ namespace JuicerPluginBuild
         /// <summary>
         /// Отверстия в тарелке
         /// </summary>
-        public void Eskiz5(ksDocument3D doc)
+        public void HolesInThePlate(ksDocument3D doc)
         {
             // Эскиз
             ksPart part = (ksPart)doc.GetPart((short)Part_Type.pTop_Part);  // новый компонент
