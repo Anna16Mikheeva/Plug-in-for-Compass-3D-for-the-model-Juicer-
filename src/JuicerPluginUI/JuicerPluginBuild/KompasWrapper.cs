@@ -14,7 +14,7 @@ namespace JuicerPluginBuild
     /// <summary>
     /// Класс для запуска Компаса и построения модели соковыжималки
     /// </summary>
-    class KompasWrapper
+    public class KompasWrapper
     {
         /// <summary>
         /// Объект Компас API
@@ -57,21 +57,20 @@ namespace JuicerPluginBuild
         }
 
 
-        ///// <summary>
-        ///// Построение модели соковыжималки
-        ///// </summary>
-        ///// <param name="bushing"></param>
-        //public void BuildingJuicer(Bushing bushing)
-        //{
-        //    try
-        //    {
-        //        JuicerBuild detail = new JuicerBuild(_kompas);
-        //        detail.CreateDetail(bushing);
-        //    }
-        //    catch
-        //    {
-        //        throw new ArgumentException("Не удается построить деталь");
-        //    }
-        //}
+        /// <summary>
+        /// Построение модели соковыжималки
+        /// </summary>
+        public void BuildingJuicer()
+        {
+            try
+            {
+                JuicerBuild juicerBuild = new JuicerBuild(_kompas);
+                juicerBuild.BuildJuicer();
+            }
+            catch
+            {
+                throw new ArgumentException("Не удается построить деталь");
+            }
+        }
     }
 }

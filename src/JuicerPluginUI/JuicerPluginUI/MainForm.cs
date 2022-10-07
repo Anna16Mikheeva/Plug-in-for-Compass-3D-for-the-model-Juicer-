@@ -15,17 +15,17 @@ namespace JuicerPluginUI
 {
     public partial class MainForm : Form
     {
+        public KompasWrapper kompasWrapper;
         public MainForm()
         {
             InitializeComponent();
         }
 
-        private KompasObject _kompas = null;
-
         private void button1_Click(object sender, EventArgs e)
         {
-            JuicerBuild c = new JuicerBuild();
-            c.StartKompas();
+            kompasWrapper = new KompasWrapper();
+            kompasWrapper.StartKompas();
+            kompasWrapper.BuildingJuicer();
         }
     }
 }

@@ -19,37 +19,11 @@ namespace JuicerPluginBuild
         /// </summary>
         private KompasObject _kompas = null;
 
-        //--------------------------------------------------------------------------------------------------------Запуск компаса
-        public void StartKompas()
+        public JuicerBuild(KompasObject kompas)
         {
-            try
-            {
-                if (_kompas != null)
-                {
-                    _kompas.Visible = true;
-                    _kompas.ActivateControllerAPI();
-                }
-
-                if (_kompas == null)
-                {
-                    Type kompasType = Type.GetTypeFromProgID
-                        ("KOMPAS.Application.5");
-                    _kompas = (KompasObject)Activator.CreateInstance
-                        (kompasType);
-
-                    StartKompas();
-
-                    if (_kompas == null)
-                    {
-                        throw new Exception("Не удается открыть Koмпас-3D");
-                    }
-                }
-            }
-            catch (COMException)
-            {
-                _kompas = null;
-                StartKompas();
-            }
+            _kompas = kompas;
+            var document = (ksDocument3D)kompas.Document3D();
+            document.Create();
         }
 
         /// <summary>
@@ -57,28 +31,20 @@ namespace JuicerPluginBuild
         /// </summary>
         public void BuildJuicer()
         {
-            //Создание файла
-            KompasObject kompas = _kompas;
-            _kompas = kompas;
-            ksDocument3D document = (ksDocument3D)kompas.Document3D();
-            document.Create();
-
-            ksDocument3D doc = (ksDocument3D)_kompas.ActiveDocument3D();
-            ksPart part = (ksPart)document.GetPart((short)Part_Type.pTop_Part);
-            PlateSketch(doc);
-            StakeBuilding(doc);
-            StakeProngs(doc);
-            HolesInThePlate(doc);
+            PlateSketch();
+            StakeBuilding();
+            StakeProngs();
+            HolesInThePlate();
         }
 
         /// <summary>
         /// Построение эскиза тарелки соковыжималки
         /// </summary>
-        void PlateSketch(ksDocument3D doc)
+        void PlateSketch()
         {
             bool thinWallElement = true; // тонкостенный элемент
-            // Эскиз
-            ksPart part = (ksPart)doc.GetPart((short)Part_Type.pTop_Part);  // новый компонент
+            ksDocument3D document = (ksDocument3D)_kompas.ActiveDocument3D();
+            ksPart part = (ksPart)document.GetPart((short)Part_Type.pTop_Part);  // новый компонент
             if (part != null)
             {
                 ksEntity entitySketch = (ksEntity)part.NewEntity((short)Obj3dType.o3d_sketch);
@@ -113,7 +79,7 @@ namespace JuicerPluginBuild
                                 sketchEdit.ksArcByPoint(70, -10, 10, 80, -10, 70, 0, 1, 1);
                                 sketchDef.EndEdit();    // завершение редактирования эскиза
                             }
-                            RotationOperation(doc, part, entitySketch, thinWallElement);
+                            RotationOperation(entitySketch, thinWallElement);
                         }
                     }
                 }
@@ -123,9 +89,12 @@ namespace JuicerPluginBuild
         /// <summary>
         /// Операция вращения
         /// </summary>
-        public void RotationOperation(ksDocument3D doc, ksPart part, ksEntity entitySketch, bool thinWallElement)
+        public void RotationOperation(ksEntity entitySketch, bool thinWallElement)
         {
-            //Вращение
+            ksDocument3D document = (ksDocument3D)_kompas.ActiveDocument3D();
+            ksPart part = (ksPart)document.GetPart((short)Part_Type.pTop_Part);  // новый компонент
+
+            // Вращение
             ksEntity entityRotate = (ksEntity)part.NewEntity((short)Obj3dType.o3d_bossRotated);
             if (entityRotate != null)
             {
@@ -152,11 +121,11 @@ namespace JuicerPluginBuild
         /// <summary>
         /// Построение кола
         /// </summary>
-        public void StakeBuilding(ksDocument3D doc)
+        public void StakeBuilding()
         {
             bool thinWallElement = false; // не тонкостенный 
-            // Эскиз
-            ksPart part = (ksPart)doc.GetPart((short)Part_Type.pTop_Part);  // новый компонент
+            ksDocument3D document = (ksDocument3D)_kompas.ActiveDocument3D();
+            ksPart part = (ksPart)document.GetPart((short)Part_Type.pTop_Part);  // новый компонент
             if (part != null)
             {
                 ksEntity entitySketch = (ksEntity)part.NewEntity((short)Obj3dType.o3d_sketch);
@@ -181,13 +150,13 @@ namespace JuicerPluginBuild
                                 sketchEdit.ksLineSeg(0, 0, 0, -60, 3);
                                 sketchEdit.ksLineSeg(0, 0, 30, 0, 1);
 
-                                //Дуги
+                                // дуги
                                 sketchEdit.ksArcByPoint(-2.053551, -45.141234, 15, 0, -60, 7.795265, -56.454979, 1, 1);
                                 sketchEdit.ksArcByPoint(-31.6, -11.2, 60, 7.795265, -56.454979, 26, -28, 1, 1);
                                 sketchEdit.ksArcByPoint(-70, 0, 100, 26, -28, -30, 0, 1, 1);
                                 sketchDef.EndEdit();    // завершение редактирования эскиза
                             }
-                            RotationOperation(doc, part, entitySketch, thinWallElement);
+                            RotationOperation(entitySketch, thinWallElement);
                         }
                     }
                 }
@@ -197,9 +166,10 @@ namespace JuicerPluginBuild
         /// <summary>
         /// Построение зубцов кола
         /// </summary>
-        public void StakeProngs(ksDocument3D doc)
+        public void StakeProngs()
         {
-            ksPart part = (ksPart)doc.GetPart((short)Part_Type.pTop_Part);  // новый компонент
+            ksDocument3D document = (ksDocument3D)_kompas.ActiveDocument3D();
+            ksPart part = (ksPart)document.GetPart((short)Part_Type.pTop_Part);  // новый компонент
             if (part != null)
             {
                 ksEntity entitySketchDisplaced = (ksEntity)part.NewEntity((short)Obj3dType.o3d_sketch);
@@ -297,10 +267,10 @@ namespace JuicerPluginBuild
         /// <summary>
         /// Отверстия в тарелке
         /// </summary>
-        public void HolesInThePlate(ksDocument3D doc)
+        public void HolesInThePlate()
         {
-            // Эскиз
-            ksPart part = (ksPart)doc.GetPart((short)Part_Type.pTop_Part);  // новый компонент
+            ksDocument3D document = (ksDocument3D)_kompas.ActiveDocument3D();
+            ksPart part = (ksPart)document.GetPart((short)Part_Type.pTop_Part);  // новый компонент
             if (part != null)
             {
                 ksEntity entitySketch = (ksEntity)part.NewEntity((short)Obj3dType.o3d_sketch);
