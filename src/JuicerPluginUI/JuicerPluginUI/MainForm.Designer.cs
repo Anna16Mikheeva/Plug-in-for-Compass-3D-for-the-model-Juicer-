@@ -58,7 +58,6 @@ namespace JuicerPluginUI
             this.LabelPlateDiametr.Size = new System.Drawing.Size(183, 25);
             this.LabelPlateDiametr.TabIndex = 0;
             this.LabelPlateDiametr.Text = "Диаметр тарелки";
-            this.LabelPlateDiametr.Click += new System.EventHandler(this.label1_Click);
             // 
             // LabelStakeDiametr
             // 
@@ -112,6 +111,7 @@ namespace JuicerPluginUI
             this.TextBoxPlateDiametr.Name = "TextBoxPlateDiametr";
             this.TextBoxPlateDiametr.Size = new System.Drawing.Size(100, 30);
             this.TextBoxPlateDiametr.TabIndex = 5;
+            this.TextBoxPlateDiametr.TextChanged += new System.EventHandler(this.TextBoxPlateDiametr_TextChanged);
             // 
             // TextBoxStakeDiametr
             // 
@@ -121,6 +121,7 @@ namespace JuicerPluginUI
             this.TextBoxStakeDiametr.Name = "TextBoxStakeDiametr";
             this.TextBoxStakeDiametr.Size = new System.Drawing.Size(100, 30);
             this.TextBoxStakeDiametr.TabIndex = 6;
+            this.TextBoxStakeDiametr.TextChanged += new System.EventHandler(this.TextBoxStakeDiametr_TextChanged);
             // 
             // TextBoxStakeHeight
             // 
@@ -130,6 +131,7 @@ namespace JuicerPluginUI
             this.TextBoxStakeHeight.Name = "TextBoxStakeHeight";
             this.TextBoxStakeHeight.Size = new System.Drawing.Size(100, 30);
             this.TextBoxStakeHeight.TabIndex = 7;
+            this.TextBoxStakeHeight.TextChanged += new System.EventHandler(this.TextBoxStakeHeight_TextChanged);
             // 
             // TextBoxNumberOfTeeth
             // 
@@ -139,6 +141,7 @@ namespace JuicerPluginUI
             this.TextBoxNumberOfTeeth.Name = "TextBoxNumberOfTeeth";
             this.TextBoxNumberOfTeeth.Size = new System.Drawing.Size(100, 30);
             this.TextBoxNumberOfTeeth.TabIndex = 8;
+            this.TextBoxNumberOfTeeth.TextChanged += new System.EventHandler(this.TextBoxNumberOfTeeth_TextChanged);
             // 
             // TextBoxNumberOfHoles
             // 
@@ -148,6 +151,7 @@ namespace JuicerPluginUI
             this.TextBoxNumberOfHoles.Name = "TextBoxNumberOfHoles";
             this.TextBoxNumberOfHoles.Size = new System.Drawing.Size(100, 30);
             this.TextBoxNumberOfHoles.TabIndex = 9;
+            this.TextBoxNumberOfHoles.TextChanged += new System.EventHandler(this.TextBoxNumberOfHoles_TextChanged);
             // 
             // ButtonBuild
             // 
@@ -159,7 +163,7 @@ namespace JuicerPluginUI
             this.ButtonBuild.TabIndex = 10;
             this.ButtonBuild.Text = "Построить";
             this.ButtonBuild.UseVisualStyleBackColor = true;
-            this.ButtonBuild.Click += new System.EventHandler(this.button1_Click);
+            this.ButtonBuild.Click += new System.EventHandler(this.ButtonBuild_Click);
             // 
             // LabelPlateDiametrRange
             // 
@@ -215,7 +219,6 @@ namespace JuicerPluginUI
             this.LabelNumberOfHolesRange.Size = new System.Drawing.Size(74, 25);
             this.LabelNumberOfHolesRange.TabIndex = 15;
             this.LabelNumberOfHolesRange.Text = "90-310";
-            this.LabelNumberOfHolesRange.Click += new System.EventHandler(this.label5_Click);
             // 
             // MainForm
             // 
@@ -244,7 +247,6 @@ namespace JuicerPluginUI
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ручная соковыжималка";
-            this.Load += new System.EventHandler(this.MainForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

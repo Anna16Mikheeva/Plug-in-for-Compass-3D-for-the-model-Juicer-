@@ -15,32 +15,44 @@ namespace JuicerPluginUI
 {
     public partial class MainForm : Form
     {
-        public KompasWrapper kompasWrapper;
+        private KompasWrapper kompasWrapper = new KompasWrapper();
+
         public MainForm()
         {
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void ButtonBuild_Click(object sender, EventArgs e)
         {
-            kompasWrapper = new KompasWrapper();
             kompasWrapper.StartKompas();
             kompasWrapper.BuildingJuicer();
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
+        private void TextBoxPlateDiametr_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void TextBoxStakeDiametr_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void label5_Click(object sender, EventArgs e)
+        private void TextBoxStakeHeight_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TextBoxNumberOfTeeth_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TextBoxNumberOfHoles_TextChanged(object sender, EventArgs e)
         {
 
         }
     }
 }
+// В сеттере при неправильном вводе выбрасываем исключение, в MainForm исключение перехватывается и поле окрашивается в красный
+// Значение мин и макс скорее всего будут не нужны
