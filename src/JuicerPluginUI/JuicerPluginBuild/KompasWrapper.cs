@@ -66,8 +66,6 @@ namespace JuicerPluginBuild
             {
                 var document = (ksDocument3D)_kompas.Document3D();
                 document.Create();
-                JuicerBuild juicerBuild = new JuicerBuild();
-                juicerBuild.BuildJuicer(_kompas);
             }
             catch
             {

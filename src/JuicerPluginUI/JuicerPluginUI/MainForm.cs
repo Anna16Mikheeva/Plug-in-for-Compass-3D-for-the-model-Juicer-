@@ -10,6 +10,7 @@ using Kompas6Constants;
 using Kompas6Constants3D;
 using System.Runtime.InteropServices;
 using JuicerPluginBuild;
+using JuicerPluginbuilder; //Поменять название тк название папки и проекта не соттветсвуют друг другу
 
 namespace JuicerPluginUI
 {
@@ -24,8 +25,11 @@ namespace JuicerPluginUI
 
         private void ButtonBuild_Click(object sender, EventArgs e)
         {
+            ChangeableParametrs c;
+
             kompasWrapper.StartKompas();
             kompasWrapper.BuildingJuicer();
+
         }
 
         private void TextBoxPlateDiametr_TextChanged(object sender, EventArgs e)
