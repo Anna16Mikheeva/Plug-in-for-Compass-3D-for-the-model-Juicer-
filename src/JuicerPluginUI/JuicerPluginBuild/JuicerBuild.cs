@@ -314,15 +314,11 @@ namespace JuicerPluginBuild
 
                                     //Отверстия по концетрической сетке
                                     ksEntity circularCopyEntity = (ksEntity)part.NewEntity((short)Obj3dType.o3d_circularCopy);
-                                    ksCircularCopyDefinition circularCopyDefinition =
-                                        (ksCircularCopyDefinition)circularCopyEntity.GetDefinition();
-                                    circularCopyDefinition.SetCopyParamAlongDir(90, 360,
-                                        true, false);
-                                    ksEntity baseAxisOZ = (ksEntity)part.GetDefaultEntity((short)
-                                        Obj3dType.o3d_axisOZ);
+                                    ksCircularCopyDefinition circularCopyDefinition = (ksCircularCopyDefinition)circularCopyEntity.GetDefinition();
+                                    circularCopyDefinition.SetCopyParamAlongDir(90, 360, true, false);
+                                    ksEntity baseAxisOZ = (ksEntity)part.GetDefaultEntity((short) Obj3dType.o3d_axisOZ);
                                     circularCopyDefinition.SetAxis(baseAxisOZ);
-                                    ksEntityCollection entityCollection = (ksEntityCollection)
-                                        circularCopyDefinition.GetOperationArray();
+                                    ksEntityCollection entityCollection = (ksEntityCollection) circularCopyDefinition.GetOperationArray();
                                     entityCollection.Add(cutExtrDef);
                                     circularCopyEntity.Create();
                                 }
