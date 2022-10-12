@@ -16,7 +16,7 @@ namespace JuicerPluginUI
 {
     public partial class MainForm : Form
     {
-        private KompasWrapper kompasWrapper = new KompasWrapper();
+        KompasWrapper kompasWrapper = new KompasWrapper();
 
         public MainForm()
         {
@@ -25,11 +25,11 @@ namespace JuicerPluginUI
 
         private void ButtonBuild_Click(object sender, EventArgs e)
         {
-            ChangeableParametrs c;
-
             kompasWrapper.StartKompas();
             kompasWrapper.BuildingJuicer();
-
+            JuicerBuild juicerBuild = new JuicerBuild();
+            juicerBuild.BuildJuicer(kompasWrapper);
+            MessageBox.Show("Диаметр тарелки должен быть не менее, чем на 96мм больше диаметра кола");
         }
 
         private void TextBoxPlateDiametr_TextChanged(object sender, EventArgs e)

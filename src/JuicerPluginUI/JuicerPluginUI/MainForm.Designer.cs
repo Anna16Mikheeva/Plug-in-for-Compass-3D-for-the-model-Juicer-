@@ -105,6 +105,7 @@ namespace JuicerPluginUI
             // 
             // TextBoxPlateDiametr
             // 
+            this.TextBoxPlateDiametr.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.TextBoxPlateDiametr.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.TextBoxPlateDiametr.Location = new System.Drawing.Point(265, 9);
             this.TextBoxPlateDiametr.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -115,6 +116,7 @@ namespace JuicerPluginUI
             // 
             // TextBoxStakeDiametr
             // 
+            this.TextBoxStakeDiametr.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.TextBoxStakeDiametr.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.TextBoxStakeDiametr.Location = new System.Drawing.Point(265, 46);
             this.TextBoxStakeDiametr.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -125,6 +127,7 @@ namespace JuicerPluginUI
             // 
             // TextBoxStakeHeight
             // 
+            this.TextBoxStakeHeight.BackColor = System.Drawing.Color.White;
             this.TextBoxStakeHeight.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.TextBoxStakeHeight.Location = new System.Drawing.Point(265, 82);
             this.TextBoxStakeHeight.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -135,6 +138,7 @@ namespace JuicerPluginUI
             // 
             // TextBoxNumberOfTeeth
             // 
+            this.TextBoxNumberOfTeeth.BackColor = System.Drawing.Color.White;
             this.TextBoxNumberOfTeeth.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.TextBoxNumberOfTeeth.Location = new System.Drawing.Point(265, 119);
             this.TextBoxNumberOfTeeth.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -145,6 +149,7 @@ namespace JuicerPluginUI
             // 
             // TextBoxNumberOfHoles
             // 
+            this.TextBoxNumberOfHoles.BackColor = System.Drawing.Color.White;
             this.TextBoxNumberOfHoles.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.TextBoxNumberOfHoles.Location = new System.Drawing.Point(265, 156);
             this.TextBoxNumberOfHoles.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);

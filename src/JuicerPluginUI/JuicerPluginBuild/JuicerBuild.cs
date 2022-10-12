@@ -17,13 +17,12 @@ namespace JuicerPluginBuild
         /// <summary>
         /// Построение модели соковыжималки
         /// </summary>
-        public void BuildJuicer(KompasObject kompas)
+        public void BuildJuicer(KompasWrapper kompasWrapper)
         {
-            KompasWrapper kompasWrapper = new KompasWrapper();
-            kompasWrapper.PlateSketch(kompas);
-            kompasWrapper.StakeBuilding(kompas);
-            kompasWrapper.StakeProngs(kompas);
-            kompasWrapper.HolesInThePlate(kompas);
+            kompasWrapper.PlateSketch();
+            kompasWrapper.StakeBuilding();
+            kompasWrapper.StakeProngs();
+            kompasWrapper.HolesInThePlate();
         }
     }
 }

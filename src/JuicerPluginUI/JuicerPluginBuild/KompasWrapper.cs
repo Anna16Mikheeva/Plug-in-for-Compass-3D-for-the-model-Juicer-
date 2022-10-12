@@ -76,7 +76,7 @@ namespace JuicerPluginBuild
         /// <summary>
         /// Построение эскиза тарелки соковыжималки
         /// </summary>
-        public void PlateSketch(KompasObject _kompas)
+        public void PlateSketch()
         {
             bool thinWallElement = true; // тонкостенный элемент
             ksDocument3D document = (ksDocument3D)_kompas.ActiveDocument3D();
@@ -115,7 +115,7 @@ namespace JuicerPluginBuild
                                 sketchEdit.ksArcByPoint(70, -10, 10, 80, -10, 70, 0, 1, 1);
                                 sketchDef.EndEdit();    // завершение редактирования эскиза
                             }
-                            RotationOperation(_kompas, entitySketch, thinWallElement);
+                            RotationOperation(entitySketch, thinWallElement);
                         }
                     }
                 }
@@ -125,7 +125,7 @@ namespace JuicerPluginBuild
         /// <summary>
         /// Операция вращения
         /// </summary>
-        public void RotationOperation(KompasObject _kompas, ksEntity entitySketch, bool thinWallElement)
+        public void RotationOperation(ksEntity entitySketch, bool thinWallElement)
         {
             ksDocument3D document = (ksDocument3D)_kompas.ActiveDocument3D();
             ksPart part = (ksPart)document.GetPart((short)Part_Type.pTop_Part);  // новый компонент
@@ -157,7 +157,7 @@ namespace JuicerPluginBuild
         /// <summary>
         /// Построение кола
         /// </summary>
-        public void StakeBuilding(KompasObject _kompas)
+        public void StakeBuilding()
         {
             bool thinWallElement = false; // не тонкостенный 
             ksDocument3D document = (ksDocument3D)_kompas.ActiveDocument3D();
@@ -192,7 +192,7 @@ namespace JuicerPluginBuild
                                 sketchEdit.ksArcByPoint(-70, 0, 100, 26, -28, -30, 0, 1, 1);
                                 sketchDef.EndEdit();    // завершение редактирования эскиза
                             }
-                            RotationOperation(_kompas, entitySketch, thinWallElement);
+                            RotationOperation(entitySketch, thinWallElement);
                         }
                     }
                 }
@@ -202,7 +202,7 @@ namespace JuicerPluginBuild
         /// <summary>
         /// Построение зубцов кола
         /// </summary>
-        public void StakeProngs(KompasObject _kompas)
+        public void StakeProngs()
         {
             ksDocument3D document = (ksDocument3D)_kompas.ActiveDocument3D();
             ksPart part = (ksPart)document.GetPart((short)Part_Type.pTop_Part);  // новый компонент
@@ -303,7 +303,7 @@ namespace JuicerPluginBuild
         /// <summary>
         /// Отверстия в тарелке
         /// </summary>
-        public void HolesInThePlate(KompasObject _kompas)
+        public void HolesInThePlate()
         {
             ksDocument3D document = (ksDocument3D)_kompas.ActiveDocument3D();
             ksPart part = (ksPart)document.GetPart((short)Part_Type.pTop_Part);  // новый компонент
