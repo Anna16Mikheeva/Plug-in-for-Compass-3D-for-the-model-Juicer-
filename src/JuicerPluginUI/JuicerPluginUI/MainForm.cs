@@ -11,48 +11,148 @@ using Kompas6Constants3D;
 using System.Runtime.InteropServices;
 using JuicerPluginBuild;
 using JuicerPluginbuilder; //Поменять название тк название папки и проекта не соттветсвуют друг другу
+using System.Drawing;
 
 namespace JuicerPluginUI
 {
     public partial class MainForm : Form
     {
+        /// <summary>
+        /// Экземпляр класса KompasWrapper
+        /// </summary>
         KompasWrapper kompasWrapper = new KompasWrapper();
+
+        /// <summary>
+        /// Экземпляр класса ChangeableParametrs
+        /// </summary>
+        ChangeableParametrs cheangeableParametrs = new ChangeableParametrs();
+
+        /// <summary>
+        /// Переменная белого цвета
+        /// </summary>  
+        private Color _colorWhite = Color.White;
+
+        /// <summary>
+        /// Переменная розового цвета
+        /// </summary>  
+        private Color _colorLightPink = Color.LightPink;
+
+        private string _error;
 
         public MainForm()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Обработсик нажатия на кнопку "Построить"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonBuild_Click(object sender, EventArgs e)
         {
+            if (_error == null)
+            { 
             kompasWrapper.StartKompas();
             kompasWrapper.BuildingJuicer();
             JuicerBuild juicerBuild = new JuicerBuild();
             juicerBuild.BuildJuicer(kompasWrapper);
-            MessageBox.Show("Диаметр тарелки должен быть не менее, чем на 96мм больше диаметра кола");
+            }
+            else
+            {
+                MessageBox.Show(_error);
+            }
         }
 
+        /// <summary>
+        /// Обработчик текстбокса Диаметра тарелки
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TextBoxPlateDiametr_TextChanged(object sender, EventArgs e)
         {
-
+            try
+            {
+                cheangeableParametrs.PlateDiameter = double.Parse(TextBoxPlateDiameter.Text);
+                TextBoxPlateDiameter.BackColor = _colorWhite;
+            }
+            catch (ArgumentOutOfRangeException exception)
+            {
+                TextBoxPlateDiameter.BackColor = _colorLightPink;
+            }
+            catch (ArgumentException exception)
+            {
+                _error = exception.Message;
+            }
         }
 
         private void TextBoxStakeDiametr_TextChanged(object sender, EventArgs e)
         {
-
+            try
+            {
+                cheangeableParametrs.StakeDiameter = double.Parse(TextBoxStakeDiameter.Text);
+                TextBoxStakeDiameter.BackColor = _colorWhite;
+            }
+            catch (ArgumentOutOfRangeException exception)
+            {
+                TextBoxStakeDiameter.BackColor = _colorLightPink;
+            }
+            catch (ArgumentException exception)
+            {
+                if (TextBoxStakeDiameter.Focus() == true)
+                {
+                    _error = exception.Message;
+                }
+            }
         }
 
         private void TextBoxStakeHeight_TextChanged(object sender, EventArgs e)
         {
+            try
+            {
+                cheangeableParametrs.StakeHeight = double.Parse(TextBoxStakeHeight.Text);
+                TextBoxStakeHeight.BackColor = _colorWhite;
+            }
+            catch (ArgumentOutOfRangeException exception)
+            {
+                TextBoxStakeHeight.BackColor = _colorLightPink;
+            }
 
+            catch (ArgumentException exception)
+            {
+                if (TextBoxStakeHeight.Focus() == true)
+                {
+                    _error = exception.Message;
+                }
+            }
         }
 
         private void TextBoxNumberOfTeeth_TextChanged(object sender, EventArgs e)
         {
-
+            try
+            {
+                cheangeableParametrs.NumberOfTeeth = int.Parse(TextBoxNumberOfTeeth.Text);
+                TextBoxNumberOfTeeth.BackColor = _colorWhite;
+            }
+            catch (ArgumentException exception)
+            {
+                TextBoxNumberOfTeeth.BackColor = _colorLightPink;
+            }
         }
 
         private void TextBoxNumberOfHoles_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                cheangeableParametrs.NumberOfHoles = int.Parse(TextBoxNumberOfHoles.Text);
+                TextBoxNumberOfHoles.BackColor = _colorWhite;
+            }
+            catch (ArgumentException exception)
+            {
+                TextBoxNumberOfHoles.BackColor = _colorLightPink;
+            }
+        }
+        private void Validation()
         {
 
         }

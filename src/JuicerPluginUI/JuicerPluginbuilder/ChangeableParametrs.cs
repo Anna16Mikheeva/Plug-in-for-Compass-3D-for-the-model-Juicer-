@@ -43,7 +43,7 @@ namespace JuicerPluginbuilder
         public List<Parametrs> Parametr { get; set; } = new List<Parametrs>();
 
         /// <summary>
-        /// Возвращает и устанавливает значение длины диаметра тарелки
+        /// Возвращает и устанавливает значение диаметра тарелки
         /// </summary>
         public double PlateDiameter
         {
@@ -56,12 +56,21 @@ namespace JuicerPluginbuilder
             {
                 const int minLength = 156;
                 const int maxLength = 226;
+                if(value < 156 || value > 226)
+                {
+                    throw new ArgumentOutOfRangeException("Диаметр тарелки не входит в диапазон");
+                }
+                if ( value - StakeDiameter < 96)
+                {
+                    throw new ArgumentException("Диаметр кола должен быть не менее, чем на" +
+                        " 96мм меньше диаметра тарелки и на 10мм меньше высоты кола");
+                }
                 _plateDiameter = value;
             }
         }
 
         /// <summary>
-        /// Возвращает и устанавливает значение длины диаметра кола
+        /// Возвращает и устанавливает значение диаметра кола
         /// </summary>
         public double StakeDiameter
         {
@@ -74,6 +83,15 @@ namespace JuicerPluginbuilder
             {
                 const int minLength = 60;
                 const int maxLength = 130;
+                if (value < 60 || value > 130)
+                {
+                    throw new ArgumentOutOfRangeException("Диаметр кола не входит в диапазон");
+                }
+                if(PlateDiameter - value < 96)
+                {
+                    throw new ArgumentException("Диаметр кола должен быть не менее, чем на" +
+                        " 96мм меньше диаметра тарелки и на 10мм меньше высоты кола");
+                }
                 _stakeDiameter = value;
             }
         }
@@ -92,6 +110,16 @@ namespace JuicerPluginbuilder
             {
                 const int minLength = 60;
                 const int maxLength = 120;
+                if (value < 60 || value > 120)
+                {
+                    throw new ArgumentOutOfRangeException("Высота кола не входит в диапазон");
+                }
+
+                if (StakeDiameter - value < 10)
+                {
+                    throw new ArgumentException("Диаметр кола должен быть не менее, чем на" +
+                        " 96мм меньше диаметра тарелки и на 10мм больше высоты кола");
+                }
                 _stakeHeight = value;
             }
         }
@@ -110,6 +138,10 @@ namespace JuicerPluginbuilder
             {
                 const int minLength = 90;
                 const int maxLength = 310;
+                if (value < 90 || value > 310)
+                {
+                    throw new ArgumentException("Количество отверстий в тарелке не входит в диапазон");
+                }
                 _numberOfHoles = value;
             }
         }
@@ -128,6 +160,10 @@ namespace JuicerPluginbuilder
             {
                 const int minLength = 10;
                 const int maxLength = 18;
+                if (value < 10 || value > 18)
+                {
+                    throw new ArgumentException("Количество зубцов на коле не входит в диапазон");
+                }
                 _numberOfTeeth = value;
             }
         }
