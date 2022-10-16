@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-//using KompasAPI7;
-//using Kompas6API5;
 using System.Runtime.InteropServices;
 
 namespace JuicerPluginbuilder
@@ -40,7 +38,9 @@ namespace JuicerPluginbuilder
         /// <summary>
         /// Возвращает или задает параметр
         /// </summary>
-        public Dictionary<Parametr, string> parameters;
+        public Dictionary<ParametrType, string> parameters = new Dictionary<ParametrType, string>();
+
+        ParameterCheck _parameterCheck = new ParameterCheck();
 
         /// <summary>
         /// Возвращает и устанавливает значение диаметра тарелки
@@ -54,9 +54,10 @@ namespace JuicerPluginbuilder
 
             set
             {
-                if((value < 156 || value > 226) || value - StakeDiameter < 96)
+                _parameterCheck.RangeCheck(value, 156, 226, ParametrType.PlateDiameter, parameters);
+                if(value - StakeDiameter < 96)
                 {
-                    throw new ArgumentOutOfRangeException("Диаметр тарелки не входит в диапазон");
+                    throw new ArgumentOutOfRangeException();
                 }
                 _plateDiameter = value;
             }
@@ -74,10 +75,7 @@ namespace JuicerPluginbuilder
 
             set
             {
-                if ((value < 60 || value > 130))
-                {
-                    throw new ArgumentOutOfRangeException("Диаметр кола не входит в диапазон");
-                }
+                _parameterCheck.RangeCheck(value, 60, 130, ParametrType.StakeDiameter, parameters);
                 _stakeDiameter = value;
             }
         }
@@ -90,13 +88,17 @@ namespace JuicerPluginbuilder
             get
             {
                 return _stakeHeight;
-            }
+            }   
+
+
+
 
             set
             {
-                if ((value < 60 || value > 120) || StakeDiameter - value < 10)
+                _parameterCheck.RangeCheck(value, 60, 120, ParametrType.StakeHeight, parameters);
+                if(StakeDiameter - value < 10)
                 {
-                    throw new ArgumentOutOfRangeException("Высота кола не входит в диапазон");
+                    throw new ArgumentOutOfRangeException();
                 }
                 _stakeHeight = value;
             }
@@ -114,10 +116,7 @@ namespace JuicerPluginbuilder
 
             set
             {
-                if (value < 90 || value > 310)
-                {
-                    throw new ArgumentException("Количество отверстий в тарелке не входит в диапазон");
-                }
+                _parameterCheck.RangeCheck(value, 90, 310, ParametrType.NumberOfHoles, parameters);
                 _numberOfHoles = value;
             }
         }
@@ -134,10 +133,7 @@ namespace JuicerPluginbuilder
 
             set
             {
-                if (value < 10 || value > 18)
-                {
-                    throw new ArgumentException("Количество зубцов на коле не входит в диапазон");
-                }
+                _parameterCheck.RangeCheck(value, 10, 318, ParametrType.NumberOfTeeth, parameters);
                 _numberOfTeeth = value;
             }
         }

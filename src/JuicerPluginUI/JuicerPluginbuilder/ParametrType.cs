@@ -10,8 +10,12 @@ namespace JuicerPluginbuilder
     /// Перечисление, содержащее
     /// список параметров 
     /// </summary>
-    public enum Parametr
+    public enum ParametrType
     {
-        
+        PlateDiameter,
+        StakeDiameter,
+        StakeHeight,
+        NumberOfHoles,
+        NumberOfTeeth
     }
 }

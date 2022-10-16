@@ -67,16 +67,16 @@ namespace JuicerPluginUI
                 TextBoxPlateDiameter.BackColor = _colorLightPink;
                 return;
             }
-            try
-            {
-                cheangeableParametrs.PlateDiameter = double.Parse(TextBoxPlateDiameter.Text);
-                TextBoxPlateDiameter.BackColor = _colorWhite;
-            }
-            catch (ArgumentOutOfRangeException exception)
+                try
+                {
+                    cheangeableParametrs.PlateDiameter = double.Parse(TextBoxPlateDiameter.Text);
+                    TextBoxPlateDiameter.BackColor = _colorWhite;
+                }
+                catch (ArgumentOutOfRangeException exception)
 
-            {
-                TextBoxPlateDiameter.BackColor = _colorLightPink;
-            }
+                {
+                    TextBoxPlateDiameter.BackColor = _colorLightPink;
+                }
         }
 
         /// <summary>
