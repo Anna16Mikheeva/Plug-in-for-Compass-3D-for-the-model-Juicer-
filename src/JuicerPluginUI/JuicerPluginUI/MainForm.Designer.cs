@@ -162,7 +162,7 @@ namespace JuicerPluginUI
             // ButtonBuild
             // 
             this.ButtonBuild.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ButtonBuild.Location = new System.Drawing.Point(152, 239);
+            this.ButtonBuild.Location = new System.Drawing.Point(154, 197);
             this.ButtonBuild.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ButtonBuild.Name = "ButtonBuild";
             this.ButtonBuild.Size = new System.Drawing.Size(184, 46);
@@ -178,9 +178,9 @@ namespace JuicerPluginUI
             this.LabelPlateDiametrRange.Location = new System.Drawing.Point(373, 12);
             this.LabelPlateDiametrRange.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LabelPlateDiametrRange.Name = "LabelPlateDiametrRange";
-            this.LabelPlateDiametrRange.Size = new System.Drawing.Size(85, 25);
+            this.LabelPlateDiametrRange.Size = new System.Drawing.Size(124, 25);
             this.LabelPlateDiametrRange.TabIndex = 11;
-            this.LabelPlateDiametrRange.Text = "156-226";
+            this.LabelPlateDiametrRange.Text = "156-226 мм";
             // 
             // LabelStakeDiametrRange
             // 
@@ -189,9 +189,9 @@ namespace JuicerPluginUI
             this.LabelStakeDiametrRange.Location = new System.Drawing.Point(373, 49);
             this.LabelStakeDiametrRange.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LabelStakeDiametrRange.Name = "LabelStakeDiametrRange";
-            this.LabelStakeDiametrRange.Size = new System.Drawing.Size(74, 25);
+            this.LabelStakeDiametrRange.Size = new System.Drawing.Size(113, 25);
             this.LabelStakeDiametrRange.TabIndex = 12;
-            this.LabelStakeDiametrRange.Text = "60-130";
+            this.LabelStakeDiametrRange.Text = "60-130 мм";
             // 
             // LabelStakeHeightRange
             // 
@@ -200,9 +200,9 @@ namespace JuicerPluginUI
             this.LabelStakeHeightRange.Location = new System.Drawing.Point(373, 90);
             this.LabelStakeHeightRange.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LabelStakeHeightRange.Name = "LabelStakeHeightRange";
-            this.LabelStakeHeightRange.Size = new System.Drawing.Size(74, 25);
+            this.LabelStakeHeightRange.Size = new System.Drawing.Size(113, 25);
             this.LabelStakeHeightRange.TabIndex = 13;
-            this.LabelStakeHeightRange.Text = "60-120";
+            this.LabelStakeHeightRange.Text = "60-120 мм";
             // 
             // LabelNumberOfTeethRange
             // 
@@ -211,9 +211,9 @@ namespace JuicerPluginUI
             this.LabelNumberOfTeethRange.Location = new System.Drawing.Point(373, 123);
             this.LabelNumberOfTeethRange.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LabelNumberOfTeethRange.Name = "LabelNumberOfTeethRange";
-            this.LabelNumberOfTeethRange.Size = new System.Drawing.Size(63, 25);
+            this.LabelNumberOfTeethRange.Size = new System.Drawing.Size(102, 25);
             this.LabelNumberOfTeethRange.TabIndex = 14;
-            this.LabelNumberOfTeethRange.Text = "10-18";
+            this.LabelNumberOfTeethRange.Text = "10-18 мм";
             // 
             // LabelNumberOfHolesRange
             // 
@@ -222,9 +222,9 @@ namespace JuicerPluginUI
             this.LabelNumberOfHolesRange.Location = new System.Drawing.Point(373, 160);
             this.LabelNumberOfHolesRange.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LabelNumberOfHolesRange.Name = "LabelNumberOfHolesRange";
-            this.LabelNumberOfHolesRange.Size = new System.Drawing.Size(74, 25);
+            this.LabelNumberOfHolesRange.Size = new System.Drawing.Size(113, 25);
             this.LabelNumberOfHolesRange.TabIndex = 15;
-            this.LabelNumberOfHolesRange.Text = "90-310";
+            this.LabelNumberOfHolesRange.Text = "90-310 мм";
             // 
             // label1
             // 
@@ -240,7 +240,7 @@ namespace JuicerPluginUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(468, 296);
+            this.ClientSize = new System.Drawing.Size(510, 252);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.LabelNumberOfHolesRange);
             this.Controls.Add(this.LabelNumberOfTeethRange);

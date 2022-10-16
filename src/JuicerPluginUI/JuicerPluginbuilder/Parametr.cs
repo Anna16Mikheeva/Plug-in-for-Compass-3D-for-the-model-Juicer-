@@ -10,7 +10,7 @@ namespace JuicerPluginbuilder
     /// Перечисление, содержащее
     /// список параметров 
     /// </summary>
-    public enum Parametrs
+    public enum Parametr
     {
         
     }

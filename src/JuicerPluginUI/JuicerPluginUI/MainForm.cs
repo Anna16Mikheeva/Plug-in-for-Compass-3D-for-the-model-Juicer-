@@ -37,8 +37,6 @@ namespace JuicerPluginUI
         /// </summary>  
         private Color _colorLightPink = Color.LightPink;
 
-        private string _error;
-
         public MainForm()
         {
             InitializeComponent();
@@ -51,17 +49,10 @@ namespace JuicerPluginUI
         /// <param name="e"></param>
         private void ButtonBuild_Click(object sender, EventArgs e)
         {
-            if (_error == null)
-            { 
             kompasWrapper.StartKompas();
             kompasWrapper.BuildingJuicer();
             JuicerBuild juicerBuild = new JuicerBuild();
             juicerBuild.BuildJuicer(kompasWrapper);
-            }
-            else
-            {
-                MessageBox.Show(_error);
-            }
         }
 
         /// <summary>
@@ -71,43 +62,57 @@ namespace JuicerPluginUI
         /// <param name="e"></param>
         private void TextBoxPlateDiametr_TextChanged(object sender, EventArgs e)
         {
+            if (TextBoxPlateDiameter.Text == "")
+            {
+                TextBoxPlateDiameter.BackColor = _colorLightPink;
+                return;
+            }
             try
             {
                 cheangeableParametrs.PlateDiameter = double.Parse(TextBoxPlateDiameter.Text);
                 TextBoxPlateDiameter.BackColor = _colorWhite;
             }
             catch (ArgumentOutOfRangeException exception)
+
             {
                 TextBoxPlateDiameter.BackColor = _colorLightPink;
             }
-            catch (ArgumentException exception)
-            {
-                _error = exception.Message;
-            }
         }
 
+        /// <summary>
+        /// Обработчик текстбокса Диаметра кола
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TextBoxStakeDiametr_TextChanged(object sender, EventArgs e)
         {
+            if (TextBoxStakeDiameter.Text == "")
+            {
+                TextBoxStakeDiameter.BackColor = _colorLightPink;
+                return;
+            }
             try
             {
                 cheangeableParametrs.StakeDiameter = double.Parse(TextBoxStakeDiameter.Text);
                 TextBoxStakeDiameter.BackColor = _colorWhite;
+                LabelPlateDiametrRange.Text = $"{cheangeableParametrs.StakeDiameter + 96}-226 мм";
+                LabelStakeHeightRange.Text = $"60-{cheangeableParametrs.StakeDiameter - 10} мм";
+                TextBoxPlateDiametr_TextChanged(sender, e);
+                TextBoxStakeHeight_TextChanged(sender, e);
             }
             catch (ArgumentOutOfRangeException exception)
             {
                 TextBoxStakeDiameter.BackColor = _colorLightPink;
             }
-            catch (ArgumentException exception)
-            {
-                if (TextBoxStakeDiameter.Focus() == true)
-                {
-                    _error = exception.Message;
-                }
-            }
         }
 
         private void TextBoxStakeHeight_TextChanged(object sender, EventArgs e)
         {
+            if (TextBoxStakeHeight.Text == "")
+            {
+                TextBoxStakeHeight.BackColor = _colorLightPink;
+                return;
+            }
             try
             {
                 cheangeableParametrs.StakeHeight = double.Parse(TextBoxStakeHeight.Text);
@@ -117,18 +122,15 @@ namespace JuicerPluginUI
             {
                 TextBoxStakeHeight.BackColor = _colorLightPink;
             }
-
-            catch (ArgumentException exception)
-            {
-                if (TextBoxStakeHeight.Focus() == true)
-                {
-                    _error = exception.Message;
-                }
-            }
         }
 
         private void TextBoxNumberOfTeeth_TextChanged(object sender, EventArgs e)
         {
+            if (TextBoxNumberOfTeeth.Text == "")
+            {
+                TextBoxNumberOfTeeth.BackColor = _colorLightPink;
+                return;
+            }
             try
             {
                 cheangeableParametrs.NumberOfTeeth = int.Parse(TextBoxNumberOfTeeth.Text);
@@ -142,6 +144,11 @@ namespace JuicerPluginUI
 
         private void TextBoxNumberOfHoles_TextChanged(object sender, EventArgs e)
         {
+            if (TextBoxNumberOfHoles.Text == "")
+            {
+                TextBoxNumberOfHoles.BackColor = _colorLightPink;
+                return;
+            }
             try
             {
                 cheangeableParametrs.NumberOfHoles = int.Parse(TextBoxNumberOfHoles.Text);
@@ -151,10 +158,6 @@ namespace JuicerPluginUI
             {
                 TextBoxNumberOfHoles.BackColor = _colorLightPink;
             }
-        }
-        private void Validation()
-        {
-
         }
     }
 }
