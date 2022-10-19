@@ -10,7 +10,7 @@ namespace JuicerPluginbuilder
     {
         public void RangeCheck(double value, double min, double max, ParametrType parameters, Dictionary<ParametrType, string> errors)
         {
-            if(value < min || value > max)
+            if (value < min || value > max)
             {
                 errors.Remove(parameters);
                 errors.Add(parameters, "Выход за диапазон");

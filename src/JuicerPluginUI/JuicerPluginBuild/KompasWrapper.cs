@@ -76,7 +76,7 @@ namespace JuicerPluginBuild
         /// <summary>
         /// Построение эскиза тарелки соковыжималки
         /// </summary>
-        public void PlateSketch()
+        public void PlateSketch(double diameterPlate)
         {
             bool thinWallElement = true; // тонкостенный элемент
             ksDocument3D document = (ksDocument3D)_kompas.ActiveDocument3D();
@@ -103,16 +103,16 @@ namespace JuicerPluginBuild
                             if (sketchEdit != null)
                             {
                                 //Построение первого эскиза (тарелки)
-                                sketchEdit.ksLineSeg(0, 0, 70, 0, 1);
-                                sketchEdit.ksLineSeg(80, -10, 80, -17, 1);
-                                sketchEdit.ksLineSeg(83, -20, 86, -20, 1);
-                                sketchEdit.ksLineSeg(88, -18, 88, -17, 1);
+                                sketchEdit.ksLineSeg(0, 0, diameterPlate - 10, 0, 1);
+                                sketchEdit.ksLineSeg(diameterPlate, -10, diameterPlate, -17, 1);
+                                sketchEdit.ksLineSeg(diameterPlate + 3, -20, diameterPlate + 6, -20, 1);
+                                sketchEdit.ksLineSeg(diameterPlate + 8, -18, diameterPlate + 8, -17, 1);
                                 //Ось
                                 sketchEdit.ksLineSeg(0, 0, 0, -22, 3);
                                 //Радиусы
-                                sketchEdit.ksArcByPoint(86, -18, 2, 86, -20, 88, -18, 1, 1);
-                                sketchEdit.ksArcByPoint(83, -17, 3, 83, -20, 80, -17, -1, 1);
-                                sketchEdit.ksArcByPoint(70, -10, 10, 80, -10, 70, 0, 1, 1);
+                                sketchEdit.ksArcByPoint(diameterPlate + 6, -18, 2, diameterPlate + 6, -20, diameterPlate + 8, -18, 1, 1);
+                                sketchEdit.ksArcByPoint(diameterPlate + 3, -17, 3, diameterPlate + 3, -20, diameterPlate, -17, -1, 1);
+                                sketchEdit.ksArcByPoint(diameterPlate - 10, -10, 10, diameterPlate, -10, diameterPlate - 10, 0, 1, 1);
                                 sketchDef.EndEdit();    // завершение редактирования эскиза
                             }
                             RotationOperation(entitySketch, thinWallElement);
@@ -157,7 +157,7 @@ namespace JuicerPluginBuild
         /// <summary>
         /// Построение кола
         /// </summary>
-        public void StakeBuilding()
+        public void StakeBuilding(double s)
         {
             bool thinWallElement = false; // не тонкостенный 
             ksDocument3D document = (ksDocument3D)_kompas.ActiveDocument3D();
@@ -186,6 +186,12 @@ namespace JuicerPluginBuild
                                 sketchEdit.ksLineSeg(0, 0, 0, -60, 3);
                                 sketchEdit.ksLineSeg(0, 0, 30, 0, 1);
 
+                                //sketchEdit.ksLineSeg(0, -60, 5, -55, 1);
+                                //sketchEdit.ksLineSeg(5, -55, 13, -45, 1);
+                                //sketchEdit.ksLineSeg(13, -45, 21, -32, 1);
+                                //sketchEdit.ksLineSeg(21, -32, 27, -15, 1);
+                                //sketchEdit.ksLineSeg(27, -15, 30, 0, 1);
+
                                 // дуги
                                 sketchEdit.ksArcByPoint(-2.053551, -45.141234, 15, 0, -60, 7.795265, -56.454979, 1, 1);
                                 sketchEdit.ksArcByPoint(-31.6, -11.2, 60, 7.795265, -56.454979, 26, -28, 1, 1);
@@ -202,7 +208,7 @@ namespace JuicerPluginBuild
         /// <summary>
         /// Построение зубцов кола
         /// </summary>
-        public void StakeProngs()
+        public void StakeProngs(int count)
         {
             ksDocument3D document = (ksDocument3D)_kompas.ActiveDocument3D();
             ksPart part = (ksPart)document.GetPart((short)Part_Type.pTop_Part);  // новый компонент
@@ -283,7 +289,7 @@ namespace JuicerPluginBuild
                                     ksEntity circularCopyEntity = (ksEntity)part.NewEntity((short)Obj3dType.o3d_circularCopy);
                                     ksCircularCopyDefinition circularCopyDefinition =
                                         (ksCircularCopyDefinition)circularCopyEntity.GetDefinition();
-                                    circularCopyDefinition.SetCopyParamAlongDir(9, 360,
+                                    circularCopyDefinition.SetCopyParamAlongDir(count, 360,
                                         true, false);
                                     ksEntity baseAxisOZ = (ksEntity)part.GetDefaultEntity((short)
                                         Obj3dType.o3d_axisOZ);
@@ -303,7 +309,7 @@ namespace JuicerPluginBuild
         /// <summary>
         /// Отверстия в тарелке
         /// </summary>
-        public void HolesInThePlate()
+        public void HolesInThePlate(int count, double d)
         {
             ksDocument3D document = (ksDocument3D)_kompas.ActiveDocument3D();
             ksPart part = (ksPart)document.GetPart((short)Part_Type.pTop_Part);  // новый компонент
@@ -328,10 +334,10 @@ namespace JuicerPluginBuild
                             ksDocument2D sketchEdit = (ksDocument2D)sketchDef.BeginEdit();
                             if (sketchEdit != null)
                             {
-                                sketchEdit.ksLineSeg(-0.75, -69.5, -0.75, -35, 1);
+                                sketchEdit.ksLineSeg(-0.75, -(d-10.5), -0.75, -35, 1);
                                 sketchEdit.ksLineSeg(-0.75, -35, 0.75, -35, 1);
-                                sketchEdit.ksLineSeg(0.75, -35, 0.75, -69.5, 1);
-                                sketchEdit.ksLineSeg(0.75, -69.5, -0.75, -69.5, 1);
+                                sketchEdit.ksLineSeg(0.75, -35, 0.75, -(d - 10.5), 1);
+                                sketchEdit.ksLineSeg(0.75, -(d - 10.5), -0.75, -(d - 10.5), 1);
                                 sketchDef.EndEdit();    // завершение редактирования эскиза
 
                                 //Вырезать выдавливанием
@@ -351,7 +357,7 @@ namespace JuicerPluginBuild
                                     //Отверстия по концетрической сетке
                                     ksEntity circularCopyEntity = (ksEntity)part.NewEntity((short)Obj3dType.o3d_circularCopy);
                                     ksCircularCopyDefinition circularCopyDefinition = (ksCircularCopyDefinition)circularCopyEntity.GetDefinition();
-                                    circularCopyDefinition.SetCopyParamAlongDir(90, 360, true, false);
+                                    circularCopyDefinition.SetCopyParamAlongDir(count, 360, true, false);
                                     ksEntity baseAxisOZ = (ksEntity)part.GetDefaultEntity((short)Obj3dType.o3d_axisOZ);
                                     circularCopyDefinition.SetAxis(baseAxisOZ);
                                     ksEntityCollection entityCollection = (ksEntityCollection)circularCopyDefinition.GetOperationArray();

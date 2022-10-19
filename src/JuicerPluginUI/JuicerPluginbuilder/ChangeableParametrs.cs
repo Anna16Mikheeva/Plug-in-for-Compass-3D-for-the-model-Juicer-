@@ -75,7 +75,7 @@ namespace JuicerPluginbuilder
 
             set
             {
-                _parameterCheck.RangeCheck(value, 60, 130, ParametrType.StakeDiameter, parameters);
+                _parameterCheck.RangeCheck(value, 70, 130, ParametrType.StakeDiameter, parameters);
                 _stakeDiameter = value;
             }
         }
@@ -89,10 +89,6 @@ namespace JuicerPluginbuilder
             {
                 return _stakeHeight;
             }   
-
-
-
-
             set
             {
                 _parameterCheck.RangeCheck(value, 60, 120, ParametrType.StakeHeight, parameters);
@@ -116,7 +112,7 @@ namespace JuicerPluginbuilder
 
             set
             {
-                _parameterCheck.RangeCheck(value, 90, 310, ParametrType.NumberOfHoles, parameters);
+                _parameterCheck.RangeCheck(value, 90, 100, ParametrType.NumberOfHoles, parameters);
                 _numberOfHoles = value;
             }
         }

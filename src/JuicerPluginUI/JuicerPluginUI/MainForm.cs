@@ -37,6 +37,12 @@ namespace JuicerPluginUI
         /// </summary>  
         private Color _colorLightPink = Color.LightPink;
 
+        private double _plateDiameter;
+        private double _stakeDiameter;
+        private double _stakeHeight;
+        private int _numberOfHoles;
+        private int _numberOfTeeth;
+
         public MainForm()
         {
             InitializeComponent();
@@ -51,8 +57,13 @@ namespace JuicerPluginUI
         {
             kompasWrapper.StartKompas();
             kompasWrapper.BuildingJuicer();
-            JuicerBuild juicerBuild = new JuicerBuild();
-            juicerBuild.BuildJuicer(kompasWrapper);
+            ChangeableParametrs changeableParametrs = new ChangeableParametrs();
+            if (changeableParametrs.parameters.Count == 0)
+            {
+                JuicerBuild juicerBuild = new JuicerBuild();
+                juicerBuild.BuildJuicer(kompasWrapper, _plateDiameter,
+                    _stakeDiameter, _stakeHeight, _numberOfHoles, _numberOfTeeth);
+            }
         }
 
         /// <summary>
@@ -70,6 +81,7 @@ namespace JuicerPluginUI
                 try
                 {
                     cheangeableParametrs.PlateDiameter = double.Parse(TextBoxPlateDiameter.Text);
+                    _plateDiameter =  double.Parse(TextBoxPlateDiameter.Text);
                     TextBoxPlateDiameter.BackColor = _colorWhite;
                 }
                 catch (ArgumentOutOfRangeException exception)
@@ -94,6 +106,7 @@ namespace JuicerPluginUI
             try
             {
                 cheangeableParametrs.StakeDiameter = double.Parse(TextBoxStakeDiameter.Text);
+                _stakeDiameter = double.Parse(TextBoxStakeDiameter.Text);
                 TextBoxStakeDiameter.BackColor = _colorWhite;
                 LabelPlateDiametrRange.Text = $"{cheangeableParametrs.StakeDiameter + 96}-226 мм";
                 LabelStakeHeightRange.Text = $"60-{cheangeableParametrs.StakeDiameter - 10} мм";
@@ -116,6 +129,7 @@ namespace JuicerPluginUI
             try
             {
                 cheangeableParametrs.StakeHeight = double.Parse(TextBoxStakeHeight.Text);
+                _stakeHeight = double.Parse(TextBoxStakeHeight.Text);
                 TextBoxStakeHeight.BackColor = _colorWhite;
             }
             catch (ArgumentOutOfRangeException exception)
@@ -134,6 +148,7 @@ namespace JuicerPluginUI
             try
             {
                 cheangeableParametrs.NumberOfTeeth = int.Parse(TextBoxNumberOfTeeth.Text);
+                _numberOfTeeth = int.Parse(TextBoxNumberOfTeeth.Text);
                 TextBoxNumberOfTeeth.BackColor = _colorWhite;
             }
             catch (ArgumentException exception)
@@ -152,6 +167,7 @@ namespace JuicerPluginUI
             try
             {
                 cheangeableParametrs.NumberOfHoles = int.Parse(TextBoxNumberOfHoles.Text);
+                _numberOfHoles = int.Parse(TextBoxNumberOfHoles.Text);
                 TextBoxNumberOfHoles.BackColor = _colorWhite;
             }
             catch (ArgumentException exception)
@@ -161,5 +177,3 @@ namespace JuicerPluginUI
         }
     }
 }
-// В сеттере при неправильном вводе выбрасываем исключение, в MainForm исключение перехватывается и поле окрашивается в красный
-// Значение мин и макс скорее всего будут не нужны
