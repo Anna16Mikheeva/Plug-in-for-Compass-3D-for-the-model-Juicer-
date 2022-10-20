@@ -21,8 +21,8 @@ namespace JuicerPluginBuild
         {
             kompasWrapper.PlateSketch(diameterPlate);
             kompasWrapper.StakeBuilding(diameterStake, stakeHeight);
-            kompasWrapper.StakeProngs(countTeeth);
-            kompasWrapper.HolesInThePlate(countHoles, diameterPlate);
+            kompasWrapper.StakeProngs(countTeeth, diameterStake, stakeHeight);
+            kompasWrapper.HolesInThePlate(countHoles, diameterPlate, stakeHeight);
         }
     }
 }
