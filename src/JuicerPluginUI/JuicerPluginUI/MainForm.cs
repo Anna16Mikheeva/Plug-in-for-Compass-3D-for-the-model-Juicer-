@@ -25,7 +25,7 @@ namespace JuicerPluginUI
         /// <summary>
         /// Экземпляр класса ChangeableParametrs
         /// </summary>
-        ChangeableParametrs cheangeableParametrs = new ChangeableParametrs();
+        ChangeableParametrs changeableParametrs = new ChangeableParametrs();
 
         /// <summary>
         /// Переменная белого цвета
@@ -55,15 +55,14 @@ namespace JuicerPluginUI
         /// <param name="e"></param>
         private void ButtonBuild_Click(object sender, EventArgs e)
         {
-            kompasWrapper.StartKompas();
-            kompasWrapper.BuildingJuicer();
-            ChangeableParametrs changeableParametrs = new ChangeableParametrs();
-            if (changeableParametrs.parameters.Count == 0)
-            {
+            //if (changeableParametrs.parameters.Count == 0)
+            //{
+                kompasWrapper.StartKompas();
+                kompasWrapper.BuildingJuicer();
                 JuicerBuild juicerBuild = new JuicerBuild();
                 juicerBuild.BuildJuicer(kompasWrapper, _plateDiameter,
                     _stakeDiameter, _stakeHeight, _numberOfHoles, _numberOfTeeth);
-            }
+            //}
         }
 
         /// <summary>
@@ -80,7 +79,7 @@ namespace JuicerPluginUI
             }
                 try
                 {
-                    cheangeableParametrs.PlateDiameter = double.Parse(TextBoxPlateDiameter.Text);
+                    changeableParametrs.PlateDiameter = double.Parse(TextBoxPlateDiameter.Text);
                     _plateDiameter =  double.Parse(TextBoxPlateDiameter.Text);
                     TextBoxPlateDiameter.BackColor = _colorWhite;
                 }
@@ -105,11 +104,11 @@ namespace JuicerPluginUI
             }
             try
             {
-                cheangeableParametrs.StakeDiameter = double.Parse(TextBoxStakeDiameter.Text);
+                changeableParametrs.StakeDiameter = double.Parse(TextBoxStakeDiameter.Text);
                 _stakeDiameter = double.Parse(TextBoxStakeDiameter.Text);
                 TextBoxStakeDiameter.BackColor = _colorWhite;
-                LabelPlateDiametrRange.Text = $"{cheangeableParametrs.StakeDiameter + 96}-226 мм";
-                LabelStakeHeightRange.Text = $"60-{cheangeableParametrs.StakeDiameter - 10} мм";
+                LabelPlateDiametrRange.Text = $"{changeableParametrs.StakeDiameter + 96}-226 мм";
+                LabelStakeHeightRange.Text = $"60-{changeableParametrs.StakeDiameter - 10} мм";
                 TextBoxPlateDiametr_TextChanged(sender, e);
                 TextBoxStakeHeight_TextChanged(sender, e);
             }
@@ -128,7 +127,7 @@ namespace JuicerPluginUI
             }
             try
             {
-                cheangeableParametrs.StakeHeight = double.Parse(TextBoxStakeHeight.Text);
+                changeableParametrs.StakeHeight = double.Parse(TextBoxStakeHeight.Text);
                 _stakeHeight = double.Parse(TextBoxStakeHeight.Text);
                 TextBoxStakeHeight.BackColor = _colorWhite;
             }
@@ -147,7 +146,7 @@ namespace JuicerPluginUI
             }
             try
             {
-                cheangeableParametrs.NumberOfTeeth = int.Parse(TextBoxNumberOfTeeth.Text);
+                changeableParametrs.NumberOfTeeth = int.Parse(TextBoxNumberOfTeeth.Text);
                 _numberOfTeeth = int.Parse(TextBoxNumberOfTeeth.Text);
                 TextBoxNumberOfTeeth.BackColor = _colorWhite;
             }
@@ -166,7 +165,7 @@ namespace JuicerPluginUI
             }
             try
             {
-                cheangeableParametrs.NumberOfHoles = int.Parse(TextBoxNumberOfHoles.Text);
+                changeableParametrs.NumberOfHoles = int.Parse(TextBoxNumberOfHoles.Text);
                 _numberOfHoles = int.Parse(TextBoxNumberOfHoles.Text);
                 TextBoxNumberOfHoles.BackColor = _colorWhite;
             }

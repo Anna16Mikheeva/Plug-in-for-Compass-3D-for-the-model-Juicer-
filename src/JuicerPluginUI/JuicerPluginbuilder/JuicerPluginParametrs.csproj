@@ -7,8 +7,8 @@
     <ProjectGuid>{05D89D13-31BD-4376-91A1-4DD19AB24DAF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JuicerPluginParameters</RootNamespace>
-    <AssemblyName>JuicerPluginParameters</AssemblyName>
+    <RootNamespace>JuicerPluginbuilder</RootNamespace>
+    <AssemblyName>JuicerPluginbuilder</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>

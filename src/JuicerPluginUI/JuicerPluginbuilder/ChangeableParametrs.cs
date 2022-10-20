@@ -129,7 +129,7 @@ namespace JuicerPluginbuilder
 
             set
             {
-                _parameterCheck.RangeCheck(value, 10, 318, ParametrType.NumberOfTeeth, parameters);
+                _parameterCheck.RangeCheck(value, 10, 12, ParametrType.NumberOfTeeth, parameters);
                 _numberOfTeeth = value;
             }
         }

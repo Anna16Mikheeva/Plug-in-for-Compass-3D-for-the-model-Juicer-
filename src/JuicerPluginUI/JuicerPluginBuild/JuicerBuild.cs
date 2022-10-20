@@ -20,7 +20,7 @@ namespace JuicerPluginBuild
         public void BuildJuicer(KompasWrapper kompasWrapper, double diameterPlate, double diameterStake, double stakeHeight, int countHoles, int countTeeth)
         {
             kompasWrapper.PlateSketch(diameterPlate);
-            kompasWrapper.StakeBuilding(diameterStake);
+            kompasWrapper.StakeBuilding(diameterStake, stakeHeight);
             kompasWrapper.StakeProngs(countTeeth);
             kompasWrapper.HolesInThePlate(countHoles, diameterPlate);
         }
