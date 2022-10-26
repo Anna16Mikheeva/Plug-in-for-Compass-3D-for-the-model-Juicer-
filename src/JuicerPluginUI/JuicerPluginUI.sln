@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.32428.217
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JuicerPluginUI", "JuicerPluginUI\JuicerPluginUI.csproj", "{EF182618-F429-4D80-B265-F0146A95C5B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JuicerPluginParametrs", "JuicerPluginbuilder\JuicerPluginParametrs.csproj", "{05D89D13-31BD-4376-91A1-4DD19AB24DAF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JuicerPluginParameters", "JuicerPluginbuilder\JuicerPluginParameters.csproj", "{05D89D13-31BD-4376-91A1-4DD19AB24DAF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JuicerPluginBuild", "JuicerPluginBuild\JuicerPluginBuild.csproj", "{340D9BAA-4B38-44CC-8C56-4224DEFBED41}"
 EndProject

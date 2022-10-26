@@ -20,12 +20,12 @@ namespace JuicerPluginUI
         /// <summary>
         /// Экземпляр класса KompasWrapper
         /// </summary>
-        KompasWrapper kompasWrapper = new KompasWrapper();
+        //private KompasWrapper kompasWrapper = new KompasWrapper();
 
         /// <summary>
         /// Экземпляр класса ChangeableParametrs
         /// </summary>
-        ChangeableParametrs changeableParametrs = new ChangeableParametrs();
+        private ChangeableParametrs _changeableParametrs = new ChangeableParametrs();
 
         /// <summary>
         /// Переменная белого цвета
@@ -37,6 +37,11 @@ namespace JuicerPluginUI
         /// </summary>  
         private Color _colorLightPink = Color.LightPink;
 
+        /// <summary>
+        /// Словарь, cвязывающий параметр втулки и соотвествующий ему textbox
+        /// </summary>
+        private Dictionary<ParameterType, TextBox> _valueTextBox;
+
         private double _plateDiameter;
         private double _stakeDiameter;
         private double _stakeHeight;
@@ -46,23 +51,76 @@ namespace JuicerPluginUI
         public MainForm()
         {
             InitializeComponent();
+
+            _valueTextBox = new Dictionary<ParameterType, TextBox>();
+            _valueTextBox.Clear();
+            _valueTextBox.Add(ParameterType.PlateDiameter, TextBoxPlateDiameter);
+            _valueTextBox.Add(ParameterType.StakeDiameter, TextBoxStakeDiameter);
+            _valueTextBox.Add(ParameterType.StakeHeight, TextBoxStakeHeight);
+            _valueTextBox.Add(ParameterType.NumberOfTeeth, TextBoxNumberOfTeeth);
+            _valueTextBox.Add(ParameterType.NumberOfHoles, TextBoxNumberOfHoles);
+            //_valueTextBox.Add(TextBoxPlateDiameter,_changeableParametrs.PlateDiameter);
+            //_valueTextBox.Add(TextBoxStakeDiameter, _changeableParametrs.StakeDiameter);
+            //_valueTextBox.Add(TextBoxStakeHeight, _changeableParametrs.StakeHeight);
+            ////_valueTextBox.Add(_numberOfHoles, TextBoxNumberOfTeeth);
+            ////_valueTextBox.Add(_numberOfTeeth, TextBoxNumberOfHoles);
+
+            TextBoxPlateDiameter.KeyPress += new KeyPressEventHandler
+                (CheckForCommasAndNumbers_KeyPress);
+            TextBoxStakeDiameter.KeyPress += new KeyPressEventHandler
+                (CheckForCommasAndNumbers_KeyPress);
+            TextBoxStakeHeight.KeyPress += new KeyPressEventHandler
+                (CheckForCommasAndNumbers_KeyPress);
+            TextBoxNumberOfTeeth.KeyPress += new KeyPressEventHandler
+                (IntegerCheck_KeyPress);
+            TextBoxNumberOfHoles.KeyPress += new KeyPressEventHandler
+                (IntegerCheck_KeyPress);
         }
 
         /// <summary>
-        /// Обработсик нажатия на кнопку "Построить"
+        /// Обработчик нажатия на кнопку "Построить"
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ButtonBuild_Click(object sender, EventArgs e)
         {
-            //if (changeableParametrs.parameters.Count == 0)
-            //{
-                kompasWrapper.StartKompas();
-                kompasWrapper.BuildingJuicer();
-                JuicerBuild juicerBuild = new JuicerBuild();
-                juicerBuild.BuildJuicer(kompasWrapper, _plateDiameter,
-                    _stakeDiameter, _stakeHeight, _numberOfHoles, _numberOfTeeth);
-            //}
+            if (TextBoxPlateDiameter.Text != "" ||
+                TextBoxStakeDiameter.Text != "" ||
+                TextBoxStakeHeight.Text != "" ||
+                TextBoxNumberOfTeeth.Text != "" ||
+                TextBoxNumberOfHoles.Text != "")
+            {
+                if (_changeableParametrs.parameters.Count == 0)
+                {
+                    JuicerBuilder juicerBuild = new JuicerBuilder();
+                    juicerBuild.BuildJuicer(_plateDiameter,
+                        _stakeDiameter, _stakeHeight, _numberOfHoles, _numberOfTeeth);
+                }
+                else
+                {
+                    MessageBox.Show("Фигура не может быть построена");
+                }
+            }
+        }
+
+        private void TextBoxValidator_TextChanged(object sender, EventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+            textBox.Focus();
+            if(textBox == TextBoxPlateDiameter)
+            {
+                try
+                {
+                    _changeableParametrs.PlateDiameter = double.Parse(textBox.Text);
+                    _plateDiameter = double.Parse(TextBoxPlateDiameter.Text);
+                    textBox.BackColor = _colorWhite;
+                }
+                catch (ArgumentOutOfRangeException exception)
+
+                {
+                    textBox.BackColor = _colorLightPink;
+                }
+            }
         }
 
         /// <summary>
@@ -72,22 +130,17 @@ namespace JuicerPluginUI
         /// <param name="e"></param>
         private void TextBoxPlateDiametr_TextChanged(object sender, EventArgs e)
         {
-            if (TextBoxPlateDiameter.Text == "")
+            try
+            {
+                _changeableParametrs.PlateDiameter = double.Parse(TextBoxPlateDiameter.Text);
+                _plateDiameter = double.Parse(TextBoxPlateDiameter.Text);
+                TextBoxPlateDiameter.BackColor = _colorWhite;
+            }
+            catch (ArgumentOutOfRangeException exception)
+
             {
                 TextBoxPlateDiameter.BackColor = _colorLightPink;
-                return;
             }
-                try
-                {
-                    changeableParametrs.PlateDiameter = double.Parse(TextBoxPlateDiameter.Text);
-                    _plateDiameter =  double.Parse(TextBoxPlateDiameter.Text);
-                    TextBoxPlateDiameter.BackColor = _colorWhite;
-                }
-                catch (ArgumentOutOfRangeException exception)
-
-                {
-                    TextBoxPlateDiameter.BackColor = _colorLightPink;
-                }
         }
 
         /// <summary>
@@ -104,11 +157,11 @@ namespace JuicerPluginUI
             }
             try
             {
-                changeableParametrs.StakeDiameter = double.Parse(TextBoxStakeDiameter.Text);
+                _changeableParametrs.StakeDiameter = double.Parse(TextBoxStakeDiameter.Text);
                 _stakeDiameter = double.Parse(TextBoxStakeDiameter.Text);
                 TextBoxStakeDiameter.BackColor = _colorWhite;
-                LabelPlateDiametrRange.Text = $"{changeableParametrs.StakeDiameter + 96}-226 мм";
-                LabelStakeHeightRange.Text = $"60-{changeableParametrs.StakeDiameter - 10} мм";
+                LabelPlateDiametrRange.Text = $"{_changeableParametrs.StakeDiameter + 96}-226 мм";
+                LabelStakeHeightRange.Text = $"60-{_changeableParametrs.StakeDiameter - 10} мм";
                 TextBoxPlateDiametr_TextChanged(sender, e);
                 TextBoxStakeHeight_TextChanged(sender, e);
             }
@@ -127,7 +180,7 @@ namespace JuicerPluginUI
             }
             try
             {
-                changeableParametrs.StakeHeight = double.Parse(TextBoxStakeHeight.Text);
+                _changeableParametrs.StakeHeight = double.Parse(TextBoxStakeHeight.Text);
                 _stakeHeight = double.Parse(TextBoxStakeHeight.Text);
                 TextBoxStakeHeight.BackColor = _colorWhite;
             }
@@ -146,7 +199,7 @@ namespace JuicerPluginUI
             }
             try
             {
-                changeableParametrs.NumberOfTeeth = int.Parse(TextBoxNumberOfTeeth.Text);
+                _changeableParametrs.NumberOfTeeth = int.Parse(TextBoxNumberOfTeeth.Text);
                 _numberOfTeeth = int.Parse(TextBoxNumberOfTeeth.Text);
                 TextBoxNumberOfTeeth.BackColor = _colorWhite;
             }
@@ -165,13 +218,48 @@ namespace JuicerPluginUI
             }
             try
             {
-                changeableParametrs.NumberOfHoles = int.Parse(TextBoxNumberOfHoles.Text);
+                _changeableParametrs.NumberOfHoles = int.Parse(TextBoxNumberOfHoles.Text);
                 _numberOfHoles = int.Parse(TextBoxNumberOfHoles.Text);
                 TextBoxNumberOfHoles.BackColor = _colorWhite;
             }
             catch (ArgumentException exception)
             {
                 TextBoxNumberOfHoles.BackColor = _colorLightPink;
+            }
+        }
+
+
+        /// <summary>
+        /// Проверка, чтобы textbox содержал только одну запятую и цифры
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CheckForCommasAndNumbers_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(Char.IsControl(e.KeyChar))
+                && !(Char.IsDigit(e.KeyChar))
+                && !((e.KeyChar == ',')
+                && (((TextBox)sender).Text.IndexOf(",") == -1)
+            ))
+            {
+                e.Handled = true;
+            }
+        }
+
+        /// <summary>
+        /// Проверка, чтобы textbox содержал только цифры
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void IntegerCheck_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(Char.IsControl(e.KeyChar))
+                && !(Char.IsDigit(e.KeyChar))
+                && !((e.KeyChar == ',')
+                && (((TextBox)sender).Text.IndexOf(",") == 1)
+            ))
+            {
+                e.Handled = true;
             }
         }
     }

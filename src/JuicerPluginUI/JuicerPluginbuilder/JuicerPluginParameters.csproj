@@ -62,7 +62,7 @@
   <ItemGroup>
     <Compile Include="ChangeableParametrs.cs" />
     <Compile Include="ParameterCheck.cs" />
-    <Compile Include="ParametrType.cs" />
+    <Compile Include="ParameterType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -60,7 +60,7 @@ namespace JuicerPluginBuild
         /// <summary>
         /// Построение модели соковыжималки
         /// </summary>
-        public void BuildingJuicer()
+        public void CreateFile()
         {
             try
             {
@@ -188,13 +188,21 @@ namespace JuicerPluginBuild
                                 sketchEdit.ksLineSeg(0, 0, radiusStake, 0, 1);
                                 sketchEdit.ksLineSeg(0, 0, 0, -stakeHeight, 3);
 
-                                //sketchEdit.ksLineSeg(0, -stakeHeight, radiusStake - 20.839251, -stakeHeight +(9* stakeHeight/100), 1);
-                                //sketchEdit.ksLineSeg(radiusStake - 20.839251, -stakeHeight + +(9 * stakeHeight / 100), radiusStake - 20.839251, -stakeHeight + 4.770904, 1);
-                                sketchEdit.ksLineSeg(radiusStake - 17.525729, -stakeHeight + (20.9 * stakeHeight / 100), radiusStake - 13.748558, -stakeHeight + 12.60277, 1);
-                                sketchEdit.ksLineSeg(0, -stakeHeight, radiusStake - 20.839251, -stakeHeight + 4.770904, 1);
-                                sketchEdit.ksLineSeg(radiusStake - 20.839251, -stakeHeight + 4.770904, radiusStake - 17.525729, -stakeHeight + 8.088102, 1);
-                                sketchEdit.ksLineSeg(radiusStake - 17.525729, -stakeHeight + 8.088102, radiusStake - 13.748558, -stakeHeight + 12.60277, 1);
-                                sketchEdit.ksLineSeg(radiusStake - 13.748558, -stakeHeight + 12.60277, radiusStake - 10.177112, -stakeHeight + 17.885819, 1);
+                                //radiusStake=30            stakeHeight=60
+                                //sketchEdit.ksLineSeg(0, -stakeHeight, radiusStake - (10.177112 * 100 / radiusStake), -stakeHeight + (17.885819 * 100 / stakeHeight), 1);
+
+                                //sketchEdit.ksLineSeg(radiusStake - 13.748558, -stakeHeight + 12.60277, radiusStake - 10.177112, -stakeHeight + 17.885819, 1);
+
+                                //sketchEdit.ksLineSeg(radiusStake - (10.177112 * 100 / radiusStake), -stakeHeight + (17.885819 * 100 / stakeHeight), radiusStake - (7.024134 * 100 / radiusStake), -stakeHeight + (23.870603 * 100 / stakeHeight), 1);
+                                //sketchEdit.ksLineSeg(radiusStake - (7.024134 * 100 / radiusStake), -stakeHeight + (23.870603 * 100 / stakeHeight), radiusStake - (4 * 100 / radiusStake), -stakeHeight + (32 * 100 / stakeHeight), 1);
+                                //sketchEdit.ksLineSeg(radiusStake - (4 * 100 / radiusStake), -stakeHeight + (32 * 100 / stakeHeight), radiusStake - (2.18061*100/ radiusStake), -stakeHeight + (39.230625*100/ stakeHeight), 1);
+                                //sketchEdit.ksLineSeg(radiusStake - (2.18061 * 100 / radiusStake), -stakeHeight + (39.230625 * 100 / stakeHeight), radiusStake - 1.260657, -stakeHeight + 44.171475, 1);
+                                //sketchEdit.ksLineSeg(radiusStake - 1.260657, -stakeHeight + 44.171475, radiusStake - 0.531802, -stakeHeight + 49.700599, 1);
+                                //sketchEdit.ksLineSeg(radiusStake - 0.531802, -stakeHeight + 49.700599, radiusStake - 0.166451, -stakeHeight + 54.232637, 1);
+                                //sketchEdit.ksLineSeg(radiusStake - 0.166451, -stakeHeight + 54.232637, radiusStake, 0, 1);
+
+                                sketchEdit.ksLineSeg(0, -stakeHeight, radiusStake - 10.177112, -stakeHeight + 17.885819, 1);
+                                //sketchEdit.ksLineSeg(radiusStake - (10.177112 * 100 / radiusStake), -stakeHeight + (17.885819 * 100 / stakeHeight), radiusStake - 7.024134, -stakeHeight + 23.870603, 1);
                                 sketchEdit.ksLineSeg(radiusStake - 10.177112, -stakeHeight + 17.885819, radiusStake - 7.024134, -stakeHeight + 23.870603, 1);
                                 sketchEdit.ksLineSeg(radiusStake - 7.024134, -stakeHeight + 23.870603, radiusStake - 4, -stakeHeight + 32, 1);
                                 sketchEdit.ksLineSeg(radiusStake - 4, -stakeHeight + 32, radiusStake - 2.18061, -stakeHeight + 39.230625, 1);
@@ -203,18 +211,6 @@ namespace JuicerPluginBuild
                                 sketchEdit.ksLineSeg(radiusStake - 0.531802, -stakeHeight + 49.700599, radiusStake - 0.166451, -stakeHeight + 54.232637, 1);
                                 sketchEdit.ksLineSeg(radiusStake - 0.166451, -stakeHeight + 54.232637, radiusStake, 0, 1);
 
-                                //sketchEdit.ksLineSeg(stakeHeight - 30.095909, (-diameterStake + 55.621345)/2, stakeHeight, 0, 1);
-
-                                //sketchEdit.ksLineSeg(0, -60, 5, -55, 1);
-                                //sketchEdit.ksLineSeg(5, -55, 13, -45, 1);
-                                //sketchEdit.ksLineSeg(13, -45, 21, -32, 1);
-                                //sketchEdit.ksLineSeg(21, -32, 27, -15, 1);
-                                //sketchEdit.ksLineSeg(27, -15, 30, 0, 1);
-
-                                // дуги
-                                //sketchEdit.ksArcByPoint(-2.053551, -45.141234, 15, 0, -60, 7.795265, -56.454979, 1, 1);
-                                //sketchEdit.ksArcByPoint(-31.6, -11.2, 60, 7.795265, -56.454979, 26, -28, 1, 1);
-                                //sketchEdit.ksArcByPoint(-70, 0, 100, 26, -28, -30, 0, 1, 1);
                                 sketchDef.EndEdit();    // завершение редактирования эскиза
                             }
                             RotationOperation(entitySketch, thinWallElement);

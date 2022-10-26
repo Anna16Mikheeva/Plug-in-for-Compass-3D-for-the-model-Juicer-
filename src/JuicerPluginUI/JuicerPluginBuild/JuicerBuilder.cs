@@ -12,13 +12,16 @@ using System.Runtime.InteropServices;
 
 namespace JuicerPluginBuild
 {
-    public class JuicerBuild
+    public class JuicerBuilder
     {
         /// <summary>
         /// Построение модели соковыжималки
         /// </summary>
-        public void BuildJuicer(KompasWrapper kompasWrapper, double diameterPlate, double diameterStake, double stakeHeight, int countHoles, int countTeeth)
+        public void BuildJuicer(double diameterPlate, double diameterStake, double stakeHeight, int countHoles, int countTeeth)
         {
+            KompasWrapper kompasWrapper = new KompasWrapper();
+            kompasWrapper.StartKompas();
+            kompasWrapper.CreateFile();
             kompasWrapper.PlateSketch(diameterPlate);
             kompasWrapper.StakeBuilding(diameterStake, stakeHeight);
             kompasWrapper.StakeProngs(countTeeth, diameterStake, stakeHeight);

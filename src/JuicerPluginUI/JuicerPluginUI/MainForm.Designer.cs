@@ -113,7 +113,8 @@ namespace JuicerPluginUI
             this.TextBoxPlateDiameter.Name = "TextBoxPlateDiameter";
             this.TextBoxPlateDiameter.Size = new System.Drawing.Size(100, 30);
             this.TextBoxPlateDiameter.TabIndex = 5;
-            this.TextBoxPlateDiameter.TextChanged += new System.EventHandler(this.TextBoxPlateDiametr_TextChanged);
+            this.TextBoxPlateDiameter.TextChanged += new System.EventHandler(this.TextBoxValidator_TextChanged);
+            this.TextBoxPlateDiameter.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CheckForCommasAndNumbers_KeyPress);
             // 
             // TextBoxStakeDiameter
             // 
@@ -125,6 +126,7 @@ namespace JuicerPluginUI
             this.TextBoxStakeDiameter.Size = new System.Drawing.Size(100, 30);
             this.TextBoxStakeDiameter.TabIndex = 6;
             this.TextBoxStakeDiameter.TextChanged += new System.EventHandler(this.TextBoxStakeDiametr_TextChanged);
+            this.TextBoxStakeDiameter.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CheckForCommasAndNumbers_KeyPress);
             // 
             // TextBoxStakeHeight
             // 
@@ -136,6 +138,7 @@ namespace JuicerPluginUI
             this.TextBoxStakeHeight.Size = new System.Drawing.Size(100, 30);
             this.TextBoxStakeHeight.TabIndex = 7;
             this.TextBoxStakeHeight.TextChanged += new System.EventHandler(this.TextBoxStakeHeight_TextChanged);
+            this.TextBoxStakeHeight.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CheckForCommasAndNumbers_KeyPress);
             // 
             // TextBoxNumberOfTeeth
             // 
@@ -147,6 +150,7 @@ namespace JuicerPluginUI
             this.TextBoxNumberOfTeeth.Size = new System.Drawing.Size(100, 30);
             this.TextBoxNumberOfTeeth.TabIndex = 8;
             this.TextBoxNumberOfTeeth.TextChanged += new System.EventHandler(this.TextBoxNumberOfTeeth_TextChanged);
+            this.TextBoxNumberOfTeeth.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.IntegerCheck_KeyPress);
             // 
             // TextBoxNumberOfHoles
             // 
@@ -158,6 +162,7 @@ namespace JuicerPluginUI
             this.TextBoxNumberOfHoles.Size = new System.Drawing.Size(100, 30);
             this.TextBoxNumberOfHoles.TabIndex = 9;
             this.TextBoxNumberOfHoles.TextChanged += new System.EventHandler(this.TextBoxNumberOfHoles_TextChanged);
+            this.TextBoxNumberOfHoles.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.IntegerCheck_KeyPress);
             // 
             // ButtonBuild
             // 
@@ -180,7 +185,7 @@ namespace JuicerPluginUI
             this.LabelPlateDiametrRange.Name = "LabelPlateDiametrRange";
             this.LabelPlateDiametrRange.Size = new System.Drawing.Size(124, 25);
             this.LabelPlateDiametrRange.TabIndex = 11;
-            this.LabelPlateDiametrRange.Text = "156-226 мм";
+            this.LabelPlateDiametrRange.Text = "166-226 мм";
             // 
             // LabelStakeDiametrRange
             // 

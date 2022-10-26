@@ -8,12 +8,12 @@ namespace JuicerPluginbuilder
 {
     class ParameterCheck
     {
-        public void RangeCheck(double value, double min, double max, ParametrType parameters, Dictionary<ParametrType, string> errors)
+        public void RangeCheck(double value, double min, double max, ParameterType parameters, Dictionary<ParameterType, string> errors)
         {
             errors.Remove(parameters);
             if (value < min || value > max)
             {
-                //errors.Remove(parameters);
+                errors.Remove(parameters);
                 errors.Add(parameters, "Выход за диапазон");
                 throw new ArgumentOutOfRangeException();
             }
