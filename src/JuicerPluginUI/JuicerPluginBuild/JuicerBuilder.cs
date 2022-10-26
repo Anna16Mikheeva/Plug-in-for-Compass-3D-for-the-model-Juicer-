@@ -12,20 +12,26 @@ using System.Runtime.InteropServices;
 
 namespace JuicerPluginBuild
 {
+    /// <summary>
+    /// Класс для открытия Компас-3D, создания файла и построения модели
+    /// </summary>
     public class JuicerBuilder
     {
         /// <summary>
         /// Построение модели соковыжималки
         /// </summary>
-        public void BuildJuicer(double diameterPlate, double diameterStake, double stakeHeight, int countHoles, int countTeeth)
+        public void BuildJuicer(double diameterPlate, double diameterStake,
+            double stakeHeight, int countHoles, int countTeeth)
         {
             KompasWrapper kompasWrapper = new KompasWrapper();
             kompasWrapper.StartKompas();
             kompasWrapper.CreateFile();
             kompasWrapper.PlateSketch(diameterPlate);
             kompasWrapper.StakeBuilding(diameterStake, stakeHeight);
-            kompasWrapper.StakeProngs(countTeeth, diameterStake, stakeHeight);
-            kompasWrapper.HolesInThePlate(countHoles, diameterPlate, stakeHeight);
+            kompasWrapper.StakeProngs
+                (countTeeth, diameterStake, stakeHeight);
+            kompasWrapper.HolesInThePlate
+                (countHoles, diameterPlate, stakeHeight);
         }
     }
 }

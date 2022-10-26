@@ -12,10 +12,29 @@ namespace JuicerPluginbuilder
     /// </summary>
     public enum ParameterType
     {
+        /// <summary>
+        /// Диаметр тарелки
+        /// </summary>
         PlateDiameter,
+
+        /// <summary>
+        /// Диаметр кола
+        /// </summary>
         StakeDiameter,
+
+        /// <summary>
+        /// Высота кола
+        /// </summary>
         StakeHeight,
+
+        /// <summary>
+        /// Количество отверстий в тарелке
+        /// </summary>
         NumberOfHoles,
+
+        /// <summary>
+        /// Количество зубцов
+        /// </summary>
         NumberOfTeeth
     }
 }

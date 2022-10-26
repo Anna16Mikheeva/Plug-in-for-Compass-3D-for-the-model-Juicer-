@@ -7,9 +7,11 @@ using System.Runtime.InteropServices;
 
 namespace JuicerPluginbuilder
 {
+    /// <summary>
+    /// Класс параметров
+    /// </summary>
     public class ChangeableParametrs
     {
-
         /// <summary>
         /// Параметр диаметра тарелки
         /// </summary>
@@ -36,25 +38,15 @@ namespace JuicerPluginbuilder
         private int _numberOfTeeth;
 
         /// <summary>
-        /// Возвращает или задает параметр
+        /// Словарь перечисления параметров и ошибки
         /// </summary>
-        public Dictionary<ParameterType, string> parameters = new Dictionary<ParameterType, string>();
+        public Dictionary<ParameterType, string> parameters = 
+            new Dictionary<ParameterType, string>();
 
         /// <summary>
         /// Экземпляр класса ParameterCheck
         /// </summary>
         ParameterCheck _parameterCheck = new ParameterCheck();
-
-        //public ChangeableParametrs(double plateDiameter, double stakeDiameter,
-        //    double stakeHeight, int numberOfTeeth, int numberOfHoles)
-        //{
-        //    PlateDiameter = plateDiameter;
-        //    StakeDiameter = stakeDiameter;
-        //    StakeHeight = stakeHeight;
-        //    NumberOfTeeth = numberOfTeeth;
-        //    NumberOfHoles = numberOfHoles;
-        //}
-
 
         /// <summary>
         /// Возвращает и устанавливает значение диаметра тарелки
@@ -68,11 +60,14 @@ namespace JuicerPluginbuilder
 
             set
             {
-                _parameterCheck.RangeCheck(value, 166, 226, ParameterType.PlateDiameter, parameters);
+                _parameterCheck.RangeCheck
+                    (value, 166, 226, 
+                    ParameterType.PlateDiameter, parameters);
                 if(value - StakeDiameter < 96)
                 {
                     throw new ArgumentOutOfRangeException();
-                    parameters.Add(ParameterType.PlateDiameter, "Выход за диапазон");
+                    parameters.Add(ParameterType.PlateDiameter, 
+                        "Выход за диапазон");
                 }
                 _plateDiameter = value;
             }
@@ -90,7 +85,9 @@ namespace JuicerPluginbuilder
 
             set
             {
-                _parameterCheck.RangeCheck(value, 70, 130, ParameterType.StakeDiameter, parameters);
+                _parameterCheck.RangeCheck
+                    (value, 70, 130, 
+                    ParameterType.StakeDiameter, parameters);
                 _stakeDiameter = value;
             }
         }
@@ -106,11 +103,14 @@ namespace JuicerPluginbuilder
             }   
             set
             {
-                _parameterCheck.RangeCheck(value, 60, 120, ParameterType.StakeHeight, parameters);
+                _parameterCheck.RangeCheck
+                    (value, 60, 120, 
+                    ParameterType.StakeHeight, parameters);
                 if(StakeDiameter - value < 10)
                 {
                     throw new ArgumentOutOfRangeException();
-                    parameters.Add(ParameterType.StakeHeight, "Выход за диапазон");
+                    parameters.Add(ParameterType.StakeHeight, 
+                        "Выход за диапазон");
                 }
                 _stakeHeight = value;
             }
@@ -128,7 +128,9 @@ namespace JuicerPluginbuilder
 
             set
             {
-                _parameterCheck.RangeCheck(value, 90, 100, ParameterType.NumberOfHoles, parameters);
+                _parameterCheck.RangeCheck
+                    (value, 90, 100, 
+                    ParameterType.NumberOfHoles, parameters);
                 _numberOfHoles = value;
             }
         }
@@ -145,7 +147,9 @@ namespace JuicerPluginbuilder
 
             set
             {
-                _parameterCheck.RangeCheck(value, 10, 12, ParameterType.NumberOfTeeth, parameters);
+                _parameterCheck.RangeCheck
+                    (value, 10, 12, 
+                    ParameterType.NumberOfTeeth, parameters);
                 _numberOfTeeth = value;
             }
         }
