@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+// TODO: добавить dll
 using KompasAPI7;
 using Kompas6API5;
 using Kompas6Constants;

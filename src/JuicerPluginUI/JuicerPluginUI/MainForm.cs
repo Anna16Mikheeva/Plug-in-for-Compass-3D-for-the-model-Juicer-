@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+// TODO: убрать зависимости
 using KompasAPI7;
 using Kompas6API5;
 using Kompas6Constants;
@@ -32,15 +33,16 @@ namespace JuicerPluginUI
         /// </summary>  
         private Color _colorLightPink = Color.LightPink;
 
-        ///// <summary>
-        ///// Словарь, cвязывающий параметр втулки и соотвествующий ему textbox
-        ///// </summary>
-        //private Dictionary<ParameterType, TextBox> _valueTextBox;
+		///// <summary>
+		///// Словарь, cвязывающий параметр втулки и соотвествующий ему textbox
+		///// </summary>
+		// TODO: можно попробовать Dictionary<TextBox, Action>
+		//private Dictionary<ParameterType, TextBox> _valueTextBox;
 
-        /// <summary>
-        /// Диаметер тарелки
-        /// </summary>
-        private double _plateDiameter;
+		/// <summary>
+		/// Диаметер тарелки
+		/// </summary>
+		private double _plateDiameter;
 
         /// <summary>
         /// Диаметер кола
@@ -116,11 +118,13 @@ namespace JuicerPluginUI
         {
             TextBox textBox = (TextBox)sender;
             textBox.Focus();
+	        // TODO: string.Empty
             if (textBox.Text == "" || textBox.Text == ",")
             {
                 textBox.Text = "";
                 return;
             }
+            // TODO: дубли
             if (textBox == TextBoxPlateDiameter)
             {
                 try
@@ -203,14 +207,15 @@ namespace JuicerPluginUI
         /// <param name="e"></param>
         private void CheckForCommasAndNumbers_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!(Char.IsControl(e.KeyChar))
-                && !(Char.IsDigit(e.KeyChar))
-                && !((e.KeyChar == ',')
-                && (((TextBox)sender).Text.IndexOf(",") == -1)
-            ))
-            {
-                e.Handled = true;
-            }
+	        // TODO: char.*
+	        if (!(char.IsControl(e.KeyChar))
+	            && !(Char.IsDigit(e.KeyChar))
+	            && !((e.KeyChar == ',')
+	                 && (((TextBox)sender).Text.IndexOf(",") == -1)
+		            ))
+	        {
+		        e.Handled = true;
+	        }
         }
 
         /// <summary>
@@ -219,8 +224,9 @@ namespace JuicerPluginUI
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void IntegerCheck_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!(Char.IsControl(e.KeyChar))
+		{
+			// TODO: char.*
+			if (!(Char.IsControl(e.KeyChar))
                 && !(Char.IsDigit(e.KeyChar))
                 && !((e.KeyChar == ',')
                 && (((TextBox)sender).Text.IndexOf(",") == 1)
@@ -230,6 +236,7 @@ namespace JuicerPluginUI
             }
         }
 
+        // TODO: убрать или написать комментарий, зачем это нужно
         ///// <summary>
         ///// Обработчик текстбокса диаметра тарелки
         ///// </summary>

@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace JuicerPluginbuilder
 {
-    /// <summary>
-    /// Класс для проверки диапазона
-    /// </summary>
-    class ParameterCheck
+	/// <summary>
+	/// Класс для проверки диапазона
+	/// </summary>
+	// TODO: ParameterChecker
+	class ParameterCheck
     {
         /// <summary>
         /// Метод для проверки на диапазон

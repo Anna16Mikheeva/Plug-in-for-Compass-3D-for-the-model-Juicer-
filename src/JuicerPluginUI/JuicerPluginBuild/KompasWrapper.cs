@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+// TODO: добавить dll
 using KompasAPI7;
 using Kompas6API5;
 using Kompas6Constants;
@@ -85,6 +86,7 @@ namespace JuicerPluginBuild
                 (ksDocument3D)_kompas.ActiveDocument3D();
             ksPart part = (ksPart)document.GetPart
                 ((short)Part_Type.pTop_Part);  // новый компонент
+	        // TODO: большая вложенность
             if (part != null)
             {
                 ksEntity entitySketch = (ksEntity)part.NewEntity
@@ -114,6 +116,7 @@ namespace JuicerPluginBuild
                             {
                                 diameterPlate = diameterPlate / 2;
                                 //Построение первого эскиза (тарелки)
+                                // TODO: Магические числа
                                 sketchEdit.ksLineSeg
                                     (0, 0, diameterPlate - 10, 0, 1);
                                 sketchEdit.ksLineSeg
@@ -134,6 +137,7 @@ namespace JuicerPluginBuild
                                 sketchEdit.ksArcByPoint
                                     (diameterPlate - 10, -10, 10, diameterPlate, 
                                     -10, diameterPlate - 10, 0, 1, 1);
+                                // TODO: все комментарии ставятся перед коментируемой строкой
                                 sketchDef.EndEdit();    // завершение редактирования эскиза
                             }
                             RotationOperation(entitySketch, thinWallElement);
@@ -143,14 +147,16 @@ namespace JuicerPluginBuild
             }
         }
 
-        /// <summary>
-        /// Метод операции выдавливания вращением
-        /// </summary>
-        public void RotationOperation(ksEntity entitySketch, bool thinWallElement)
+		/// <summary>
+		/// Метод операции выдавливания вращением
+		/// </summary>
+		// TODO: Методы должны начинаться с глагола
+		public void RotationOperation(ksEntity entitySketch, bool thinWallElement)
         {
             ksDocument3D document = (ksDocument3D)_kompas.ActiveDocument3D();
-            ksPart part = (ksPart)document.
-                GetPart((short)Part_Type.pTop_Part);  // новый компонент
+            // новый компонент
+			ksPart part = (ksPart)document.
+                GetPart((short)Part_Type.pTop_Part);
 
             // Вращение
             ksEntity entityRotate = (ksEntity)part.
@@ -178,18 +184,21 @@ namespace JuicerPluginBuild
                     rotateDef.SetSideParam(true, 360);
                     // эскиз операции вращения
                     rotateDef.SetSketch(entitySketch);
-                    entityRotate.Create(); // создать операцию
+                    // TODO: все комментарии ставятся перед коментируемой строкой
+					entityRotate.Create(); // создать операцию
                 }
             }
         }
 
 
-        /// <summary>
-        /// Метод построения кола
-        /// </summary>
-        public void StakeBuilding(double diameterStake, double stakeHeight)
-        {
-            bool thinWallElement = false; // не тонкостенный 
+		/// <summary>
+		/// Метод построения кола
+		/// </summary>
+		// TODO: Методы должны начинаться с глагола
+		public void StakeBuilding(double diameterStake, double stakeHeight)
+		{
+			// TODO: все комментарии ставятся перед коментируемой строкой
+			bool thinWallElement = false; // не тонкостенный 
             ksDocument3D document = (ksDocument3D)_kompas.
                 ActiveDocument3D();
             // новый компонент
@@ -222,6 +231,7 @@ namespace JuicerPluginBuild
                                 (ksDocument2D)sketchDef.BeginEdit();
                             if (sketchEdit != null)
                             {
+	                            // TODO: магические числа
                                 double radiusStake = diameterStake / 2;
                                 sketchEdit.ksLineSeg
                                     (0, 0, radiusStake, 0, 1);
@@ -262,14 +272,16 @@ namespace JuicerPluginBuild
             }
         }
 
-        /// <summary>
-        /// Метод построения зубцов кола
-        /// </summary>
-        public void StakeProngs(int count, double diameterStake, 
+		/// <summary>
+		/// Метод построения зубцов кола
+		/// </summary>
+		// TODO: Методы должны начинаться с глагола
+		public void StakeProngs(int count, double diameterStake, 
             double stakeHeight)
         {
             ksDocument3D document = 
                 (ksDocument3D)_kompas.ActiveDocument3D();
+            // TODO: комментарий перед вызываемой строкой.
             ksPart part = (ksPart)document.
                 GetPart((short)Part_Type.pTop_Part);  // новый компонент
             if (part != null)
@@ -302,6 +314,7 @@ namespace JuicerPluginBuild
                             sketchDef.SetPlane(entityOffsetPlane2); // установим плоскость XOY базовой для эскиза
                             entitySketchDisplaced.Create(); // создадим эскиз
 
+                            // TODO: магические числа
                             // интерфейс редактора эскиза
                             ksDocument2D sketchEdit = 
                                 (ksDocument2D)sketchDef.BeginEdit();
@@ -317,8 +330,9 @@ namespace JuicerPluginBuild
                 }
 
                 // Эскиз линии, которая в дальнейшем будет траекторией выреза по траектории
-                ksEntity entitySketch = (ksEntity)part.
-                    NewEntity((short)Obj3dType.o3d_sketch);
+                ksEntity entitySketch = 
+	                (ksEntity)part.NewEntity((short)Obj3dType.o3d_sketch);
+	            // TODO: Большая вложенность
                 if (entitySketch != null)
                 {
                     // интерфейс свойств эскиза
@@ -328,6 +342,8 @@ namespace JuicerPluginBuild
                     {
 
                         // получим интерфейс базовой плоскости XOZ
+                        // TODO: либо перенести все, что после равно на другую строку,
+                        // TODO: либо вместе с точкой перенести вызов метода
                         ksEntity basePlane = (ksEntity)part.
                             GetDefaultEntity((short)Obj3dType.o3d_planeXOZ);
                         if (basePlane != null)
@@ -340,6 +356,7 @@ namespace JuicerPluginBuild
                                 (ksDocument2D)sketchDef.BeginEdit();
                             if (sketchEdit != null)
                             {
+                                // TODO: Магические числа
                                 sketchEdit.ksLineSeg
                                     (9.259353, -stakeHeight - 1.020943, 2.290188, -stakeHeight - 11.995037, 1);
                                 sketchEdit.ksLineSeg
@@ -396,16 +413,18 @@ namespace JuicerPluginBuild
             }
         }
 
-        /// <summary>
-        /// Метод построения отверстий в тарелке
-        /// </summary>
-        public void HolesInThePlate(int count, double diameterPlate, 
+		/// <summary>
+		/// Метод построения отверстий в тарелке
+		/// </summary>
+		// TODO: Методы должны начинаться с глагола
+		public void HolesInThePlate(int count, double diameterPlate, 
             double diameterStake)
         {
             ksDocument3D document = 
                 (ksDocument3D)_kompas.ActiveDocument3D();
             ksPart part = (ksPart)document.
                 GetPart((short)Part_Type.pTop_Part);  // новый компонент
+	        // TODO: большая вложенность
             if (part != null)
             {
                 ksEntity entitySketch = 
@@ -431,6 +450,7 @@ namespace JuicerPluginBuild
                                 (ksDocument2D)sketchDef.BeginEdit();
                             if (sketchEdit != null)
                             {
+                                // TODO магические числа
                                 sketchEdit.ksLineSeg
                                               //Для точки у скругления
                                     (-0.75, -(diameterPlate/2-10.5), -0.75, -diameterStake/2-2, 1);// длинная

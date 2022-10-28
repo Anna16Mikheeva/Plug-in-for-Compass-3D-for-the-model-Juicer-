@@ -40,12 +40,14 @@ namespace JuicerPluginbuilder
         /// <summary>
         /// Словарь перечисления параметров и ошибки
         /// </summary>
+        // TODO: RSDN
         public Dictionary<ParameterType, string> parameters = 
             new Dictionary<ParameterType, string>();
 
         /// <summary>
         /// Экземпляр класса ParameterCheck
         /// </summary>
+        // TODO: модификатор доступа
         ParameterCheck _parameterCheck = new ParameterCheck();
 
         /// <summary>
