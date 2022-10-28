@@ -88,22 +88,22 @@ namespace JuicerPluginUI
         /// <param name="e"></param>
         private void ButtonBuild_Click(object sender, EventArgs e)
         {
-            if (TextBoxPlateDiameter.Text != "" ||
-                TextBoxStakeDiameter.Text != "" ||
-                TextBoxStakeHeight.Text != "" ||
-                TextBoxNumberOfTeeth.Text != "" ||
-                TextBoxNumberOfHoles.Text != "")
+            if (TextBoxPlateDiameter.Text == "" ||
+                TextBoxStakeDiameter.Text == "" ||
+                TextBoxStakeHeight.Text == "" ||
+                TextBoxNumberOfTeeth.Text == "" ||
+                TextBoxNumberOfHoles.Text == "" ||
+                _changeableParametrs.parameters.Count > 0)
             {
-                if (_changeableParametrs.parameters.Count == 0)
-                {
-                    JuicerBuilder juicerBuild = new JuicerBuilder();
-                    juicerBuild.BuildJuicer(_plateDiameter,
-                        _stakeDiameter, _stakeHeight, _numberOfHoles, _numberOfTeeth);
-                }
-                else
-                {
-                    MessageBox.Show("Фигура не может быть построена");
-                }
+                MessageBox.Show("Модель не может быть построена!", "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            else
+            {
+                JuicerBuilder juicerBuild = new JuicerBuilder();
+                juicerBuild.BuildJuicer(_plateDiameter,
+                    _stakeDiameter, _stakeHeight, _numberOfHoles, _numberOfTeeth);
             }
         }
 
