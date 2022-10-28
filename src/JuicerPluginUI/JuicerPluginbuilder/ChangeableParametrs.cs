@@ -60,8 +60,10 @@ namespace JuicerPluginbuilder
 
             set
             {
+                const double min = 166;
+                const double max = 226;
                 _parameterCheck.RangeCheck
-                    (value, 166, 226, 
+                    (value, min, max, 
                     ParameterType.PlateDiameter, parameters);
                 if(value - StakeDiameter < 96)
                 {
@@ -85,8 +87,10 @@ namespace JuicerPluginbuilder
 
             set
             {
+                const double min = 70;
+                const double max = 130;
                 _parameterCheck.RangeCheck
-                    (value, 70, 130, 
+                    (value, min, max, 
                     ParameterType.StakeDiameter, parameters);
                 _stakeDiameter = value;
             }
@@ -103,8 +107,10 @@ namespace JuicerPluginbuilder
             }   
             set
             {
+                const double min = 60;
+                const double max = 120;
                 _parameterCheck.RangeCheck
-                    (value, 60, 120, 
+                    (value, min, max, 
                     ParameterType.StakeHeight, parameters);
                 if(StakeDiameter - value < 10)
                 {
@@ -128,8 +134,10 @@ namespace JuicerPluginbuilder
 
             set
             {
+                const double min = 90;
+                const double max = 100;
                 _parameterCheck.RangeCheck
-                    (value, 90, 100, 
+                    (value, min, max, 
                     ParameterType.NumberOfHoles, parameters);
                 _numberOfHoles = value;
             }
@@ -147,8 +155,10 @@ namespace JuicerPluginbuilder
 
             set
             {
+                const double min = 10;
+                const double max = 12;
                 _parameterCheck.RangeCheck
-                    (value, 10, 12, 
+                    (value, min, max, 
                     ParameterType.NumberOfTeeth, parameters);
                 _numberOfTeeth = value;
             }
