@@ -22,7 +22,7 @@ namespace JuicerPluginBuild
         private KompasObject _kompas = null;
 
         /// <summary>
-        /// Запуск Компас-3D
+        /// Метод для запуска Компас-3D
         /// </summary>
         public void StartKompas()
         {
@@ -59,7 +59,7 @@ namespace JuicerPluginBuild
 
 
         /// <summary>
-        /// Построение модели соковыжималки
+        /// Метод создания файла в Компас-3D
         /// </summary>
         public void CreateFile()
         {
@@ -76,7 +76,7 @@ namespace JuicerPluginBuild
         }
 
         /// <summary>
-        /// Построение эскиза тарелки соковыжималки
+        /// Метод построения тарелки соковыжималки
         /// </summary>
         public void PlateSketch(double diameterPlate)
         {
@@ -144,7 +144,7 @@ namespace JuicerPluginBuild
         }
 
         /// <summary>
-        /// Операция вращения
+        /// Метод операции выдавливания вращением
         /// </summary>
         public void RotationOperation(ksEntity entitySketch, bool thinWallElement)
         {
@@ -185,7 +185,7 @@ namespace JuicerPluginBuild
 
 
         /// <summary>
-        /// Построение кола
+        /// Метод построения кола
         /// </summary>
         public void StakeBuilding(double diameterStake, double stakeHeight)
         {
@@ -263,7 +263,7 @@ namespace JuicerPluginBuild
         }
 
         /// <summary>
-        /// Построение зубцов кола
+        /// Метод построения зубцов кола
         /// </summary>
         public void StakeProngs(int count, double diameterStake, 
             double stakeHeight)
@@ -397,7 +397,7 @@ namespace JuicerPluginBuild
         }
 
         /// <summary>
-        /// Отверстия в тарелке
+        /// Метод построения отверстий в тарелке
         /// </summary>
         public void HolesInThePlate(int count, double diameterPlate, 
             double diameterStake)
