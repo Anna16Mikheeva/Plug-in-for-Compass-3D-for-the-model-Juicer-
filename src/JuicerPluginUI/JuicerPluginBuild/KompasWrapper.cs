@@ -432,11 +432,12 @@ namespace JuicerPluginBuild
                             if (sketchEdit != null)
                             {
                                 sketchEdit.ksLineSeg
-                                    (-0.75, -(diameterPlate/2-10.5), -0.75, -diameterStake/2-5, 1);
+                                              //Для точки у скругления
+                                    (-0.75, -(diameterPlate/2-10.5), -0.75, -diameterStake/2-2, 1);// длинная
                                 sketchEdit.ksLineSeg
-                                    (-0.75, -diameterStake/2 - 5, 0.75, -diameterStake/2 - 5, 1);
+                                    (-0.75, -diameterStake/2 - 2, 0.75, -diameterStake/2 - 2, 1);
                                 sketchEdit.ksLineSeg
-                                    (0.75, -diameterStake/2 - 5, 0.75, -(diameterPlate/2 - 10.5), 1);
+                                    (0.75, -diameterStake/2 - 2, 0.75, -(diameterPlate/2 - 10.5), 1);
                                 sketchEdit.ksLineSeg
                                     (0.75, -(diameterPlate/2 - 10.5), -0.75, -(diameterPlate/2 - 10.5), 1);
                                 sketchDef.EndEdit();    // завершение редактирования эскиза
