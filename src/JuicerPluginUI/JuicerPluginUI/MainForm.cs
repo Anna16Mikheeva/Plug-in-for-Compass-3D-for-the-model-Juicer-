@@ -129,7 +129,7 @@ namespace JuicerPluginUI
                     _plateDiameter = double.Parse(TextBoxPlateDiameter.Text);
                     textBox.BackColor = _colorWhite;
                 }
-                catch (ArgumentOutOfRangeException exception)
+                catch
                 {
                     textBox.BackColor = _colorLightPink;
                 }
@@ -147,7 +147,7 @@ namespace JuicerPluginUI
                     TextBoxValidator_TextChanged(TextBoxPlateDiameter, e);
                     TextBoxValidator_TextChanged(TextBoxStakeHeight, e);
                 }
-                catch (ArgumentOutOfRangeException exception)
+                catch
                 {
                     TextBoxStakeDiameter.BackColor = _colorLightPink;
                 }
@@ -161,7 +161,7 @@ namespace JuicerPluginUI
                     _stakeHeight = double.Parse(textBox.Text);
                     textBox.BackColor = _colorWhite;
                 }
-                catch (ArgumentOutOfRangeException exception)
+                catch
                 {
                     textBox.BackColor = _colorLightPink;
                 }
@@ -189,7 +189,7 @@ namespace JuicerPluginUI
                     _numberOfHoles = int.Parse(textBox.Text);
                     textBox.BackColor = _colorWhite;
                 }
-                catch (ArgumentException exception)
+                catch
                 {
                     textBox.BackColor = _colorLightPink;
                 }
