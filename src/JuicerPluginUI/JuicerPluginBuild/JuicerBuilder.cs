@@ -22,16 +22,16 @@ namespace JuicerPluginBuild
         /// Построение модели соковыжималки
         /// </summary>
         public void BuildJuicer(double diameterPlate, double diameterStake,
-            double stakeHeight, int countHoles, int countTeeth)
+            double stakeHeight, double countTeeth, double countHoles)
         {
             KompasWrapper kompasWrapper = new KompasWrapper();
             kompasWrapper.StartKompas();
             kompasWrapper.CreateFile();
             kompasWrapper.PlateSketch(diameterPlate);
-            kompasWrapper.StakeBuilding(diameterStake, stakeHeight);
-            kompasWrapper.StakeProngs
+            kompasWrapper.BuildStake(diameterStake, stakeHeight);
+            kompasWrapper.BuildStakeTeeth
                 (countTeeth, diameterStake, stakeHeight);
-            kompasWrapper.HolesInThePlate
+            kompasWrapper.BuildHolesInThePlate
                 (countHoles, diameterPlate, diameterStake);
         }
     }

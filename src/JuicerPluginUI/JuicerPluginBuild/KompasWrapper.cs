@@ -140,7 +140,7 @@ namespace JuicerPluginBuild
                                 // TODO: все комментарии ставятся перед коментируемой строкой
                                 sketchDef.EndEdit();    // завершение редактирования эскиза
                             }
-                            RotationOperation(entitySketch, thinWallElement);
+                            RotateExtrusion(entitySketch, thinWallElement);
                         }
                     }
                 }
@@ -151,7 +151,7 @@ namespace JuicerPluginBuild
 		/// Метод операции выдавливания вращением
 		/// </summary>
 		// TODO: Методы должны начинаться с глагола
-		public void RotationOperation(ksEntity entitySketch, bool thinWallElement)
+		public void RotateExtrusion(ksEntity entitySketch, bool thinWallElement)
         {
             ksDocument3D document = (ksDocument3D)_kompas.ActiveDocument3D();
             // новый компонент
@@ -195,7 +195,7 @@ namespace JuicerPluginBuild
 		/// Метод построения кола
 		/// </summary>
 		// TODO: Методы должны начинаться с глагола
-		public void StakeBuilding(double diameterStake, double stakeHeight)
+		public void BuildStake(double diameterStake, double stakeHeight)
 		{
 			// TODO: все комментарии ставятся перед коментируемой строкой
 			bool thinWallElement = false; // не тонкостенный 
@@ -265,7 +265,7 @@ namespace JuicerPluginBuild
 
                                 sketchDef.EndEdit();    // завершение редактирования эскиза
                             }
-                            RotationOperation(entitySketch, thinWallElement);
+                            RotateExtrusion(entitySketch, thinWallElement);
                         }
                     }
                 }
@@ -276,7 +276,7 @@ namespace JuicerPluginBuild
 		/// Метод построения зубцов кола
 		/// </summary>
 		// TODO: Методы должны начинаться с глагола
-		public void StakeProngs(int count, double diameterStake, 
+		public void BuildStakeTeeth(double count, double diameterStake, 
             double stakeHeight)
         {
             ksDocument3D document = 
@@ -396,7 +396,7 @@ namespace JuicerPluginBuild
                                         NewEntity((short)Obj3dType.o3d_circularCopy);
                                     ksCircularCopyDefinition circularCopyDefinition =
                                         (ksCircularCopyDefinition)circularCopyEntity.GetDefinition();
-                                    circularCopyDefinition.SetCopyParamAlongDir(count, 360,
+                                    circularCopyDefinition.SetCopyParamAlongDir(Convert.ToInt32(count), 360,
                                         true, false);
                                     ksEntity baseAxisOZ = (ksEntity)part.GetDefaultEntity((short)
                                         Obj3dType.o3d_axisOZ);
@@ -417,7 +417,7 @@ namespace JuicerPluginBuild
 		/// Метод построения отверстий в тарелке
 		/// </summary>
 		// TODO: Методы должны начинаться с глагола
-		public void HolesInThePlate(int count, double diameterPlate, 
+		public void BuildHolesInThePlate(double count, double diameterPlate, 
             double diameterStake)
         {
             ksDocument3D document = 
@@ -485,7 +485,7 @@ namespace JuicerPluginBuild
                                         (ksEntity)part.NewEntity((short)Obj3dType.o3d_circularCopy);
                                     ksCircularCopyDefinition circularCopyDefinition = 
                                         (ksCircularCopyDefinition)circularCopyEntity.GetDefinition();
-                                    circularCopyDefinition.SetCopyParamAlongDir(count, 360, true, false);
+                                    circularCopyDefinition.SetCopyParamAlongDir(Convert.ToInt32(count), 360, true, false);
                                     ksEntity baseAxisOZ = 
                                         (ksEntity)part.GetDefaultEntity((short)Obj3dType.o3d_axisOZ);
                                     circularCopyDefinition.SetAxis(baseAxisOZ);
