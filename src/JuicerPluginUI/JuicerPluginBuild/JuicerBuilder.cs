@@ -25,12 +25,18 @@ namespace JuicerPluginBuild
             double stakeHeight, double countTeeth, double countHoles)
         {
             KompasWrapper kompasWrapper = new KompasWrapper();
+            // Запуск компаса
             kompasWrapper.StartKompas();
+            // Создание файла в компасе
             kompasWrapper.CreateFile();
+            // Построение тарелки
             kompasWrapper.PlateSketch(diameterPlate);
+            // Построение кола
             kompasWrapper.BuildStake(diameterStake, stakeHeight);
+            // Построение зубцов кола
             kompasWrapper.BuildStakeTeeth
                 (countTeeth, diameterStake, stakeHeight);
+            // Построение отверстий в тарелке
             kompasWrapper.BuildHolesInThePlate
                 (countHoles, diameterPlate, diameterStake);
         }

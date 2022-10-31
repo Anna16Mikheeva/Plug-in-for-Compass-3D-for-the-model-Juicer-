@@ -23,6 +23,21 @@ namespace JuicerPluginBuild
         private KompasObject _kompas = null;
 
         /// <summary>
+        /// Начало координат
+        /// /// </summary>
+        private const int origin = 0;
+
+        /// <summary>
+        /// Стиль линий, где 1 - основная, 3 -вспомогательная
+        /// </summary>
+        private int[] styleLine = new int[2] { 1, 3 };
+
+        /// <summary>
+        /// Угол поворота
+        /// </summary>
+        const int degreeOfRotation = 360;
+
+        /// <summary>
         /// Метод для запуска Компас-3D
         /// </summary>
         public void StartKompas()
@@ -109,31 +124,43 @@ namespace JuicerPluginBuild
                 (ksDocument2D)sketchDef.BeginEdit();
             if (sketchEdit != null)
             {
+                // Половина диаметра
                 diameterPlate /= 2;
+                // Радиусы дуг для скруглений
+                int[] radiusArc = new int[3] {2, 3, 10};
+                // Высота оси
+                const int heightAxis = -22;
+                // Координата y2 для дуги с радиусом 2
+                const int y2ForArcWithRAdius2 = -18;
+                // Координата x1 для дуги с радиусом 2
+                const int x1ForArcWithRAdius2 = -20;
+                // Массив сдвигов
+                int[] shift = new int[5] { 3, 8, 10, 6, 1 };
+
                 //Построение первого эскиза (тарелки)
                 // TODO: Магические числа
                 sketchEdit.ksLineSeg
-                    (0, 0, diameterPlate - 10, 0, 1);
+                    (origin, origin, diameterPlate - shift[2], origin, styleLine[0]);
                 sketchEdit.ksLineSeg
-                    (diameterPlate, -10, diameterPlate, -17, 1);
+                    (diameterPlate, -radiusArc[2], diameterPlate, y2ForArcWithRAdius2 + shift[4], styleLine[0]);
                 sketchEdit.ksLineSeg
-                    (diameterPlate + 3, -20, diameterPlate + 6, -20, 1);
+                    (diameterPlate + shift[0], x1ForArcWithRAdius2, diameterPlate + shift[3], x1ForArcWithRAdius2, styleLine[0]);
                 sketchEdit.ksLineSeg
-                    (diameterPlate + 8, -18, diameterPlate + 8, -17, 1);
+                    (diameterPlate + shift[1], y2ForArcWithRAdius2, diameterPlate + shift[1], y2ForArcWithRAdius2 + shift[4], styleLine[0]);
 
                 //Ось
-                sketchEdit.ksLineSeg(0, 0, 0, -22, 3);
+                sketchEdit.ksLineSeg(origin, origin, origin, heightAxis, styleLine[1]);
 
                 //Радиусы
                 sketchEdit.ksArcByPoint
-                (diameterPlate + 6, -18, 2, diameterPlate + 6, -20,
-                    diameterPlate + 8, -18, 1, 1);
+                (diameterPlate + shift[3], y2ForArcWithRAdius2, radiusArc[0], diameterPlate + shift[3], x1ForArcWithRAdius2,
+                    diameterPlate + shift[1], y2ForArcWithRAdius2, 1, styleLine[0]);
                 sketchEdit.ksArcByPoint
-                (diameterPlate + 3, -17, 3, diameterPlate + 3, 
-                    -20, diameterPlate, -17, -1, 1);
+                (diameterPlate + shift[0], y2ForArcWithRAdius2 + shift[4], radiusArc[1], diameterPlate + shift[0],
+                    x1ForArcWithRAdius2, diameterPlate, y2ForArcWithRAdius2 + shift[4], -1, styleLine[0]);
                 sketchEdit.ksArcByPoint
-                (diameterPlate - 10, -10, 10, diameterPlate, 
-                    -10, diameterPlate - 10, 0, 1, 1);
+                (diameterPlate - radiusArc[2], -radiusArc[2], radiusArc[2], diameterPlate, 
+                    -radiusArc[2], diameterPlate - shift[2], origin, 1, styleLine[0]);
                 // TODO: все комментарии ставятся перед коментируемой строкой
                 // Завершение редактирования эскиза
                 sketchDef.EndEdit();    
@@ -147,6 +174,7 @@ namespace JuicerPluginBuild
 		// TODO: Методы должны начинаться с глагола
 		public void RotateExtrusion(ksEntity entitySketch, bool thinWallElement)
         {
+
             var document = (ksDocument3D)_kompas.ActiveDocument3D();
             // Новый компонент
 			var part = 
@@ -170,11 +198,14 @@ namespace JuicerPluginBuild
                 rotproperty.toroidShape = true; 
             }
 
+            // Толщина 
+            int[] thickness = new int[2] { 0, 2 };
+
             // Тонкая стенка в два направления
             rotateDef.SetThinParam
-                (thinWallElement, (short)Direction_Type.dtBoth, 2, 0);   
+                (thinWallElement, (short)Direction_Type.dtBoth, thickness[1], thickness[0]);   
             rotateDef.SetSketch(entitySketch);
-            rotateDef.SetSideParam(true, 360);
+            rotateDef.SetSideParam(true, degreeOfRotation);
             // Эскиз операции вращения
             rotateDef.SetSketch(entitySketch);
             // TODO: все комментарии ставятся перед коментируемой строкой
@@ -217,37 +248,42 @@ namespace JuicerPluginBuild
                 (ksDocument2D)sketchDef.BeginEdit();
             if (sketchEdit != null)
             {
+                //Сдвиг
+                double[] shift = new double[14] { 10.177112 , 17.885819, 7.024134, 
+                    23.870603, 4, 32,  2.18061, 39.230625, 1.260657, 44.171475, 0.531802,
+                49.700599, 0.166451, 54.232637};
+
                 // TODO: магические числа
                 diameterStake /= 2;
                 sketchEdit.ksLineSeg
-                    (0, 0, diameterStake, 0, 1);
+                    (origin, origin, diameterStake, origin, styleLine[0]);
                 sketchEdit.ksLineSeg
-                    (0, 0, 0, -stakeHeight, 3);
+                    (origin, origin, origin, -stakeHeight, styleLine[1]);
 
                 sketchEdit.ksLineSeg
-                (0, -stakeHeight, diameterStake - 10.177112, 
-                    -stakeHeight + 17.885819, 1);
+                (origin, -stakeHeight, diameterStake - shift[0], 
+                    -stakeHeight + shift[1], styleLine[0]);
                 sketchEdit.ksLineSeg
-                (diameterStake - 10.177112, -stakeHeight + 17.885819, 
-                    diameterStake - 7.024134, -stakeHeight + 23.870603, 1);
+                (diameterStake - shift[0], -stakeHeight + shift[1], 
+                    diameterStake - shift[2], -stakeHeight + shift[3], styleLine[0]);
                 sketchEdit.ksLineSeg
-                (diameterStake - 7.024134, -stakeHeight + 23.870603, 
-                    diameterStake - 4, -stakeHeight + 32, 1);
+                (diameterStake - shift[2], -stakeHeight + shift[3], 
+                    diameterStake - shift[4], -stakeHeight + shift[5], styleLine[0]);
                 sketchEdit.ksLineSeg
-                (diameterStake - 4, -stakeHeight + 32, 
-                    diameterStake - 2.18061, -stakeHeight + 39.230625, 1);
+                (diameterStake - shift[4], -stakeHeight + shift[5], 
+                    diameterStake - shift[6], -stakeHeight + shift[7], styleLine[0]);
                 sketchEdit.ksLineSeg
-                (diameterStake - 2.18061, -stakeHeight + 39.230625, 
-                    diameterStake - 1.260657, -stakeHeight + 44.171475, 1);
+                (diameterStake - shift[6], -stakeHeight + shift[7], 
+                    diameterStake - shift[8], -stakeHeight + shift[9], styleLine[0]);
                 sketchEdit.ksLineSeg
-                (diameterStake - 1.260657, -stakeHeight + 44.171475, 
-                    diameterStake - 0.531802, -stakeHeight + 49.700599, 1);
+                (diameterStake - shift[8], -stakeHeight + shift[9], 
+                    diameterStake - shift[10], -stakeHeight + shift[11], styleLine[0]);
                 sketchEdit.ksLineSeg
-                (diameterStake - 0.531802, -stakeHeight + 49.700599, 
-                    diameterStake - 0.166451, -stakeHeight + 54.232637, 1);
+                (diameterStake - shift[10], -stakeHeight + shift[11], 
+                    diameterStake - shift[12], -stakeHeight + shift[13], styleLine[0]);
                 sketchEdit.ksLineSeg
-                (diameterStake - 0.166451, -stakeHeight + 54.232637, 
-                    diameterStake, 0, 1);
+                (diameterStake - shift[12], -stakeHeight + shift[13], 
+                    diameterStake, origin, styleLine[0]);
 
                 // Завершение редактирования эскиза
                 sketchDef.EndEdit();    
@@ -300,18 +336,28 @@ namespace JuicerPluginBuild
                         // Установим плоскость XOY базовой для эскиза
                         sketchDef.SetPlane(entityOffsetPlane2);
                         // Создадим эскиз
-                        entitySketchDisplaced.Create(); 
-
+                        entitySketchDisplaced.Create();
+                        // Радиус диаметра кола
+                        diameterStake /= 2;
+                        // Сдвиг по координатам
+                        const int shift = 10;
+                        // Координаты треугольника
+                        double[] triangleCootdinates = new double[4] 
+                        { 9.54 , 22.060387, 0.000961, 22.060387 };
+ 
                         // TODO: магические числа
                         // Интерфейс редактора эскиза
                         var sketchEdit = 
                             (ksDocument2D)sketchDef.BeginEdit();
                         sketchEdit.ksLineSeg
-                            (diameterStake / 2 + 10, 9.54, 22.060387, 0.000961, 1);
+                            (diameterStake + shift, triangleCootdinates[0], 
+                            triangleCootdinates[3], triangleCootdinates[2], styleLine[0]);
                         sketchEdit.ksLineSeg
-                            (22.060387, 0.000961, diameterStake / 2+10, -9.54, 1);
+                            (triangleCootdinates[3], triangleCootdinates[2], 
+                            diameterStake + shift, -triangleCootdinates[0], styleLine[0]);
                         sketchEdit.ksLineSeg
-                            (diameterStake / 2+10, -9.54, diameterStake / 2+10, 9.54, 1);
+                            (diameterStake + shift, -triangleCootdinates[0], 
+                            diameterStake + shift, triangleCootdinates[0], styleLine[0]);
                         // Завершение редактирования эскиза
                         sketchDef.EndEdit();                 
                     }
@@ -344,18 +390,34 @@ namespace JuicerPluginBuild
                     (ksDocument2D)sketchDef.BeginEdit();
                 if (sketchEdit == null) return;
                 // TODO: Магические числа
+                // Массив сдвигов по координатам
+                double[] shift = new double[2] { 1.020943 , 11.995037 };
+                // Массив координат для линии,
+                // которая будет являться траекторией
+                // для выреза зубца
+                double[] trajectoryCoordinates = new double[12] 
+                { 9.259353, 2.290188, 13.435794, -53.535092, 16.39727,
+                -45.132963, 19.282811, -33.108725, 20.963563, 
+                -20.933876, 22.060387, -12.000961};
+
                 sketchEdit.ksLineSeg
-                    (9.259353, -stakeHeight - 1.020943, 2.290188, -stakeHeight - 11.995037, 1);
+                    (trajectoryCoordinates[0], -stakeHeight - shift[0], 
+                    trajectoryCoordinates[1], -stakeHeight - shift[1], styleLine[0]);
                 sketchEdit.ksLineSeg
-                    (13.435794, -53.535092, 9.259353, -stakeHeight - 1.020943, 1);
+                    (trajectoryCoordinates[2], trajectoryCoordinates[3], 
+                    9.259353, -stakeHeight - shift[0], styleLine[0]);
                 sketchEdit.ksLineSeg
-                    (13.435794, -53.535092, 16.39727, -45.132963, 1);
+                    (trajectoryCoordinates[2], trajectoryCoordinates[3],
+                    trajectoryCoordinates[4], trajectoryCoordinates[5], styleLine[0]);
                 sketchEdit.ksLineSeg
-                    (16.39727, -45.132963, 19.282811, -33.108725, 1);
+                    (trajectoryCoordinates[4], trajectoryCoordinates[5],
+                    trajectoryCoordinates[6], trajectoryCoordinates[7], styleLine[0]);
                 sketchEdit.ksLineSeg
-                    (19.282811, -33.108725, 20.963563, -20.933876, 1);
+                    (trajectoryCoordinates[6], trajectoryCoordinates[7],
+                    trajectoryCoordinates[8], trajectoryCoordinates[9], styleLine[0]);
                 sketchEdit.ksLineSeg
-                    (20.963563, -20.933876, 22.060387, -12.000961, 1);
+                    (trajectoryCoordinates[8], trajectoryCoordinates[9],
+                    trajectoryCoordinates[10], trajectoryCoordinates[11], styleLine[0]);
                 // Завершение редактирования эскиза
                 sketchDef.EndEdit();	
 
@@ -368,9 +430,11 @@ namespace JuicerPluginBuild
 
                 if (cutEvolutionDef != null)
                 {
+                    // Толщина выреза
+                    const int thickness = 0;
                     // Тонкая стенка в два направления
                     cutEvolutionDef.SetThinParam
-                        (false, (short)Direction_Type.dtBoth, 0, 0);    
+                        (false, (short)Direction_Type.dtBoth, thickness, thickness);    
                     cutEvolutionDef.SetSketch(entitySketchDisplaced);
                     var iPathPartArray = 
                         (ksEntityCollection)cutEvolutionDef.PathPartArray();
@@ -386,7 +450,7 @@ namespace JuicerPluginBuild
                 var circularCopyDefinition =
                     (ksCircularCopyDefinition)circularCopyEntity.GetDefinition();
                 circularCopyDefinition.SetCopyParamAlongDir
-                    (Convert.ToInt32(count), 360, true, false);
+                    (Convert.ToInt32(count), degreeOfRotation, true, false);
                 var baseAxisOz = 
                     (ksEntity)part.GetDefaultEntity((short)Obj3dType.o3d_axisOZ);
                 circularCopyDefinition.SetAxis(baseAxisOz);
@@ -432,14 +496,25 @@ namespace JuicerPluginBuild
                 (ksDocument2D)sketchDef.BeginEdit();
             if (sketchEdit == null) return;
             // TODO магические числа
+            // Радиус тарелки со свдигом
+            diameterPlate = -(diameterPlate/2 - 10.5);
+            // Радиус кола со сдвигом
+            diameterStake = -diameterStake/2-2;
+            // Общая координата
+            const double sharedCoordinate = 0.75;
+
             sketchEdit.ksLineSeg
-                (-0.75, -(diameterPlate/2-10.5), -0.75, -diameterStake/2-2, 1);
+                (-sharedCoordinate, diameterPlate, 
+                -sharedCoordinate, diameterStake, styleLine[0]);
             sketchEdit.ksLineSeg
-                (-0.75, -diameterStake/2 - 2, 0.75, -diameterStake/2 - 2, 1);
+                (-sharedCoordinate, diameterStake, 
+                sharedCoordinate, diameterStake, styleLine[0]);
             sketchEdit.ksLineSeg
-                (0.75, -diameterStake/2 - 2, 0.75, -(diameterPlate/2 - 10.5), 1);
+                (sharedCoordinate, diameterStake, 
+                sharedCoordinate, diameterPlate, styleLine[0]);
             sketchEdit.ksLineSeg
-                (0.75, -(diameterPlate/2 - 10.5), -0.75, -(diameterPlate/2 - 10.5), 1);
+                (sharedCoordinate, diameterPlate, 
+                -sharedCoordinate, diameterPlate, styleLine[0]);
             // Завершение редактирования эскиза
             sketchDef.EndEdit();    
 
@@ -451,13 +526,15 @@ namespace JuicerPluginBuild
                 (ksCutExtrusionDefinition)entityCutExtr.GetDefinition();
             if (cutExtrDef != null)
             {
+                // Глубина выреза
+                const int thickness = 5;
                 // Установим эскиз операции
                 cutExtrDef.SetSketch(entitySketch);
                 // Прямое направление
                 cutExtrDef.directionType = 
                     (short)Direction_Type.dtBoth; 
                 cutExtrDef.SetSideParam
-                    (true, (short)End_Type.etBlind, 5, 0, true);
+                    (true, (short)End_Type.etBlind, thickness, 0, true);
                 cutExtrDef.SetThinParam(false, 0, 0, 0);
             }
             // Создадим операцию вырезание выдавливанием
@@ -469,7 +546,7 @@ namespace JuicerPluginBuild
             var circularCopyDefinition = 
                 (ksCircularCopyDefinition)circularCopyEntity.GetDefinition();
             circularCopyDefinition.SetCopyParamAlongDir
-                (Convert.ToInt32(count), 360, true, false);
+                (Convert.ToInt32(count), degreeOfRotation, true, false);
             var baseAxisOz = 
                 (ksEntity)part.GetDefaultEntity((short)Obj3dType.o3d_axisOZ);
             circularCopyDefinition.SetAxis(baseAxisOz);

@@ -43,11 +43,16 @@ namespace JuicerPluginUI
 
             _valueTextBox = new Dictionary<TextBox, Action<double>>();
             _valueTextBox.Clear();
-            _valueTextBox.Add(TextBoxPlateDiameter, (plateDiameter) => _changeableParametrs.PlateDiameter = plateDiameter);
-            _valueTextBox.Add(TextBoxStakeDiameter, (stakeDiameter) => _changeableParametrs.StakeDiameter = stakeDiameter);
-            _valueTextBox.Add(TextBoxStakeHeight, (stakeHeight) => _changeableParametrs.StakeHeight = stakeHeight);
-            _valueTextBox.Add(TextBoxNumberOfTeeth, (numberOfTeeth) => _changeableParametrs.NumberOfTeeth = numberOfTeeth);
-            _valueTextBox.Add(TextBoxNumberOfHoles, (numberOfHoles) => _changeableParametrs.NumberOfHoles = numberOfHoles);
+            _valueTextBox.Add(TextBoxPlateDiameter, (plateDiameter) 
+                => _changeableParametrs.PlateDiameter = plateDiameter);
+            _valueTextBox.Add(TextBoxStakeDiameter, (stakeDiameter) 
+                => _changeableParametrs.StakeDiameter = stakeDiameter);
+            _valueTextBox.Add(TextBoxStakeHeight, (stakeHeight) 
+                => _changeableParametrs.StakeHeight = stakeHeight);
+            _valueTextBox.Add(TextBoxNumberOfTeeth, (numberOfTeeth) 
+                => _changeableParametrs.NumberOfTeeth = numberOfTeeth);
+            _valueTextBox.Add(TextBoxNumberOfHoles, (numberOfHoles) 
+                => _changeableParametrs.NumberOfHoles = numberOfHoles);
         }
 
         /// <summary>
