@@ -50,17 +50,6 @@ namespace JuicerPluginbuilder
         // TODO: модификатор доступа
         private ParameterCheck _parameterCheck = new ParameterCheck();
 
-        //public ChangeableParametrs(double plateDiameter,
-        //    double stakeDiameter, double stakeHeight,
-        //    int numberOfTeeth, int numberOfHoles)
-        //{
-        //    PlateDiameter = plateDiameter;
-        //    StakeDiameter = stakeDiameter;
-        //    StakeHeight = stakeHeight;
-        //    NumberOfTeeth = numberOfTeeth;
-        //    numberOfHoles = numberOfHoles;
-        //}
-
         /// <summary>
         /// Возвращает и устанавливает значение диаметра тарелки
         /// </summary>
