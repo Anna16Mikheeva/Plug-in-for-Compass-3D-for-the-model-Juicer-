@@ -142,25 +142,33 @@ namespace JuicerPluginBuild
                 sketchEdit.ksLineSeg
                     (origin, origin, diameterPlate - shift[2], origin, styleLine[0]);
                 sketchEdit.ksLineSeg
-                    (diameterPlate, -radiusArc[2], diameterPlate, y2ForArcWithRAdius2 + shift[4], styleLine[0]);
+                    (diameterPlate, -radiusArc[2], diameterPlate, 
+                        y2ForArcWithRAdius2 + shift[4], styleLine[0]);
                 sketchEdit.ksLineSeg
-                    (diameterPlate + shift[0], x1ForArcWithRAdius2, diameterPlate + shift[3], x1ForArcWithRAdius2, styleLine[0]);
+                    (diameterPlate + shift[0], x1ForArcWithRAdius2, 
+                        diameterPlate + shift[3], x1ForArcWithRAdius2, styleLine[0]);
                 sketchEdit.ksLineSeg
-                    (diameterPlate + shift[1], y2ForArcWithRAdius2, diameterPlate + shift[1], y2ForArcWithRAdius2 + shift[4], styleLine[0]);
+                    (diameterPlate + shift[1], y2ForArcWithRAdius2, 
+                        diameterPlate + shift[1], y2ForArcWithRAdius2 + shift[4], styleLine[0]);
 
                 //Ось
                 sketchEdit.ksLineSeg(origin, origin, origin, heightAxis, styleLine[1]);
 
                 //Радиусы
                 sketchEdit.ksArcByPoint
-                (diameterPlate + shift[3], y2ForArcWithRAdius2, radiusArc[0], diameterPlate + shift[3], x1ForArcWithRAdius2,
+                (diameterPlate + shift[3], y2ForArcWithRAdius2, 
+                    radiusArc[0], diameterPlate + shift[3], x1ForArcWithRAdius2,
                     diameterPlate + shift[1], y2ForArcWithRAdius2, 1, styleLine[0]);
                 sketchEdit.ksArcByPoint
-                (diameterPlate + shift[0], y2ForArcWithRAdius2 + shift[4], radiusArc[1], diameterPlate + shift[0],
-                    x1ForArcWithRAdius2, diameterPlate, y2ForArcWithRAdius2 + shift[4], -1, styleLine[0]);
+                (diameterPlate + shift[0], y2ForArcWithRAdius2 + shift[4], 
+                    radiusArc[1], diameterPlate + shift[0],
+                    x1ForArcWithRAdius2, diameterPlate, 
+                    y2ForArcWithRAdius2 + shift[4], -1, styleLine[0]);
                 sketchEdit.ksArcByPoint
-                (diameterPlate - radiusArc[2], -radiusArc[2], radiusArc[2], diameterPlate, 
-                    -radiusArc[2], diameterPlate - shift[2], origin, 1, styleLine[0]);
+                (diameterPlate - radiusArc[2], -radiusArc[2], 
+                    radiusArc[2], diameterPlate, 
+                    -radiusArc[2], diameterPlate - shift[2], 
+                    origin, 1, styleLine[0]);
                 // TODO: все комментарии ставятся перед коментируемой строкой
                 // Завершение редактирования эскиза
                 sketchDef.EndEdit();    
@@ -203,7 +211,8 @@ namespace JuicerPluginBuild
 
             // Тонкая стенка в два направления
             rotateDef.SetThinParam
-                (thinWallElement, (short)Direction_Type.dtBoth, thickness[1], thickness[0]);   
+                (thinWallElement, (short)Direction_Type.dtBoth, 
+                    thickness[1], thickness[0]);   
             rotateDef.SetSketch(entitySketch);
             rotateDef.SetSideParam(true, degreeOfRotation);
             // Эскиз операции вращения
