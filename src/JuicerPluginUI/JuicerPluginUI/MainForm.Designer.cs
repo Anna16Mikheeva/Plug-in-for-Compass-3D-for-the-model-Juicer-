@@ -53,7 +53,7 @@ namespace JuicerPluginUI
             // 
             this.LabelPlateDiametr.AutoSize = true;
             this.LabelPlateDiametr.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LabelPlateDiametr.Location = new System.Drawing.Point(68, 12);
+            this.LabelPlateDiametr.Location = new System.Drawing.Point(101, 10);
             this.LabelPlateDiametr.Margin = new System.Windows.Forms.Padding(3, 2, 3, 10);
             this.LabelPlateDiametr.Name = "LabelPlateDiametr";
             this.LabelPlateDiametr.Size = new System.Drawing.Size(183, 25);
@@ -64,7 +64,7 @@ namespace JuicerPluginUI
             // 
             this.LabelStakeDiametr.AutoSize = true;
             this.LabelStakeDiametr.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LabelStakeDiametr.Location = new System.Drawing.Point(104, 49);
+            this.LabelStakeDiametr.Location = new System.Drawing.Point(137, 47);
             this.LabelStakeDiametr.Margin = new System.Windows.Forms.Padding(3, 2, 3, 10);
             this.LabelStakeDiametr.Name = "LabelStakeDiametr";
             this.LabelStakeDiametr.Size = new System.Drawing.Size(149, 25);
@@ -75,7 +75,7 @@ namespace JuicerPluginUI
             // 
             this.LabelStakeHeight.AutoSize = true;
             this.LabelStakeHeight.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LabelStakeHeight.Location = new System.Drawing.Point(119, 86);
+            this.LabelStakeHeight.Location = new System.Drawing.Point(152, 84);
             this.LabelStakeHeight.Margin = new System.Windows.Forms.Padding(3, 2, 3, 10);
             this.LabelStakeHeight.Name = "LabelStakeHeight";
             this.LabelStakeHeight.Size = new System.Drawing.Size(129, 25);
@@ -86,7 +86,7 @@ namespace JuicerPluginUI
             // 
             this.LabelNumberOfTeeth.AutoSize = true;
             this.LabelNumberOfTeeth.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LabelNumberOfTeeth.Location = new System.Drawing.Point(53, 123);
+            this.LabelNumberOfTeeth.Location = new System.Drawing.Point(86, 121);
             this.LabelNumberOfTeeth.Margin = new System.Windows.Forms.Padding(3, 2, 3, 10);
             this.LabelNumberOfTeeth.Name = "LabelNumberOfTeeth";
             this.LabelNumberOfTeeth.Size = new System.Drawing.Size(192, 25);
@@ -97,7 +97,7 @@ namespace JuicerPluginUI
             // 
             this.LabelNumberOfHoles.AutoSize = true;
             this.LabelNumberOfHoles.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LabelNumberOfHoles.Location = new System.Drawing.Point(15, 160);
+            this.LabelNumberOfHoles.Location = new System.Drawing.Point(48, 158);
             this.LabelNumberOfHoles.Margin = new System.Windows.Forms.Padding(3, 2, 3, 10);
             this.LabelNumberOfHoles.Name = "LabelNumberOfHoles";
             this.LabelNumberOfHoles.Size = new System.Drawing.Size(227, 25);
@@ -108,7 +108,7 @@ namespace JuicerPluginUI
             // 
             this.TextBoxPlateDiameter.BackColor = System.Drawing.Color.White;
             this.TextBoxPlateDiameter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.TextBoxPlateDiameter.Location = new System.Drawing.Point(265, 9);
+            this.TextBoxPlateDiameter.Location = new System.Drawing.Point(298, 7);
             this.TextBoxPlateDiameter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TextBoxPlateDiameter.Name = "TextBoxPlateDiameter";
             this.TextBoxPlateDiameter.Size = new System.Drawing.Size(100, 30);
@@ -120,7 +120,7 @@ namespace JuicerPluginUI
             // 
             this.TextBoxStakeDiameter.BackColor = System.Drawing.Color.White;
             this.TextBoxStakeDiameter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.TextBoxStakeDiameter.Location = new System.Drawing.Point(265, 46);
+            this.TextBoxStakeDiameter.Location = new System.Drawing.Point(298, 44);
             this.TextBoxStakeDiameter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TextBoxStakeDiameter.Name = "TextBoxStakeDiameter";
             this.TextBoxStakeDiameter.Size = new System.Drawing.Size(100, 30);
@@ -132,7 +132,7 @@ namespace JuicerPluginUI
             // 
             this.TextBoxStakeHeight.BackColor = System.Drawing.Color.White;
             this.TextBoxStakeHeight.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.TextBoxStakeHeight.Location = new System.Drawing.Point(265, 82);
+            this.TextBoxStakeHeight.Location = new System.Drawing.Point(298, 80);
             this.TextBoxStakeHeight.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TextBoxStakeHeight.Name = "TextBoxStakeHeight";
             this.TextBoxStakeHeight.Size = new System.Drawing.Size(100, 30);
@@ -144,7 +144,7 @@ namespace JuicerPluginUI
             // 
             this.TextBoxNumberOfTeeth.BackColor = System.Drawing.Color.White;
             this.TextBoxNumberOfTeeth.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.TextBoxNumberOfTeeth.Location = new System.Drawing.Point(265, 119);
+            this.TextBoxNumberOfTeeth.Location = new System.Drawing.Point(298, 117);
             this.TextBoxNumberOfTeeth.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TextBoxNumberOfTeeth.Name = "TextBoxNumberOfTeeth";
             this.TextBoxNumberOfTeeth.Size = new System.Drawing.Size(100, 30);
@@ -156,7 +156,7 @@ namespace JuicerPluginUI
             // 
             this.TextBoxNumberOfHoles.BackColor = System.Drawing.Color.White;
             this.TextBoxNumberOfHoles.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.TextBoxNumberOfHoles.Location = new System.Drawing.Point(265, 156);
+            this.TextBoxNumberOfHoles.Location = new System.Drawing.Point(298, 154);
             this.TextBoxNumberOfHoles.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TextBoxNumberOfHoles.Name = "TextBoxNumberOfHoles";
             this.TextBoxNumberOfHoles.Size = new System.Drawing.Size(100, 30);
@@ -167,7 +167,7 @@ namespace JuicerPluginUI
             // ButtonBuild
             // 
             this.ButtonBuild.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ButtonBuild.Location = new System.Drawing.Point(154, 197);
+            this.ButtonBuild.Location = new System.Drawing.Point(187, 195);
             this.ButtonBuild.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ButtonBuild.Name = "ButtonBuild";
             this.ButtonBuild.Size = new System.Drawing.Size(184, 46);
@@ -180,7 +180,7 @@ namespace JuicerPluginUI
             // 
             this.LabelPlateDiametrRange.AutoSize = true;
             this.LabelPlateDiametrRange.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LabelPlateDiametrRange.Location = new System.Drawing.Point(373, 12);
+            this.LabelPlateDiametrRange.Location = new System.Drawing.Point(406, 10);
             this.LabelPlateDiametrRange.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LabelPlateDiametrRange.Name = "LabelPlateDiametrRange";
             this.LabelPlateDiametrRange.Size = new System.Drawing.Size(124, 25);
@@ -191,7 +191,7 @@ namespace JuicerPluginUI
             // 
             this.LabelStakeDiametrRange.AutoSize = true;
             this.LabelStakeDiametrRange.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LabelStakeDiametrRange.Location = new System.Drawing.Point(373, 49);
+            this.LabelStakeDiametrRange.Location = new System.Drawing.Point(406, 47);
             this.LabelStakeDiametrRange.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LabelStakeDiametrRange.Name = "LabelStakeDiametrRange";
             this.LabelStakeDiametrRange.Size = new System.Drawing.Size(113, 25);
@@ -202,7 +202,7 @@ namespace JuicerPluginUI
             // 
             this.LabelStakeHeightRange.AutoSize = true;
             this.LabelStakeHeightRange.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LabelStakeHeightRange.Location = new System.Drawing.Point(373, 90);
+            this.LabelStakeHeightRange.Location = new System.Drawing.Point(406, 88);
             this.LabelStakeHeightRange.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LabelStakeHeightRange.Name = "LabelStakeHeightRange";
             this.LabelStakeHeightRange.Size = new System.Drawing.Size(113, 25);
@@ -213,7 +213,7 @@ namespace JuicerPluginUI
             // 
             this.LabelNumberOfTeethRange.AutoSize = true;
             this.LabelNumberOfTeethRange.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LabelNumberOfTeethRange.Location = new System.Drawing.Point(373, 123);
+            this.LabelNumberOfTeethRange.Location = new System.Drawing.Point(406, 121);
             this.LabelNumberOfTeethRange.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LabelNumberOfTeethRange.Name = "LabelNumberOfTeethRange";
             this.LabelNumberOfTeethRange.Size = new System.Drawing.Size(101, 25);
@@ -224,7 +224,7 @@ namespace JuicerPluginUI
             // 
             this.LabelNumberOfHolesRange.AutoSize = true;
             this.LabelNumberOfHolesRange.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LabelNumberOfHolesRange.Location = new System.Drawing.Point(373, 160);
+            this.LabelNumberOfHolesRange.Location = new System.Drawing.Point(406, 158);
             this.LabelNumberOfHolesRange.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LabelNumberOfHolesRange.Name = "LabelNumberOfHolesRange";
             this.LabelNumberOfHolesRange.Size = new System.Drawing.Size(112, 25);
@@ -236,7 +236,7 @@ namespace JuicerPluginUI
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(68, 195);
+            this.label1.Location = new System.Drawing.Point(101, 193);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(0, 25);
             this.label1.TabIndex = 16;
@@ -245,7 +245,7 @@ namespace JuicerPluginUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(510, 252);
+            this.ClientSize = new System.Drawing.Size(589, 252);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.LabelNumberOfHolesRange);
             this.Controls.Add(this.LabelNumberOfTeethRange);
