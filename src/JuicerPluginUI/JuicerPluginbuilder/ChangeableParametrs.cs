@@ -80,7 +80,7 @@ namespace JuicerPluginbuilder
                     ParameterType.PlateDiameter, Parameters);
                 if(value - StakeDiameter < 96)
                 {
-                    throw new ArgumentOutOfRangeException();
+                    throw new Exception();
                     Parameters.Add(ParameterType.PlateDiameter,
                         "Выход за диапазон");
                 }
@@ -127,7 +127,7 @@ namespace JuicerPluginbuilder
                     ParameterType.StakeHeight, Parameters);
                 if(StakeDiameter - value < 10)
                 {
-                    throw new ArgumentOutOfRangeException();
+                    throw new Exception();
                     Parameters.Add(ParameterType.StakeHeight,
                         "Выход за диапазон");
                 }
