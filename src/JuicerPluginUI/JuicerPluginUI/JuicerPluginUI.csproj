@@ -36,9 +36,6 @@
     <Reference Include="JuicerPluginbuilder">
       <HintPath>..\JuicerPluginbuilder\bin\Debug\JuicerPluginbuilder.dll</HintPath>
     </Reference>
-    <Reference Include="JuicerPluginParameters">
-      <HintPath>..\JuicerPluginbuilder\bin\Debug\JuicerPluginParameters.dll</HintPath>
-    </Reference>
     <Reference Include="KAPITypes">
       <HintPath>..\..\..\..\..\..\..\..\Program Files\ASCON\KOMPAS-3D v21 Study\SDK\Samples\Common\KAPITypes.dll</HintPath>
     </Reference>

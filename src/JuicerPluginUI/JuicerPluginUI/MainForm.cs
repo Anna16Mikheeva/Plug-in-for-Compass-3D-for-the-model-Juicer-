@@ -7,7 +7,7 @@ using System.Windows.Forms;
 // TODO: убрать зависимости
 using System.Runtime.InteropServices;
 using JuicerPluginBuild;
-using JuicerPluginbuilder; //Поменять название тк название папки и проекта не соттветсвуют друг другу
+using JuicerPluginbuilder;
 using System.Drawing;
 
 namespace JuicerPluginUI
