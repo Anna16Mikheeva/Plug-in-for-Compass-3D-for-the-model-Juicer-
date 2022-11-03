@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+// TODO: добавить dll
 using KompasAPI7;
 using Kompas6API5;
 using Kompas6Constants;
@@ -21,16 +22,22 @@ namespace JuicerPluginBuild
         /// Построение модели соковыжималки
         /// </summary>
         public void BuildJuicer(double diameterPlate, double diameterStake,
-            double stakeHeight, int countHoles, int countTeeth)
+            double stakeHeight, double countTeeth, double countHoles)
         {
             KompasWrapper kompasWrapper = new KompasWrapper();
+            // Запуск компаса
             kompasWrapper.StartKompas();
+            // Создание файла в компасе
             kompasWrapper.CreateFile();
+            // Построение тарелки
             kompasWrapper.PlateSketch(diameterPlate);
-            kompasWrapper.StakeBuilding(diameterStake, stakeHeight);
-            kompasWrapper.StakeProngs
+            // Построение кола
+            kompasWrapper.BuildStake(diameterStake, stakeHeight);
+            // Построение зубцов кола
+            kompasWrapper.BuildStakeTeeth
                 (countTeeth, diameterStake, stakeHeight);
-            kompasWrapper.HolesInThePlate
+            // Построение отверстий в тарелке
+            kompasWrapper.BuildHolesInThePlate
                 (countHoles, diameterPlate, diameterStake);
         }
     }

@@ -28,25 +28,27 @@ namespace JuicerPluginbuilder
         private double _stakeHeight;
 
         /// <summary>
-        /// Параметр количества отверстий в тарелке
-        /// </summary>
-        private int _numberOfHoles;
-
-        /// <summary>
         /// Параметр количества зубцов кола
         /// </summary>
-        private int _numberOfTeeth;
+        private double _numberOfTeeth;
+
+        /// <summary>
+        /// Параметр количества отверстий в тарелке
+        /// </summary>
+        private double _numberOfHoles;
 
         /// <summary>
         /// Словарь перечисления параметров и ошибки
         /// </summary>
-        public Dictionary<ParameterType, string> parameters = 
+        // TODO: RSDN
+        public Dictionary<ParameterType, string> Parameters = 
             new Dictionary<ParameterType, string>();
 
         /// <summary>
         /// Экземпляр класса ParameterCheck
         /// </summary>
-        ParameterCheck _parameterCheck = new ParameterCheck();
+        // TODO: модификатор доступа
+        private ParameterCheck _parameterCheck = new ParameterCheck();
 
         /// <summary>
         /// Возвращает и устанавливает значение диаметра тарелки
@@ -60,13 +62,15 @@ namespace JuicerPluginbuilder
 
             set
             {
+                const double min = 166;
+                const double max = 226;
                 _parameterCheck.RangeCheck
-                    (value, 166, 226, 
-                    ParameterType.PlateDiameter, parameters);
+                    (value, min, max, 
+                    ParameterType.PlateDiameter, Parameters);
                 if(value - StakeDiameter < 96)
                 {
-                    throw new ArgumentOutOfRangeException();
-                    parameters.Add(ParameterType.PlateDiameter, 
+                    throw new Exception();
+                    Parameters.Add(ParameterType.PlateDiameter,
                         "Выход за диапазон");
                 }
                 _plateDiameter = value;
@@ -85,9 +89,11 @@ namespace JuicerPluginbuilder
 
             set
             {
+                const double min = 70;
+                const double max = 130;
                 _parameterCheck.RangeCheck
-                    (value, 70, 130, 
-                    ParameterType.StakeDiameter, parameters);
+                    (value, min, max, 
+                    ParameterType.StakeDiameter, Parameters);
                 _stakeDiameter = value;
             }
         }
@@ -103,13 +109,15 @@ namespace JuicerPluginbuilder
             }   
             set
             {
+                const double min = 60;
+                const double max = 120;
                 _parameterCheck.RangeCheck
-                    (value, 60, 120, 
-                    ParameterType.StakeHeight, parameters);
+                    (value, min, max, 
+                    ParameterType.StakeHeight, Parameters);
                 if(StakeDiameter - value < 10)
                 {
-                    throw new ArgumentOutOfRangeException();
-                    parameters.Add(ParameterType.StakeHeight, 
+                    throw new Exception();
+                    Parameters.Add(ParameterType.StakeHeight,
                         "Выход за диапазон");
                 }
                 _stakeHeight = value;
@@ -117,28 +125,9 @@ namespace JuicerPluginbuilder
         }
 
         /// <summary>
-        /// Возвращает и устанавливает значение количества отвертий в тарелке
-        /// </summary>
-        public int NumberOfHoles
-        {
-            get
-            {
-                return _numberOfHoles;
-            }
-
-            set
-            {
-                _parameterCheck.RangeCheck
-                    (value, 90, 100, 
-                    ParameterType.NumberOfHoles, parameters);
-                _numberOfHoles = value;
-            }
-        }
-
-        /// <summary>
         /// Возвращает и устанавливает значение количества зубцов кола
         /// </summary>
-        public int NumberOfTeeth
+        public double NumberOfTeeth
         {
             get
             {
@@ -147,10 +136,33 @@ namespace JuicerPluginbuilder
 
             set
             {
+                const double min = 10;
+                const double max = 12;
                 _parameterCheck.RangeCheck
-                    (value, 10, 12, 
-                    ParameterType.NumberOfTeeth, parameters);
+                    (value, min, max,
+                    ParameterType.NumberOfTeeth, Parameters);
                 _numberOfTeeth = value;
+            }
+        }
+
+        /// <summary>
+        /// Возвращает и устанавливает значение количества отвертий в тарелке
+        /// </summary>
+        public double NumberOfHoles
+        {
+            get
+            {
+                return _numberOfHoles;
+            }
+
+            set
+            {
+                const double min = 90;
+                const double max = 100;
+                _parameterCheck.RangeCheck
+                    (value, min, max, 
+                    ParameterType.NumberOfHoles, Parameters);
+                _numberOfHoles = value;
             }
         }
     }
