@@ -109,6 +109,7 @@ namespace JuicerPluginUI
                     LabelStakeHeightRange.Text = $"60-{_changeableParametrs.StakeDiameter - 10} мм";
                     TextBoxValidator_TextChanged(TextBoxPlateDiameter, e);
                     TextBoxValidator_TextChanged(TextBoxStakeHeight, e);
+                    TextBoxStakeDiameter.Focus();
                 }
             }
             catch 
