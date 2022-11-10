@@ -1,5 +1,5 @@
 ﻿using System;
-using JuicerPluginbuilder;
+using JuicerPluginParameters;
 using NUnit.Framework;
 
 namespace JuicerPlugin.UnitTest

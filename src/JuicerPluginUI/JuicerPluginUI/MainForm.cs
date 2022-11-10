@@ -7,7 +7,7 @@ using System.Windows.Forms;
 // TODO: убрать зависимости
 using System.Runtime.InteropServices;
 using JuicerPluginBuild;
-using JuicerPluginbuilder;
+using JuicerPluginParameters;
 using System.Drawing;
 
 namespace JuicerPluginUI
