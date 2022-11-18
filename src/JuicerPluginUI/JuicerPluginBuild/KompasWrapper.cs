@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-// TODO: добавить dll
 using KompasAPI7;
 using Kompas6API5;
 using Kompas6Constants;
@@ -101,19 +100,34 @@ namespace JuicerPluginBuild
             // Новый компонент
             var part = 
                 (ksPart)document.GetPart((short)Part_Type.pTop_Part);
-	        // TODO: большая вложенность
-            if (part == null) return;
+	        if (part == null)
+	        {
+		        return;
+	        }
+
             var entitySketch = 
                 (ksEntity)part.NewEntity((short)Obj3dType.o3d_sketch);
-            if (entitySketch == null) return;
+            if (entitySketch == null)
+            {
+	            return;
+            }
+
             // Интерфейс свойств эскиза
             var sketchDef = 
                 (ksSketchDefinition)entitySketch.GetDefinition();
-            if (sketchDef == null) return;
+            if (sketchDef == null)
+            {
+	            return;
+            }
+
             // Получим интерфейс базовой плоскости XOZ
             var basePlane = 
                 (ksEntity)part.GetDefaultEntity((short)Obj3dType.o3d_planeXOZ);
-            if (basePlane == null) return;
+            if (basePlane == null)
+            {
+	            return;
+            }
+
             // Установим плоскость XOZ базовой для эскиза
             sketchDef.SetPlane(basePlane);
             // Создадим эскиз
@@ -179,7 +193,6 @@ namespace JuicerPluginBuild
 		/// <summary>
 		/// Метод операции выдавливания вращением
 		/// </summary>
-		// TODO: Методы должны начинаться с глагола
 		public void RotateExtrusion(ksEntity entitySketch, bool thinWallElement)
         {
 
@@ -226,15 +239,14 @@ namespace JuicerPluginBuild
 		/// <summary>
 		/// Метод построения кола
 		/// </summary>
-		// TODO: Методы должны начинаться с глагола
 		public void BuildStake(double diameterStake, double stakeHeight)
 		{
-			// TODO: все комментарии ставятся перед коментируемой строкой
             var document = 
                 (ksDocument3D)_kompas.ActiveDocument3D();
             // Новый компонент
             var part = 
                 (ksPart)document.GetPart((short)Part_Type.pTop_Part);
+            // TODO: RSDN
             if (part == null) return;
             var entitySketch = 
                 (ksEntity)part.NewEntity((short)Obj3dType.o3d_sketch);
@@ -261,8 +273,7 @@ namespace JuicerPluginBuild
                 double[] shift = new double[14] { 10.177112 , 17.885819, 7.024134, 
                     23.870603, 4, 32,  2.18061, 39.230625, 1.260657, 44.171475, 0.531802,
                 49.700599, 0.166451, 54.232637};
-
-                // TODO: магические числа
+                
                 diameterStake /= 2;
                 sketchEdit.ksLineSeg
                     (origin, origin, diameterStake, origin, styleLine[0]);
@@ -272,6 +283,7 @@ namespace JuicerPluginBuild
                 sketchEdit.ksLineSeg
                 (origin, -stakeHeight, diameterStake - shift[0], 
                     -stakeHeight + shift[1], styleLine[0]);
+                // TODO: обернуть в цикл
                 sketchEdit.ksLineSeg
                 (diameterStake - shift[0], -stakeHeight + shift[1], 
                     diameterStake - shift[2], -stakeHeight + shift[3], styleLine[0]);
@@ -303,13 +315,11 @@ namespace JuicerPluginBuild
 		/// <summary>
 		/// Метод построения зубцов кола
 		/// </summary>
-		// TODO: Методы должны начинаться с глагола
 		public void BuildStakeTeeth(double count, double diameterStake, 
             double stakeHeight)
         {
             var document = 
                 (ksDocument3D)_kompas.ActiveDocument3D();
-            // TODO: комментарий перед вызываемой строкой.
             // Новый компонент
             var part = 
                 (ksPart)document.GetPart((short)Part_Type.pTop_Part);  
@@ -376,7 +386,6 @@ namespace JuicerPluginBuild
             // Эскиз линии, которая в дальнейшем будет траекторией выреза по траектории
             var entitySketch = 
                 (ksEntity)part.NewEntity((short)Obj3dType.o3d_sketch);
-            // TODO: Большая вложенность
             if (entitySketch == null) return;
             {
                 // Интерфейс свойств эскиза
@@ -384,8 +393,6 @@ namespace JuicerPluginBuild
                     (ksSketchDefinition)entitySketch.GetDefinition();
                 if (sketchDef == null) return;
                 // Получим интерфейс базовой плоскости XOZ
-                // TODO: либо перенести все, что после равно на другую строку,
-                // TODO: либо вместе с точкой перенести вызов метода
                 var basePlane = 
                     (ksEntity)part.GetDefaultEntity((short)Obj3dType.o3d_planeXOZ);
                 if (basePlane == null) return;
@@ -409,6 +416,7 @@ namespace JuicerPluginBuild
                 -45.132963, 19.282811, -33.108725, 20.963563, 
                 -20.933876, 22.060387, -12.000961};
 
+	            // TODO: обернуть в цикл
                 sketchEdit.ksLineSeg
                     (trajectoryCoordinates[0], -stakeHeight - shift[0], 
                     trajectoryCoordinates[1], -stakeHeight - shift[1], styleLine[0]);
@@ -473,7 +481,6 @@ namespace JuicerPluginBuild
 		/// <summary>
 		/// Метод построения отверстий в тарелке
 		/// </summary>
-		// TODO: Методы должны начинаться с глагола
 		public void BuildHolesInThePlate(double count, double diameterPlate, 
             double diameterStake)
         {
@@ -482,7 +489,7 @@ namespace JuicerPluginBuild
             // Новый компонент
             var part = 
                 (ksPart)document.GetPart((short)Part_Type.pTop_Part);  
-	        // TODO: большая вложенность
+	        // TODO: RSDN
             if (part == null) return;
             var entitySketch = 
                 (ksEntity)part.NewEntity((short)Obj3dType.o3d_sketch);
@@ -504,7 +511,6 @@ namespace JuicerPluginBuild
             var sketchEdit = 
                 (ksDocument2D)sketchDef.BeginEdit();
             if (sketchEdit == null) return;
-            // TODO магические числа
             // Радиус тарелки со свдигом
             diameterPlate = -(diameterPlate/2 - 10.5);
             // Радиус кола со сдвигом
@@ -512,6 +518,7 @@ namespace JuicerPluginBuild
             // Общая координата
             const double sharedCoordinate = 0.75;
 
+	        // TODO: можно попробовать обернуть в цикл
             sketchEdit.ksLineSeg
                 (-sharedCoordinate, diameterPlate, 
                 -sharedCoordinate, diameterStake, styleLine[0]);

@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Runtime.InteropServices;
 
 namespace JuicerPluginParameters
 {
@@ -40,14 +36,12 @@ namespace JuicerPluginParameters
         /// <summary>
         /// Словарь перечисления параметров и ошибки
         /// </summary>
-        // TODO: RSDN
         public Dictionary<ParameterType, string> Parameters = 
             new Dictionary<ParameterType, string>();
 
         /// <summary>
         /// Экземпляр класса ParameterCheck
         /// </summary>
-        // TODO: модификатор доступа
         private ParameterCheck _parameterCheck = new ParameterCheck();
 
         /// <summary>
@@ -69,9 +63,9 @@ namespace JuicerPluginParameters
                     ParameterType.PlateDiameter, Parameters);
                 if(value - StakeDiameter < 96)
                 {
-                    throw new Exception();
-                    Parameters.Add(ParameterType.PlateDiameter,
-                        "Выход за диапазон");
+	                Parameters.Add(ParameterType.PlateDiameter,
+		                "Выход за диапазон");
+					throw new Exception();
                 }
                 _plateDiameter = value;
             }

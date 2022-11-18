@@ -10,6 +10,7 @@ namespace JuicerPlugin.UnitTest
         private ChangeableParametrs _changeableParametrs;
         private ParameterType _parameterType;
 
+        // TODO: Убрать SetUp
         [SetUp]
         public void InitChangeableParametrs()
         {
@@ -17,6 +18,7 @@ namespace JuicerPlugin.UnitTest
             _parameterType = new ParameterType();
         }
 
+        //TODO: Убрать аттрибут [Test]
         [Test]
         [TestCase(Description = "Позитивный тест геттера PlateDiameter")]
         public void Test_PlateDiameter_Get_CorrectValue()
@@ -84,8 +86,7 @@ namespace JuicerPlugin.UnitTest
                 "Значение должно входить в диапазон от 70 до 130");
 
         }
-
-        [Test]
+        
         [TestCase(47, Description = "Негативный тест сеттера StakeDiameter")]
         [TestCase(158, Description = "Негативный тест сеттера StakeDiameter")]
 
@@ -97,8 +98,7 @@ namespace JuicerPlugin.UnitTest
                 }, "Должно возникать исключение, если значение не входит в " +
                    "диапазон от 70 до 130");
         }
-
-        [Test]
+        
         [TestCase(Description = "Позитивный тест геттера StakeHeight")]
         public void Test_StakeHeight_Get_CorrectValue()
         {

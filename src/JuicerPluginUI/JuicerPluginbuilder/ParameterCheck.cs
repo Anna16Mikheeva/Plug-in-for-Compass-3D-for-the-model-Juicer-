@@ -26,8 +26,7 @@ namespace JuicerPluginParameters
             errors.Remove(parameters);
             if (value < min || value > max)
             {
-                errors.Remove(parameters);
-                errors.Add(parameters, "Выход за диапазон");
+	            errors.Add(parameters, "Выход за диапазон");
                 throw new ArgumentOutOfRangeException();
             }
         }

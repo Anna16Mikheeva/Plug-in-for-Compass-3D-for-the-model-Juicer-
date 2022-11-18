@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-// TODO: убрать зависимости
 using System.Runtime.InteropServices;
 using JuicerPluginBuild;
-using JuicerPluginParameters;
 using System.Drawing;
+using JuicerPluginParameters;
 
 namespace JuicerPluginUI
 {
+	// TODO: XML
     public partial class MainForm : Form
     {
         /// <summary>
@@ -33,7 +33,6 @@ namespace JuicerPluginUI
         /// Словарь, cвязывающий параметр соковыжималки 
         /// и соотвествующий ему textbox
         /// </summary>
-        // TODO: можно попробовать Dictionary<TextBox, Action>
         private Dictionary<TextBox, Action<double>> _valueTextBox
             = new Dictionary<TextBox, Action<double>>();
 
@@ -42,7 +41,6 @@ namespace JuicerPluginUI
             InitializeComponent();
 
             _valueTextBox = new Dictionary<TextBox, Action<double>>();
-            _valueTextBox.Clear();
             _valueTextBox.Add(TextBoxPlateDiameter, (plateDiameter) 
                 => _changeableParametrs.PlateDiameter = plateDiameter);
             _valueTextBox.Add(TextBoxStakeDiameter, (stakeDiameter) 
@@ -93,7 +91,6 @@ namespace JuicerPluginUI
         {
             TextBox textBox = (TextBox)sender;
             textBox.Focus();
-	        // TODO: string.Empty
             if (textBox.Text == string.Empty || textBox.Text == ",")
             {
                 textBox.Text = string.Empty;
@@ -125,9 +122,8 @@ namespace JuicerPluginUI
         /// <param name="e"></param>
         private void CheckForCommasAndNumbers_KeyPress(object sender, KeyPressEventArgs e)
         {
-	        // TODO: char.*
 	        if (!(char.IsControl(e.KeyChar))
-	            && !(Char.IsDigit(e.KeyChar))
+	            && !(char.IsDigit(e.KeyChar))
 	            && !((e.KeyChar == ',')
 	                 && (((TextBox)sender).Text.IndexOf(",") == -1)
 		            ))

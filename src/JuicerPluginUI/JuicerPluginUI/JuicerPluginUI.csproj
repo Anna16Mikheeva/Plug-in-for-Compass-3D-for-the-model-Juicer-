@@ -102,6 +102,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\JuicerPluginbuilder\JuicerPluginParameters.csproj">
+      <Project>{05D89D13-31BD-4376-91A1-4DD19AB24DAF}</Project>
+      <Name>JuicerPluginParameters</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JuicerPluginBuild\JuicerPluginBuild.csproj">
       <Project>{340d9baa-4b38-44cc-8c56-4224defbed41}</Project>
       <Name>JuicerPluginBuild</Name>
