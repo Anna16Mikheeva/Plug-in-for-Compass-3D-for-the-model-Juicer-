@@ -11,7 +11,10 @@ using JuicerPluginParameters;
 
 namespace JuicerPluginUI
 {
-	// TODO: XML
+	// TODO: XML +
+    /// <summary>
+    /// Класс для взаимодействия с формой
+    /// </summary>
     public partial class MainForm : Form
     {
         /// <summary>
@@ -139,9 +142,9 @@ namespace JuicerPluginUI
         /// <param name="e"></param>
         private void IntegerCheck_KeyPress(object sender, KeyPressEventArgs e)
 		{
-			// TODO: char.*
-			if (!(Char.IsControl(e.KeyChar))
-                && !(Char.IsDigit(e.KeyChar))
+			// TODO: char.* +
+			if (!(char.IsControl(e.KeyChar))
+                && !(char.IsDigit(e.KeyChar))
                 && !((e.KeyChar == ',')
                 && (((TextBox)sender).Text.IndexOf(",") == 1)
             ))

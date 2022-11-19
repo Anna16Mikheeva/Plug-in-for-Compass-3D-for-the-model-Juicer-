@@ -42,7 +42,7 @@ namespace JuicerPluginParameters
         /// <summary>
         /// Экземпляр класса ParameterCheck
         /// </summary>
-        private ParameterCheck _parameterCheck = new ParameterCheck();
+        private ParameterChecker _parameterCheck = new ParameterChecker();
 
         /// <summary>
         /// Возвращает и устанавливает значение диаметра тарелки

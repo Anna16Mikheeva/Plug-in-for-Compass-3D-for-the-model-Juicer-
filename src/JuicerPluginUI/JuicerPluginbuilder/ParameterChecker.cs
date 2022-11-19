@@ -9,8 +9,8 @@ namespace JuicerPluginParameters
 	/// <summary>
 	/// Класс для проверки диапазона
 	/// </summary>
-	// TODO: ParameterChecker
-	class ParameterCheck
+	// TODO: ParameterChecker +
+	class ParameterChecker
     {
         /// <summary>
         /// Метод для проверки на диапазон

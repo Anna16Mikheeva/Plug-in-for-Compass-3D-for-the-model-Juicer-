@@ -152,7 +152,7 @@ namespace JuicerPluginBuild
                 int[] shift = new int[5] { 3, 8, 10, 6, 1 };
 
                 //Построение первого эскиза (тарелки)
-                // TODO: Магические числа
+                // TODO: Магические числа +
                 sketchEdit.ksLineSeg
                     (origin, origin, diameterPlate - shift[2], origin, styleLine[0]);
                 sketchEdit.ksLineSeg
@@ -183,7 +183,7 @@ namespace JuicerPluginBuild
                     radiusArc[2], diameterPlate, 
                     -radiusArc[2], diameterPlate - shift[2], 
                     origin, 1, styleLine[0]);
-                // TODO: все комментарии ставятся перед коментируемой строкой
+                // TODO: все комментарии ставятся перед коментируемой строкой +
                 // Завершение редактирования эскиза
                 sketchDef.EndEdit();    
             }
@@ -204,11 +204,17 @@ namespace JuicerPluginBuild
             // Вращение
             var entityRotate = 
                 (ksEntity)part.NewEntity((short)Obj3dType.o3d_bossRotated);
-            if (entityRotate == null) return;
+            if (entityRotate == null)
+            {
+                return;
+            }
             // Интерфейс базовой операции вращения
             var rotateDef = 
                 (ksBossRotatedDefinition)entityRotate.GetDefinition(); 
-            if (rotateDef == null) return;
+            if (rotateDef == null)
+            {
+                return;
+            }
             var rotproperty = 
                 (ksRotatedParam)rotateDef.RotatedParam();
             if (rotproperty != null)
@@ -230,35 +236,47 @@ namespace JuicerPluginBuild
             rotateDef.SetSideParam(true, degreeOfRotation);
             // Эскиз операции вращения
             rotateDef.SetSketch(entitySketch);
-            // TODO: все комментарии ставятся перед коментируемой строкой
+            // TODO: все комментарии ставятся перед коментируемой строкой +
             // Создать операцию
             entityRotate.Create();
         }
 
 
-		/// <summary>
-		/// Метод построения кола
-		/// </summary>
-		public void BuildStake(double diameterStake, double stakeHeight)
-		{
-            var document = 
+        /// <summary>
+        /// Метод построения кола
+        /// </summary>
+        public void BuildStake(double diameterStake, double stakeHeight)
+        {
+            var document =
                 (ksDocument3D)_kompas.ActiveDocument3D();
             // Новый компонент
-            var part = 
+            var part =
                 (ksPart)document.GetPart((short)Part_Type.pTop_Part);
-            // TODO: RSDN
-            if (part == null) return;
+            // TODO: RSDN +
+            if (part == null) 
+            {
+                return;
+            }
             var entitySketch = 
                 (ksEntity)part.NewEntity((short)Obj3dType.o3d_sketch);
-            if (entitySketch == null) return;
+            if (entitySketch == null)
+            {
+                return;
+            }
             // Интерфейс свойств эскиза
             var sketchDef = 
                 (ksSketchDefinition)entitySketch.GetDefinition();
-            if (sketchDef == null) return;
+            if (sketchDef == null)
+            {
+                return;
+            }
             // Получим интерфейс базовой плоскости XOZ
             var basePlane = 
                 (ksEntity)part.GetDefaultEntity((short)Obj3dType.o3d_planeXOZ);
-            if (basePlane == null) return;
+            if (basePlane == null)
+            {
+                return;
+            }
             // Установим плоскость XOZ базовой для эскиза
             sketchDef.SetPlane(basePlane);
             // Создадим эскиз
@@ -283,25 +301,13 @@ namespace JuicerPluginBuild
                 sketchEdit.ksLineSeg
                 (origin, -stakeHeight, diameterStake - shift[0], 
                     -stakeHeight + shift[1], styleLine[0]);
-                // TODO: обернуть в цикл
-                sketchEdit.ksLineSeg
-                (diameterStake - shift[0], -stakeHeight + shift[1], 
-                    diameterStake - shift[2], -stakeHeight + shift[3], styleLine[0]);
-                sketchEdit.ksLineSeg
-                (diameterStake - shift[2], -stakeHeight + shift[3], 
-                    diameterStake - shift[4], -stakeHeight + shift[5], styleLine[0]);
-                sketchEdit.ksLineSeg
-                (diameterStake - shift[4], -stakeHeight + shift[5], 
-                    diameterStake - shift[6], -stakeHeight + shift[7], styleLine[0]);
-                sketchEdit.ksLineSeg
-                (diameterStake - shift[6], -stakeHeight + shift[7], 
-                    diameterStake - shift[8], -stakeHeight + shift[9], styleLine[0]);
-                sketchEdit.ksLineSeg
-                (diameterStake - shift[8], -stakeHeight + shift[9], 
-                    diameterStake - shift[10], -stakeHeight + shift[11], styleLine[0]);
-                sketchEdit.ksLineSeg
-                (diameterStake - shift[10], -stakeHeight + shift[11], 
-                    diameterStake - shift[12], -stakeHeight + shift[13], styleLine[0]);
+                // TODO: обернуть в цикл +
+                for (int i=0; i < 11; i+=2)
+                {
+                    sketchEdit.ksLineSeg
+                (diameterStake - shift[i], -stakeHeight + shift[i+1],
+                    diameterStake - shift[i+2], -stakeHeight + shift[i+3], styleLine[0]);
+                }
                 sketchEdit.ksLineSeg
                 (diameterStake - shift[12], -stakeHeight + shift[13], 
                     diameterStake, origin, styleLine[0]);
@@ -323,7 +329,10 @@ namespace JuicerPluginBuild
             // Новый компонент
             var part = 
                 (ksPart)document.GetPart((short)Part_Type.pTop_Part);  
-            if (part == null) return;
+            if (part == null)
+            {
+                return;
+            }
             var entitySketchDisplaced = 
                 (ksEntity)part.NewEntity((short)Obj3dType.o3d_sketch);
             // Создадим смещенную плоскость, а в ней эскиз
@@ -364,7 +373,7 @@ namespace JuicerPluginBuild
                         double[] triangleCootdinates = new double[4] 
                         { 9.54 , 22.060387, 0.000961, 22.060387 };
  
-                        // TODO: магические числа
+                        // TODO: магические числа +
                         // Интерфейс редактора эскиза
                         var sketchEdit = 
                             (ksDocument2D)sketchDef.BeginEdit();
@@ -386,16 +395,25 @@ namespace JuicerPluginBuild
             // Эскиз линии, которая в дальнейшем будет траекторией выреза по траектории
             var entitySketch = 
                 (ksEntity)part.NewEntity((short)Obj3dType.o3d_sketch);
-            if (entitySketch == null) return;
+            if (entitySketch == null)
+            {
+                return;
+            }
             {
                 // Интерфейс свойств эскиза
                 var sketchDef = 
                     (ksSketchDefinition)entitySketch.GetDefinition();
-                if (sketchDef == null) return;
+                if (sketchDef == null)
+                {
+                    return;
+                }
                 // Получим интерфейс базовой плоскости XOZ
                 var basePlane = 
                     (ksEntity)part.GetDefaultEntity((short)Obj3dType.o3d_planeXOZ);
-                if (basePlane == null) return;
+                if (basePlane == null)
+                {
+                    return;
+                }
                 // Установим плоскость XOZ базовой для эскиза
                 sketchDef.SetPlane(basePlane);
                 // Создадим эскиз
@@ -404,44 +422,38 @@ namespace JuicerPluginBuild
                 // Интерфейс редактора эскиза
                 var sketchEdit = 
                     (ksDocument2D)sketchDef.BeginEdit();
-                if (sketchEdit == null) return;
-                // TODO: Магические числа
+                if (sketchEdit == null)
+                {
+                    return;
+                }
+                // TODO: Магические числа +
                 // Массив сдвигов по координатам
-                double[] shift = new double[2] { 1.020943 , 11.995037 };
+                double[] shift = new double[2] { 11.995037, 1.020943 };
                 // Массив координат для линии,
                 // которая будет являться траекторией
                 // для выреза зубца
-                double[] trajectoryCoordinates = new double[12] 
-                { 9.259353, 2.290188, 13.435794, -53.535092, 16.39727,
+                double[] trajectoryCoordinates = new double[14] 
+                { 2.290188, -stakeHeight - shift[0], 9.259353, -stakeHeight - shift[1], 13.435794, -53.535092, 16.39727,
                 -45.132963, 19.282811, -33.108725, 20.963563, 
                 -20.933876, 22.060387, -12.000961};
 
-	            // TODO: обернуть в цикл
-                sketchEdit.ksLineSeg
-                    (trajectoryCoordinates[0], -stakeHeight - shift[0], 
-                    trajectoryCoordinates[1], -stakeHeight - shift[1], styleLine[0]);
-                sketchEdit.ksLineSeg
-                    (trajectoryCoordinates[2], trajectoryCoordinates[3], 
-                    9.259353, -stakeHeight - shift[0], styleLine[0]);
-                sketchEdit.ksLineSeg
-                    (trajectoryCoordinates[2], trajectoryCoordinates[3],
-                    trajectoryCoordinates[4], trajectoryCoordinates[5], styleLine[0]);
-                sketchEdit.ksLineSeg
-                    (trajectoryCoordinates[4], trajectoryCoordinates[5],
-                    trajectoryCoordinates[6], trajectoryCoordinates[7], styleLine[0]);
-                sketchEdit.ksLineSeg
-                    (trajectoryCoordinates[6], trajectoryCoordinates[7],
-                    trajectoryCoordinates[8], trajectoryCoordinates[9], styleLine[0]);
-                sketchEdit.ksLineSeg
-                    (trajectoryCoordinates[8], trajectoryCoordinates[9],
-                    trajectoryCoordinates[10], trajectoryCoordinates[11], styleLine[0]);
+	            // TODO: обернуть в цикл +
+                for(int i=0;i<11;i+=2)
+                {
+                    sketchEdit.ksLineSeg
+                    (trajectoryCoordinates[i], trajectoryCoordinates[i+1],
+                    trajectoryCoordinates[i+2], trajectoryCoordinates[i+3], styleLine[0]);
+                }
                 // Завершение редактирования эскиза
                 sketchDef.EndEdit();	
 
                 // Вырез по траектории
                 var entityCutEvolution = 
                     (ksEntity)part.NewEntity((short)Obj3dType.o3d_cutEvolution);
-                if (entityCutEvolution == null) return;
+                if (entityCutEvolution == null)
+                {
+                    return;
+                }
                 var cutEvolutionDef = 
                     (ksCutEvolutionDefinition)entityCutEvolution.GetDefinition();
 
@@ -488,20 +500,32 @@ namespace JuicerPluginBuild
                 (ksDocument3D)_kompas.ActiveDocument3D();
             // Новый компонент
             var part = 
-                (ksPart)document.GetPart((short)Part_Type.pTop_Part);  
-	        // TODO: RSDN
-            if (part == null) return;
+                (ksPart)document.GetPart((short)Part_Type.pTop_Part);
+            // TODO: RSDN +
+            if (part == null)
+            { 
+                return; 
+            }
             var entitySketch = 
                 (ksEntity)part.NewEntity((short)Obj3dType.o3d_sketch);
-            if (entitySketch == null) return;
+            if (entitySketch == null)
+            {
+                return;
+            }
             // Интерфейс свойств эскиза
             var sketchDef = 
                 (ksSketchDefinition)entitySketch.GetDefinition();
-            if (sketchDef == null) return;
+            if (sketchDef == null)
+            { 
+                return; 
+            }
             // Получим интерфейс базовой плоскости XOY
             var basePlane = 
                 (ksEntity)part.GetDefaultEntity((short)Obj3dType.o3d_planeXOY);
-            if (basePlane == null) return;
+            if (basePlane == null)
+            {
+                return;
+            }
             // Установим плоскость XOZ базовой для эскиза
             sketchDef.SetPlane(basePlane);
             // Создадим эскиз
@@ -510,7 +534,10 @@ namespace JuicerPluginBuild
             // Интерфейс редактора эскиза
             var sketchEdit = 
                 (ksDocument2D)sketchDef.BeginEdit();
-            if (sketchEdit == null) return;
+            if (sketchEdit == null)
+            {
+                return;
+            }
             // Радиус тарелки со свдигом
             diameterPlate = -(diameterPlate/2 - 10.5);
             // Радиус кола со сдвигом
@@ -537,7 +564,10 @@ namespace JuicerPluginBuild
             //Вырезать выдавливанием
             var entityCutExtr = 
                 (ksEntity)part.NewEntity((short)Obj3dType.o3d_cutExtrusion);
-            if (entityCutExtr == null) return;
+            if (entityCutExtr == null)
+            {
+                return;
+            }
             var cutExtrDef = 
                 (ksCutExtrusionDefinition)entityCutExtr.GetDefinition();
             if (cutExtrDef != null)
