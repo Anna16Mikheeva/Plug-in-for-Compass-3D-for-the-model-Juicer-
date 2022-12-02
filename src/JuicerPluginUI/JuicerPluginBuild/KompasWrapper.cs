@@ -152,7 +152,6 @@ namespace JuicerPluginBuild
                 int[] shift = new int[5] { 3, 8, 10, 6, 1 };
 
                 //Построение первого эскиза (тарелки)
-                // TODO: Магические числа +
                 sketchEdit.ksLineSeg
                     (origin, origin, diameterPlate - shift[2], origin, styleLine[0]);
                 sketchEdit.ksLineSeg
@@ -183,7 +182,6 @@ namespace JuicerPluginBuild
                     radiusArc[2], diameterPlate, 
                     -radiusArc[2], diameterPlate - shift[2], 
                     origin, 1, styleLine[0]);
-                // TODO: все комментарии ставятся перед коментируемой строкой +
                 // Завершение редактирования эскиза
                 sketchDef.EndEdit();    
             }
@@ -236,7 +234,6 @@ namespace JuicerPluginBuild
             rotateDef.SetSideParam(true, degreeOfRotation);
             // Эскиз операции вращения
             rotateDef.SetSketch(entitySketch);
-            // TODO: все комментарии ставятся перед коментируемой строкой +
             // Создать операцию
             entityRotate.Create();
         }
@@ -252,17 +249,18 @@ namespace JuicerPluginBuild
             // Новый компонент
             var part =
                 (ksPart)document.GetPart((short)Part_Type.pTop_Part);
-            // TODO: RSDN +
             if (part == null) 
             {
                 return;
             }
+
             var entitySketch = 
                 (ksEntity)part.NewEntity((short)Obj3dType.o3d_sketch);
             if (entitySketch == null)
             {
                 return;
             }
+
             // Интерфейс свойств эскиза
             var sketchDef = 
                 (ksSketchDefinition)entitySketch.GetDefinition();
@@ -301,13 +299,13 @@ namespace JuicerPluginBuild
                 sketchEdit.ksLineSeg
                 (origin, -stakeHeight, diameterStake - shift[0], 
                     -stakeHeight + shift[1], styleLine[0]);
-                // TODO: обернуть в цикл +
-                for (int i=0; i < 11; i+=2)
+                for (int i = 0; i < 11; i += 2)
                 {
-                    sketchEdit.ksLineSeg
-                (diameterStake - shift[i], -stakeHeight + shift[i+1],
-                    diameterStake - shift[i+2], -stakeHeight + shift[i+3], styleLine[0]);
+	                sketchEdit.ksLineSeg
+	                (diameterStake - shift[i], -stakeHeight + shift[i + 1],
+		                diameterStake - shift[i + 2], -stakeHeight + shift[i + 3], styleLine[0]);
                 }
+
                 sketchEdit.ksLineSeg
                 (diameterStake - shift[12], -stakeHeight + shift[13], 
                     diameterStake, origin, styleLine[0]);
@@ -373,7 +371,6 @@ namespace JuicerPluginBuild
                         double[] triangleCootdinates = new double[4] 
                         { 9.54 , 22.060387, 0.000961, 22.060387 };
  
-                        // TODO: магические числа +
                         // Интерфейс редактора эскиза
                         var sketchEdit = 
                             (ksDocument2D)sketchDef.BeginEdit();
@@ -426,7 +423,6 @@ namespace JuicerPluginBuild
                 {
                     return;
                 }
-                // TODO: Магические числа +
                 // Массив сдвигов по координатам
                 double[] shift = new double[2] { 11.995037, 1.020943 };
                 // Массив координат для линии,
@@ -436,8 +432,7 @@ namespace JuicerPluginBuild
                 { 2.290188, -stakeHeight - shift[0], 9.259353, -stakeHeight - shift[1], 13.435794, -53.535092, 16.39727,
                 -45.132963, 19.282811, -33.108725, 20.963563, 
                 -20.933876, 22.060387, -12.000961};
-
-	            // TODO: обернуть в цикл +
+                
                 for(int i=0;i<11;i+=2)
                 {
                     sketchEdit.ksLineSeg
@@ -501,7 +496,6 @@ namespace JuicerPluginBuild
             // Новый компонент
             var part = 
                 (ksPart)document.GetPart((short)Part_Type.pTop_Part);
-            // TODO: RSDN +
             if (part == null)
             { 
                 return; 
@@ -544,8 +538,7 @@ namespace JuicerPluginBuild
             diameterStake = -diameterStake/2-2;
             // Общая координата
             const double sharedCoordinate = 0.75;
-
-	        // TODO: можно попробовать обернуть в цикл
+            
             sketchEdit.ksLineSeg
                 (-sharedCoordinate, diameterPlate, 
                 -sharedCoordinate, diameterStake, styleLine[0]);

@@ -8,9 +8,7 @@ namespace JuicerPlugin.UnitTest
     class JuicerPluginBuildTest
     {
         private ChangeableParametrs _changeableParametrs;
-
-        // TODO: Убрать SetUp +
-        //TODO: Убрать аттрибут [Test] +
+        
         [TestCase(Description = "Позитивный тест геттера PlateDiameter")]
         public void Test_PlateDiameter_Get_CorrectValue()
         {
