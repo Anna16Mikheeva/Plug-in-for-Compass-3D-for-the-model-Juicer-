@@ -54,6 +54,8 @@ namespace JuicerPluginUI
                 => _changeableParametrs.NumberOfTeeth = numberOfTeeth);
             _valueTextBox.Add(TextBoxNumberOfHoles, (numberOfHoles) 
                 => _changeableParametrs.NumberOfHoles = numberOfHoles);
+            _valueTextBox.Add(TextBoxLengthOfHoles, (lengthOfHoles)
+                => _changeableParametrs.LengthOfHoles = lengthOfHoles);
         }
 
         /// <summary>
@@ -68,6 +70,7 @@ namespace JuicerPluginUI
                 TextBoxStakeHeight.Text == string.Empty ||
                 TextBoxNumberOfTeeth.Text == string.Empty ||
                 TextBoxNumberOfHoles.Text == string.Empty ||
+                TextBoxLengthOfHoles.Text == string.Empty ||
                 _changeableParametrs.Parameters.Count > 0)
             {
                 MessageBox.Show("Модель не может быть построена!", "Error",
@@ -81,7 +84,8 @@ namespace JuicerPluginUI
                     _changeableParametrs.StakeDiameter, 
                     _changeableParametrs.StakeHeight,
                     _changeableParametrs.NumberOfTeeth,
-                    _changeableParametrs.NumberOfHoles);
+                    _changeableParametrs.NumberOfHoles,
+                    _changeableParametrs.LengthOfHoles);
             }
         }
 
@@ -151,6 +155,16 @@ namespace JuicerPluginUI
             {
                 e.Handled = true;
             }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

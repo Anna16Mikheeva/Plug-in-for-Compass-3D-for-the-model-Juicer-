@@ -47,6 +47,9 @@ namespace JuicerPluginUI
             this.LabelNumberOfTeethRange = new System.Windows.Forms.Label();
             this.LabelNumberOfHolesRange = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.LabelLengthOfHoles = new System.Windows.Forms.Label();
+            this.TextBoxLengthOfHoles = new System.Windows.Forms.TextBox();
+            this.LabelLengthOfHolesRange = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // LabelPlateDiametr
@@ -167,7 +170,7 @@ namespace JuicerPluginUI
             // ButtonBuild
             // 
             this.ButtonBuild.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ButtonBuild.Location = new System.Drawing.Point(187, 195);
+            this.ButtonBuild.Location = new System.Drawing.Point(187, 249);
             this.ButtonBuild.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ButtonBuild.Name = "ButtonBuild";
             this.ButtonBuild.Size = new System.Drawing.Size(184, 46);
@@ -241,11 +244,49 @@ namespace JuicerPluginUI
             this.label1.Size = new System.Drawing.Size(0, 25);
             this.label1.TabIndex = 16;
             // 
+            // LabelLengthOfHoles
+            // 
+            this.LabelLengthOfHoles.AutoSize = true;
+            this.LabelLengthOfHoles.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.LabelLengthOfHoles.Location = new System.Drawing.Point(17, 195);
+            this.LabelLengthOfHoles.Margin = new System.Windows.Forms.Padding(3, 2, 3, 10);
+            this.LabelLengthOfHoles.Name = "LabelLengthOfHoles";
+            this.LabelLengthOfHoles.Size = new System.Drawing.Size(264, 25);
+            this.LabelLengthOfHoles.TabIndex = 17;
+            this.LabelLengthOfHoles.Text = "Длина отвертий в тарелке";
+            this.LabelLengthOfHoles.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // TextBoxLengthOfHoles
+            // 
+            this.TextBoxLengthOfHoles.BackColor = System.Drawing.Color.White;
+            this.TextBoxLengthOfHoles.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.TextBoxLengthOfHoles.Location = new System.Drawing.Point(298, 190);
+            this.TextBoxLengthOfHoles.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.TextBoxLengthOfHoles.Name = "TextBoxLengthOfHoles";
+            this.TextBoxLengthOfHoles.Size = new System.Drawing.Size(100, 30);
+            this.TextBoxLengthOfHoles.TabIndex = 18;
+            this.TextBoxLengthOfHoles.TextChanged += new System.EventHandler(this.TextBoxValidator_TextChanged);
+            this.TextBoxLengthOfHoles.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CheckForCommasAndNumbers_KeyPress);
+            // 
+            // LabelLengthOfHolesRange
+            // 
+            this.LabelLengthOfHolesRange.AutoSize = true;
+            this.LabelLengthOfHolesRange.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.LabelLengthOfHolesRange.Location = new System.Drawing.Point(407, 195);
+            this.LabelLengthOfHolesRange.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LabelLengthOfHolesRange.Name = "LabelLengthOfHolesRange";
+            this.LabelLengthOfHolesRange.Size = new System.Drawing.Size(117, 25);
+            this.LabelLengthOfHolesRange.TabIndex = 19;
+            this.LabelLengthOfHolesRange.Text = "16-35,5 шт.";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(589, 252);
+            this.ClientSize = new System.Drawing.Size(589, 306);
+            this.Controls.Add(this.LabelLengthOfHolesRange);
+            this.Controls.Add(this.TextBoxLengthOfHoles);
+            this.Controls.Add(this.LabelLengthOfHoles);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.LabelNumberOfHolesRange);
             this.Controls.Add(this.LabelNumberOfTeethRange);
@@ -293,6 +334,9 @@ namespace JuicerPluginUI
         private System.Windows.Forms.Label LabelNumberOfTeethRange;
         private System.Windows.Forms.Label LabelNumberOfHolesRange;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label LabelLengthOfHoles;
+        private System.Windows.Forms.TextBox TextBoxLengthOfHoles;
+        private System.Windows.Forms.Label LabelLengthOfHolesRange;
     }
 }
 

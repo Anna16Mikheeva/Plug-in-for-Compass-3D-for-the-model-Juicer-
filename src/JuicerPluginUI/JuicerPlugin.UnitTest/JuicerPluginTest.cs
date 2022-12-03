@@ -201,6 +201,40 @@ namespace JuicerPlugin.UnitTest
                 }, "Должно возникать исключение, если значение не входит в " +
                    "диапазон от 90 до 100");
         }
+
+
+        [TestCase(Description = "Позитивный тест геттера LengthOfHoles")]
+        public void Test_LengthOfHoles_Get_CorrectValue()
+        {
+            _changeableParametrs = new ChangeableParametrs();
+            var expected = 25.6;
+            _changeableParametrs.LengthOfHoles = expected;
+            var actual = _changeableParametrs.LengthOfHoles;
+            Assert.AreEqual(expected, actual, "Значение должно входить в " +
+                                              "диапазон от 16 до 35.5");
+        }
+
+        [TestCase(19.83, Description = "Позитивный тест сеттера LengthOfHoles")]
+        public void Test_LengthOfHoles_Set_CorrectValue(double value)
+        {
+            _changeableParametrs = new ChangeableParametrs();
+            _changeableParametrs.LengthOfHoles = 19.83;
+            Assert.AreEqual(value, _changeableParametrs.LengthOfHoles,
+                "Значение должно входить в диапазон от 16 до 35.5");
+        }
+
+        [TestCase(10, Description = "Негативный тест сеттера LengthOfHoles")]
+        [TestCase(102.3, Description = "Негативный тест сеттера LengthOfHoles")]
+
+        public void Test_LengthOfHoles_Set_UnCorrectValue(double wrongLengthOfHoles)
+        {
+            _changeableParametrs = new ChangeableParametrs();
+            Assert.Throws<ArgumentOutOfRangeException>(() =>
+                {
+                    _changeableParametrs.LengthOfHoles = wrongLengthOfHoles;
+                }, "Должно возникать исключение, если значение не входит в " +
+                   "диапазон от 16 до 35.5");
+        }
     }
 }
 

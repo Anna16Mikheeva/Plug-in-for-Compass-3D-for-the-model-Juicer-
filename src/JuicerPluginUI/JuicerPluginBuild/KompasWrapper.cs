@@ -493,8 +493,8 @@ namespace JuicerPluginBuild
 		/// <summary>
 		/// Метод построения отверстий в тарелке
 		/// </summary>
-		public void BuildHolesInThePlate(double count, double diameterPlate, 
-            double diameterStake)
+		public void BuildHolesInThePlate(double count,
+            double diameterStake, double lengthOfHoles)
         {
             var document = 
                 (ksDocument3D)_kompas.ActiveDocument3D();
@@ -538,8 +538,6 @@ namespace JuicerPluginBuild
             {
                 return;
             }
-            // Радиус тарелки со свдигом
-            diameterPlate = -(diameterPlate/2 - 10.5);
             // Радиус кола со сдвигом
             diameterStake = -diameterStake/2-2;
             // Общая координата
@@ -547,17 +545,17 @@ namespace JuicerPluginBuild
 
 	        // TODO: можно попробовать обернуть в цикл
             sketchEdit.ksLineSeg
-                (-sharedCoordinate, diameterPlate, 
+                (-sharedCoordinate, diameterStake-lengthOfHoles, 
                 -sharedCoordinate, diameterStake, styleLine[0]);
             sketchEdit.ksLineSeg
                 (-sharedCoordinate, diameterStake, 
                 sharedCoordinate, diameterStake, styleLine[0]);
             sketchEdit.ksLineSeg
                 (sharedCoordinate, diameterStake, 
-                sharedCoordinate, diameterPlate, styleLine[0]);
+                sharedCoordinate, diameterStake - lengthOfHoles, styleLine[0]);
             sketchEdit.ksLineSeg
-                (sharedCoordinate, diameterPlate, 
-                -sharedCoordinate, diameterPlate, styleLine[0]);
+                (sharedCoordinate, diameterStake - lengthOfHoles, 
+                -sharedCoordinate, diameterStake - lengthOfHoles, styleLine[0]);
             // Завершение редактирования эскиза
             sketchDef.EndEdit();    
 

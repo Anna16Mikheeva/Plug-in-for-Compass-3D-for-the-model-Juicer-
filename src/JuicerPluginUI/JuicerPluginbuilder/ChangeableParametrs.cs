@@ -34,6 +34,11 @@ namespace JuicerPluginParameters
         private double _numberOfHoles;
 
         /// <summary>
+        /// Параметр длины отверстий в тарелке
+        /// </summary>
+        private double _lengthOfHoles;
+
+        /// <summary>
         /// Словарь перечисления параметров и ошибки
         /// </summary>
         public Dictionary<ParameterType, string> Parameters = 
@@ -157,6 +162,24 @@ namespace JuicerPluginParameters
                     (value, min, max, 
                     ParameterType.NumberOfHoles, Parameters);
                 _numberOfHoles = value;
+            }
+        }
+
+        public double LengthOfHoles
+        {
+            get
+            {
+                return _lengthOfHoles;
+            }
+
+            set
+            {
+                const double min = 16;
+                const double max = 35.5;
+                _parameterCheck.RangeCheck
+                (value, min, max,
+                    ParameterType.LengthOfHoles, Parameters);
+                _lengthOfHoles = value;
             }
         }
     }

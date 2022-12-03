@@ -35,6 +35,11 @@ namespace JuicerPluginParameters
         /// <summary>
         /// Количество зубцов
         /// </summary>
-        NumberOfTeeth
+        NumberOfTeeth,
+
+        /// <summary>
+        /// Длина отверстий
+        /// </summary>
+        LengthOfHoles
     }
 }
