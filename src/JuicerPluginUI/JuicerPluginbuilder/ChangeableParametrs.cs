@@ -145,7 +145,7 @@ namespace JuicerPluginParameters
         }
 
         /// <summary>
-        /// Возвращает и устанавливает значение количества отвертий в тарелке
+        /// Возвращает и устанавливает значение количества отверстий в тарелке
         /// </summary>
         public double NumberOfHoles
         {
@@ -166,6 +166,9 @@ namespace JuicerPluginParameters
         }
 
         // TODO: XML
+        /// <summary>
+        /// Возвращает и устанавливает значение длины отверстий в тарелке
+        /// </summary>
         public double LengthOfHoles
         {
             get

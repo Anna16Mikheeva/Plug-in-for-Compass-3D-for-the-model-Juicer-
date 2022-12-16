@@ -80,8 +80,10 @@ namespace JuicerPluginBuild
         {
             try
             {
+
                 var document = (ksDocument3D)_kompas.Document3D();
                 document.Create();
+                document = (ksDocument3D)_kompas.ActiveDocument3D();
             }
             catch
             {
