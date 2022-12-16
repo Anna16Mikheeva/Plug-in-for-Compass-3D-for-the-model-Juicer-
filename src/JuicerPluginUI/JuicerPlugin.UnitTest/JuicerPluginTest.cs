@@ -7,6 +7,7 @@ namespace JuicerPlugin.UnitTest
     [TestFixture]
     class JuicerPluginBuildTest
     {
+        // TODO: XML
         private ChangeableParametrs _changeableParametrs;
         
         [TestCase(Description = "Позитивный тест геттера PlateDiameter")]

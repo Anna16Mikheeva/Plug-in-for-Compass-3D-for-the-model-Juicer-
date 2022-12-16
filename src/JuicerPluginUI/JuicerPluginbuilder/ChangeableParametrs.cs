@@ -165,6 +165,7 @@ namespace JuicerPluginParameters
             }
         }
 
+        // TODO: XML
         public double LengthOfHoles
         {
             get
