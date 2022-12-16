@@ -7,7 +7,6 @@ namespace JuicerPlugin.UnitTest
     [TestFixture]
     class JuicerPluginBuildTest
     {
-        // TODO: XML
         /// <summary>
         /// Объект класса ChangeableParametrs
         /// </summary>

@@ -164,8 +164,7 @@ namespace JuicerPluginParameters
                 _numberOfHoles = value;
             }
         }
-
-        // TODO: XML
+        
         /// <summary>
         /// Возвращает и устанавливает значение длины отверстий в тарелке
         /// </summary>
